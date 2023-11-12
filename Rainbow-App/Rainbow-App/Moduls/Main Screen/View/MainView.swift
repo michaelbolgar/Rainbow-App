@@ -8,7 +8,7 @@ class MainView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .systemGray3
+        self.backgroundColor = UIColor.orange
     }
 
     required init?(coder: NSCoder) {

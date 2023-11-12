@@ -8,7 +8,7 @@ class GameView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .systemGray
+        self.backgroundColor = UIColor.raspberry
     }
 
     required init?(coder: NSCoder) {

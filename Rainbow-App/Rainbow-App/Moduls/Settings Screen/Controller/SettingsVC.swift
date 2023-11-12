@@ -9,7 +9,7 @@ class SettingsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = UIColor.yellow
         setupView()
     }
 

@@ -8,7 +8,7 @@ class SettingsView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .systemFill
+        self.backgroundColor = UIColor.purple
     }
 
     required init?(coder: NSCoder) {

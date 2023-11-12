@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
+		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
+		F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AE2B01732300351031 /* UILabel Extension.swift */; };
 		F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CAA2B0159DF00817069 /* AppDelegate.swift */; };
 		F49E7CAD2B0159DF00817069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */; };
 		F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CAE2B0159DF00817069 /* MainVC.swift */; };
@@ -24,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
+		F45055A92B01719900351031 /* Alice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice.ttf; sourceTree = "<group>"; };
+		F45055AA2B0171B300351031 /* Caveat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caveat.ttf; sourceTree = "<group>"; };
+		F45055AC2B01723600351031 /* Font Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font Extension.swift"; sourceTree = "<group>"; };
+		F45055AE2B01732300351031 /* UILabel Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extension.swift"; sourceTree = "<group>"; };
 		F49E7CA72B0159DF00817069 /* Rainbow-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rainbow-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49E7CAA2B0159DF00817069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F45055A82B01715200351031 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F45055AA2B0171B300351031 /* Caveat.ttf */,
+				F45055A92B01719900351031 /* Alice.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F45055AB2B01720D00351031 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F45055A62B016C4A00351031 /* UIColor Extension.swift */,
+				F45055AC2B01723600351031 /* Font Extension.swift */,
+				F45055AE2B01732300351031 /* UILabel Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F49E7C9E2B0159DF00817069 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +102,8 @@
 			children = (
 				F49E7CBE2B015B7700817069 /* App */,
 				F49E7CBF2B015B8F00817069 /* Moduls */,
+				F45055AB2B01720D00351031 /* Extensions */,
+				F45055A82B01715200351031 /* Fonts */,
 				F49E7CB32B0159E300817069 /* Assets.xcassets */,
 				F49E7CB82B0159E300817069 /* Info.plist */,
 			);
@@ -349,12 +378,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */,
 				F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */,
 				F49E7CE42B01605300817069 /* GameView.swift in Sources */,
+				F45055AD2B01723600351031 /* Font Extension.swift in Sources */,
 				F49E7CE22B015E5500817069 /* MainView.swift in Sources */,
 				F49E7CD72B015CB800817069 /* HelpVC.swift in Sources */,
 				F49E7CD52B015C8F00817069 /* SettingsVC.swift in Sources */,
 				F49E7CE82B01624F00817069 /* HelpView.swift in Sources */,
+				F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */,
 				F49E7CE62B0161EE00817069 /* StatistisView.swift in Sources */,
 				F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
