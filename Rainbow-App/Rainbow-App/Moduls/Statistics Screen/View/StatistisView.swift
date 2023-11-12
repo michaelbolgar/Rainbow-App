@@ -8,7 +8,7 @@ class StatisticsView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.backgroundBlue
+        self.backgroundColor = Palette.backgroundBlue
     }
 
     required init?(coder: NSCoder) {

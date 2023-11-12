@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIColor {
+struct Palette {
 
     static var backgroundBlue: UIColor = {
         return UIColor (red: 13/255, green: 28/255, blue: 56/255, alpha: 1.0)

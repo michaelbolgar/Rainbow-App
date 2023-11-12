@@ -8,7 +8,7 @@ class HelpView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.raspberry
+        self.backgroundColor = Palette.raspberry
     }
 
     required init?(coder: NSCoder) {
