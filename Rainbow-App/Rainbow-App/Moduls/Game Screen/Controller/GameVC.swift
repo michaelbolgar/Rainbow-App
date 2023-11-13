@@ -9,7 +9,6 @@ class GameVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint
         setupView()
     }
 
