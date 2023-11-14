@@ -7,50 +7,15 @@ class StatisticsVC: UIViewController {
     
     //MARK: - UI Componets
     
-    //let statisticsView = StatisticsView()
-    
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .alice(size: 20)
-        label.textColor = .black
-        return label
-    }()
-    
-    private lazy var resultsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = Palette.backgroundBlue
-        tableView.separatorStyle = .none
-        tableView.rowHeight = 96
-        tableView.isScrollEnabled = true
-        tableView.register(StatisticsViewCell.self, forCellReuseIdentifier: StatisticsViewCell.identifier)
-        return tableView
-    }()
-    
-    private let cleanButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Очистить статистику", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.caveat(size: 20)
-        button.backgroundColor = Palette.blue
-        button.layer.shadowColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25).cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 4
-        button.layer.shadowOffset = CGSize(width: 0, height: 4)
-        button.layer.cornerRadius = 10
-        return button
-    }()
-    
-    
+    let statisticsView = StatisticsView()
     
     //MARK: Controller's life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.backgroundBlue
-        resultsTableView.delegate = self
-        resultsTableView.dataSource = self
+        statisticsView.resultsTableView.delegate = self
+        statisticsView.resultsTableView.dataSource = self
         setupView()
     }
     
@@ -58,19 +23,12 @@ class StatisticsVC: UIViewController {
     
     private func setupView() {
         
-        [resultsTableView, cleanButton].forEach{view.addSubview($0)}
+        view.addSubview(statisticsView)
         
-        resultsTableView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(25)
-            $0.verticalEdges.equalToSuperview().inset(121)
-            
+        statisticsView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
-        cleanButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(55)
-            $0.horizontalEdges.equalToSuperview().inset(55)
-            $0.height.equalTo(63)
-        }
     }
 }
 
