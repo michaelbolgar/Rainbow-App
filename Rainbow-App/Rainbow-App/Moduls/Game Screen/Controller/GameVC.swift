@@ -20,7 +20,7 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setNavigationBackButton(title: "")
+        setNavigationBar(title: "")
         
         navigationItem.rightBarButtonItem = addBarButtonItem
     }

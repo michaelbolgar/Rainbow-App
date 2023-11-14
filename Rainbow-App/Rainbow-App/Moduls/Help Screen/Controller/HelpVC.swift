@@ -33,7 +33,7 @@ private extension HelpVC {
         view.addSubview(helpView)
         let helpViewConstraints = self.setupHelpViewsConstraints()
         NSLayoutConstraint.activate(helpViewConstraints)
-        setNavigationController(title: Constants.titleString)
+        setNavigationBar(title: Constants.titleString)
     }
     
     func setupHelpViewsConstraints() -> [NSLayoutConstraint] {

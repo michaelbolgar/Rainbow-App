@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func setNavigationBackButton(title: String) {
+    func setNavigationBar(title: String) {
         navigationItem.title = title
         navigationController?.navigationBar.titleTextAttributes =
         [NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -20,7 +20,7 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = backButton
     }
     
-//    @objc private func backButtonTapped() {
-//        navigationController?.popViewController(animated: true)
-//    }
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
 }

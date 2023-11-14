@@ -82,25 +82,3 @@ private extension SubstrateDesignationStackView {
                                                secondSubstrateTypeLabel)
     }
 }
-
-extension UIViewController {
-    
-    func setNavigationController(title: String) {
-        navigationItem.title = title
-        navigationController?.navigationBar.titleTextAttributes =
-        [NSAttributedString.Key.foregroundColor: UIColor.white,
-         NSAttributedString.Key.font: UIFont.alice(size: 30) ?? UIFont.systemFont(ofSize: 30,
-                                                                                  weight: .regular)]
-        navigationItem.hidesBackButton = true
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(backButtonTapped))
-        backButton.tintColor = .white
-        navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-}
