@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F85E2B01868A00CA2D4F /* UIView +ext.swift */; };
+		3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8602B01869900CA2D4F /* UIStackView +ext.swift */; };
+		3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */; };
 		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
 		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
 		F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AE2B01732300351031 /* UILabel Extension.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3526F85E2B01868A00CA2D4F /* UIView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +ext.swift"; sourceTree = "<group>"; };
+		3526F8602B01869900CA2D4F /* UIStackView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView +ext.swift"; sourceTree = "<group>"; };
+		3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateDesignationStackView.swift; sourceTree = "<group>"; };
 		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F45055A92B01719900351031 /* Alice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice.ttf; sourceTree = "<group>"; };
 		F45055AA2B0171B300351031 /* Caveat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caveat.ttf; sourceTree = "<group>"; };
@@ -76,6 +82,8 @@
 				F45055A62B016C4A00351031 /* UIColor Extension.swift */,
 				F45055AC2B01723600351031 /* Font Extension.swift */,
 				F45055AE2B01732300351031 /* UILabel Extension.swift */,
+				3526F85E2B01868A00CA2D4F /* UIView +ext.swift */,
+				3526F8602B01869900CA2D4F /* UIStackView +ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -261,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				F49E7CE72B01624F00817069 /* HelpView.swift */,
+				3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,16 +388,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */,
+				3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */,
 				F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */,
 				F49E7CE42B01605300817069 /* GameView.swift in Sources */,
 				F45055AD2B01723600351031 /* Font Extension.swift in Sources */,
 				F49E7CE22B015E5500817069 /* MainView.swift in Sources */,
 				F49E7CD72B015CB800817069 /* HelpVC.swift in Sources */,
+				3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */,
 				F49E7CD52B015C8F00817069 /* SettingsVC.swift in Sources */,
 				F49E7CE82B01624F00817069 /* HelpView.swift in Sources */,
 				F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */,
 				F49E7CE62B0161EE00817069 /* StatistisView.swift in Sources */,
 				F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */,
+				3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
 				F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */,
 				F49E7CAD2B0159DF00817069 /* SceneDelegate.swift in Sources */,
