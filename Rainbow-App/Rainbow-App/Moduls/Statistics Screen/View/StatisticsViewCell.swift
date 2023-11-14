@@ -21,41 +21,13 @@ class StatisticsViewCell: UITableViewCell {
         return view
     }()
     
-    private var numberOfGameLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .alice(size: 20)
-        label.textColor = Palette.raspberry
-        return label
-    }()
+    private var numberOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: Palette.raspberry)
     
-    private var timeOfGameLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .alice(size: 20)
-        label.textColor = .black
-        return label
-    }()
+    private var timeOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: .black)
     
-    private var speedOfGameLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .alice(size: 20)
-        label.textColor = .black
-        return label
-    }()
+    private var speedOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: .black)
     
-    private var scopeLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .alice(size: 20)
-        label.textColor = Palette.green
-        return label
-    }()
+    private var scopeLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: Palette.green)
     //MARK: - Unit
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

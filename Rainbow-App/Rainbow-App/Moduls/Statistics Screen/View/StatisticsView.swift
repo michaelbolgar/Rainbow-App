@@ -10,15 +10,6 @@ class StatisticsView: UIView {
     
     weak var delegate: StatisticsViewDelegate?
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .alice(size: 20)
-        label.textColor = .black
-        return label
-    }()
-    
     var resultsTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = Palette.backgroundBlue
@@ -40,7 +31,6 @@ class StatisticsView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
         button.layer.cornerRadius = 10
-        
         return button
     }()
     
@@ -55,7 +45,6 @@ class StatisticsView: UIView {
         resultsTableView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(25)
             $0.verticalEdges.equalToSuperview().inset(121)
-            
         }
         
         cleanButton.snp.makeConstraints {
