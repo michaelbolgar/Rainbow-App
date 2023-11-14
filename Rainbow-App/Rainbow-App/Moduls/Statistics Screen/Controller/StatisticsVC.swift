@@ -3,7 +3,7 @@ import SnapKit
 
 class StatisticsVC: UIViewController {
     
-    let games = ["4", "3", "2", "1"]
+    var games = ["4", "3", "2", "1"]
     
     //MARK: - UI Componets
     
@@ -14,8 +14,10 @@ class StatisticsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.backgroundBlue
+        statisticsView.delegate = self
         statisticsView.resultsTableView.delegate = self
         statisticsView.resultsTableView.dataSource = self
+      //setNavigationBackButton(title: "Статистика")
         setupView()
     }
     
@@ -51,6 +53,13 @@ extension StatisticsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension StatisticsVC: StatisticsViewDelegate {
+    @objc internal func cleanButtonTapped() {
+        print("cleanButton tapped")
+        games = [""]
+    }
 }
 
 
