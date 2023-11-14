@@ -6,7 +6,7 @@ class MainView: UIView {
 
     // MARK: UI Elements
 
-    let helloLabel = UILabel.makeLabel(text: "Hello, world!", font: UIFont.systemFont(ofSize: 40), textColor: UIColor.black)
+    let helloLabel = UILabel.makeLabel(text: "Привет, мир! ", font: UIFont.caveat(size: 40), textColor: UIColor.black)
     let circleView = UIView()
     let characterCircle = UILabel()
     let horizontalStack = UIStackView()

@@ -17,6 +17,8 @@
 		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
 		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
 		F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AE2B01732300351031 /* UILabel Extension.swift */; };
+		F46C1FE92B03E994006E310B /* Caveat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F46C1FE82B03E994006E310B /* Caveat.ttf */; };
+		F46C1FED2B03E9D9006E310B /* Alice.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F46C1FEC2B03E9D9006E310B /* Alice.ttf */; };
 		F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CAA2B0159DF00817069 /* AppDelegate.swift */; };
 		F49E7CAD2B0159DF00817069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */; };
 		F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CAE2B0159DF00817069 /* MainVC.swift */; };
@@ -42,10 +44,10 @@
 		3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateDesignationStackView.swift; sourceTree = "<group>"; };
 		E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewCell.swift; sourceTree = "<group>"; };
 		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
-		F45055A92B01719900351031 /* Alice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice.ttf; sourceTree = "<group>"; };
-		F45055AA2B0171B300351031 /* Caveat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caveat.ttf; sourceTree = "<group>"; };
 		F45055AC2B01723600351031 /* Font Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font Extension.swift"; sourceTree = "<group>"; };
 		F45055AE2B01732300351031 /* UILabel Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extension.swift"; sourceTree = "<group>"; };
+		F46C1FE82B03E994006E310B /* Caveat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caveat.ttf; sourceTree = "<group>"; };
+		F46C1FEC2B03E9D9006E310B /* Alice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice.ttf; sourceTree = "<group>"; };
 		F49E7CA72B0159DF00817069 /* Rainbow-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rainbow-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49E7CAA2B0159DF00817069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,8 +80,8 @@
 		F45055A82B01715200351031 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F45055AA2B0171B300351031 /* Caveat.ttf */,
-				F45055A92B01719900351031 /* Alice.ttf */,
+				F46C1FEC2B03E9D9006E310B /* Alice.ttf */,
+				F46C1FE82B03E994006E310B /* Caveat.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -389,6 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F49E7CB42B0159E300817069 /* Assets.xcassets in Resources */,
+				F46C1FE92B03E994006E310B /* Caveat.ttf in Resources */,
+				F46C1FED2B03E9D9006E310B /* Alice.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
