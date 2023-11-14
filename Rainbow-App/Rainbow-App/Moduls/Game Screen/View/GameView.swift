@@ -2,41 +2,6 @@ import Foundation
 import UIKit
 import SnapKit
 
-enum RainbowColors: String, CaseIterable {
-    case red = "красный"
-    case pink = "розовый"
-    case orange = "оранжевый"
-    case yellow = "желтый"
-    case green = "зеленый"
-    case lightBlue = "голубой"
-    case blue = "синий"
-    case purple = "фиолетовый"
-    case white = "белый"
-    
-    var color: UIColor {
-        switch self{
-        case .red:
-            return .red
-        case .pink:
-            return UIColor(red: 0.99, green: 0.13, blue: 0.64, alpha: 1.00)
-        case .orange:
-            return Palette.orange
-        case .yellow:
-            return Palette.yellow
-        case .green:
-            return Palette.green
-        case .lightBlue:
-            return UIColor(red: 0.26, green: 0.67, blue: 1.00, alpha: 1.00)
-        case .blue:
-            return UIColor(red: 0.00, green: 0.30, blue: 0.81, alpha: 1.00)
-        case .purple:
-            return Palette.purple
-        case .white:
-            return .white
-        }
-    }
-}
-
 class GameView: UIView {
     // MARK: Properties
     
@@ -44,14 +9,30 @@ class GameView: UIView {
     
     var colorsAnimator: UIViewPropertyAnimator?
     
-    let countColors = 100.0
+    var timer: Timer?
+    var timeLeft = 59
     
+    var isPaused: Bool = false
+    
+    let countColors = 100.0
+    lazy var speed = countColors * 2.5
+    
+    let timerLabel = UILabel.makeLabel(font: .alice(size: 30), textColor: .white)
+    
+    lazy var speedButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("X2", for: .normal)
+        button.addTarget(self, action: #selector(speedButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+
     // MARK: Init
 
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Palette.backgroundBlue
-        
+        setupView()
         randomColorViews(count: Int(countColors))
         addPatterns()
     }
@@ -60,11 +41,30 @@ class GameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func randomColor() -> RainbowColors {
+    func setupView() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+        
+        timerLabel.text = "00:\(timeLeft)"
+        
+        addSubview(timerLabel)
+        timerLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(65) //?
+        }
+        
+        addSubview(speedButton)
+        speedButton.snp.makeConstraints { make in
+            make.bottomMargin.trailingMargin.equalToSuperview().offset(-20)
+        }
+    }
+    
+    //MARK: - CREATE Color Views
+    
+    private func randomColor() -> RainbowColors {
         return RainbowColors.allCases.randomElement() ?? .red
     }
     
-    func randomColorViews(count: Int) {
+    private func randomColorViews(count: Int) {
         for _ in 0..<count {
             let randomTitle = randomColor().rawValue
             let randomColor = randomColor().color
@@ -77,6 +77,7 @@ class GameView: UIView {
         
         for colorView in colorViews {
             addSubview(colorView)
+            bringSubviewToFront(timerLabel)
             colorView.frame = CGRect(
                 x: Double.random(in: 20...280),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
@@ -87,7 +88,7 @@ class GameView: UIView {
             sizeBetweenColors -= 250
         }
         
-        colorsAnimator = UIViewPropertyAnimator(duration: countColors * 2.5, curve: .linear) {
+        colorsAnimator = UIViewPropertyAnimator(duration: speed, curve: .linear) {
             self.colorViews.forEach { color in
                 color.frame = CGRect(
                     x: color.frame.origin.x,
@@ -98,8 +99,27 @@ class GameView: UIView {
                 color.alpha = 0
             }
         }
-        
         colorsAnimator?.startAnimation()
+    }
+    
+    //MARK: - TIMER
+    
+    @objc func onTimerFires() {
+        timeLeft -= 1
+        timerLabel.text = "00:\(timeLeft)"
+     
+        if timeLeft <= 0 {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    //MARK: - Speed button
+    
+    @objc func speedButtonTapped() {
+        speed = speed / 2
+        colorsAnimator = UIViewPropertyAnimator(duration: speed, curve: .linear)
+        colorsAnimator?.startAnimation(afterDelay: speed)
     }
 }
 
