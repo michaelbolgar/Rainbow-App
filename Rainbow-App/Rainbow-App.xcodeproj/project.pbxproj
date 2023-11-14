@@ -10,6 +10,10 @@
 		755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825102B0215EA000193EA /* ColorsPatternView.swift */; };
 		755825132B035B61000193EA /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825122B035B61000193EA /* UIViewController.swift */; };
 		755825152B03DCE9000193EA /* RainbowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825142B03DCE9000193EA /* RainbowColors.swift */; };
+		3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F85E2B01868A00CA2D4F /* UIView +ext.swift */; };
+		3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8602B01869900CA2D4F /* UIStackView +ext.swift */; };
+		3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */; };
+		E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */; };
 		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
 		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
 		F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AE2B01732300351031 /* UILabel Extension.swift */; };
@@ -24,7 +28,7 @@
 		F49E7CE02B015E4100817069 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F49E7CDF2B015E4100817069 /* SnapKit */; };
 		F49E7CE22B015E5500817069 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE12B015E5500817069 /* MainView.swift */; };
 		F49E7CE42B01605300817069 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE32B01605300817069 /* GameView.swift */; };
-		F49E7CE62B0161EE00817069 /* StatistisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE52B0161EE00817069 /* StatistisView.swift */; };
+		F49E7CE62B0161EE00817069 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE52B0161EE00817069 /* StatisticsView.swift */; };
 		F49E7CE82B01624F00817069 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE72B01624F00817069 /* HelpView.swift */; };
 		F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE92B0162B800817069 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +37,10 @@
 		755825102B0215EA000193EA /* ColorsPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsPatternView.swift; sourceTree = "<group>"; };
 		755825122B035B61000193EA /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		755825142B03DCE9000193EA /* RainbowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RainbowColors.swift; path = "Rainbow-App/Extensions/RainbowColors.swift"; sourceTree = SOURCE_ROOT; };
+		3526F85E2B01868A00CA2D4F /* UIView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +ext.swift"; sourceTree = "<group>"; };
+		3526F8602B01869900CA2D4F /* UIStackView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView +ext.swift"; sourceTree = "<group>"; };
+		3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateDesignationStackView.swift; sourceTree = "<group>"; };
+		E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewCell.swift; sourceTree = "<group>"; };
 		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F45055A92B01719900351031 /* Alice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice.ttf; sourceTree = "<group>"; };
 		F45055AA2B0171B300351031 /* Caveat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caveat.ttf; sourceTree = "<group>"; };
@@ -50,7 +58,7 @@
 		F49E7CDB2B015CFF00817069 /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		F49E7CE12B015E5500817069 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F49E7CE32B01605300817069 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		F49E7CE52B0161EE00817069 /* StatistisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatistisView.swift; sourceTree = "<group>"; };
+		F49E7CE52B0161EE00817069 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		F49E7CE72B01624F00817069 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		F49E7CE92B0162B800817069 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +91,8 @@
 				F45055AC2B01723600351031 /* Font Extension.swift */,
 				F45055AE2B01732300351031 /* UILabel Extension.swift */,
 				755825122B035B61000193EA /* UIViewController.swift */,
+				3526F85E2B01868A00CA2D4F /* UIView +ext.swift */,
+				3526F8602B01869900CA2D4F /* UIStackView +ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,7 +256,8 @@
 		F49E7CCC2B015C1B00817069 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F49E7CE52B0161EE00817069 /* StatistisView.swift */,
+				F49E7CE52B0161EE00817069 /* StatisticsView.swift */,
+				E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				F49E7CE72B01624F00817069 /* HelpView.swift */,
+				3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,17 +400,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */,
+				3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */,
 				F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */,
 				F49E7CE42B01605300817069 /* GameView.swift in Sources */,
 				F45055AD2B01723600351031 /* Font Extension.swift in Sources */,
 				F49E7CE22B015E5500817069 /* MainView.swift in Sources */,
 				F49E7CD72B015CB800817069 /* HelpVC.swift in Sources */,
+				3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */,
 				F49E7CD52B015C8F00817069 /* SettingsVC.swift in Sources */,
 				F49E7CE82B01624F00817069 /* HelpView.swift in Sources */,
 				755825132B035B61000193EA /* UIViewController.swift in Sources */,
 				F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */,
-				F49E7CE62B0161EE00817069 /* StatistisView.swift in Sources */,
+				E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */,
+				F49E7CE62B0161EE00817069 /* StatisticsView.swift in Sources */,
 				F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */,
+				3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
 				F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */,
 				755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */,

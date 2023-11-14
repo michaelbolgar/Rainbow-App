@@ -18,7 +18,7 @@ class MainVC: UIViewController {
     private func setupView() {
 
         view.addSubview(mainView)
-
+        
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
