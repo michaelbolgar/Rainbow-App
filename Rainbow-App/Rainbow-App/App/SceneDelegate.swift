@@ -11,8 +11,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow (windowScene: windowScene)
 
-//        window.rootViewController = MainVC()
-        window.rootViewController = UINavigationController(rootViewController: GameVC())
+        window.rootViewController = MainVC()
+//        window.rootViewController = UINavigationController(rootViewController: GameVC())
 //        window.rootViewController = StatisticsVC()
 //        window.rootViewController = SettingsVC()
 //        window.rootViewController = HelpVC()
