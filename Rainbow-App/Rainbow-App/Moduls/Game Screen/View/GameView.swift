@@ -9,15 +9,8 @@ class GameView: UIView {
     
     var colorsAnimator: UIViewPropertyAnimator?
     
-    var timer: Timer?
-    var timeLeft = 59
-    
-    var isPaused: Bool = false
-    
     let countColors = 100.0
     lazy var speed = countColors * 2.5
-    
-    let timerLabel = UILabel.makeLabel(font: .alice(size: 30), textColor: .white)
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
@@ -42,16 +35,6 @@ class GameView: UIView {
     }
     
     func setupView() {
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
-        
-        timerLabel.text = "00:\(timeLeft)"
-        
-        addSubview(timerLabel)
-        timerLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(65) //?
-        }
-        
         addSubview(speedButton)
         speedButton.snp.makeConstraints { make in
             make.bottomMargin.trailingMargin.equalToSuperview().offset(-20)
@@ -77,7 +60,6 @@ class GameView: UIView {
         
         for colorView in colorViews {
             addSubview(colorView)
-            bringSubviewToFront(timerLabel)
             colorView.frame = CGRect(
                 x: Double.random(in: 20...280),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
@@ -102,24 +84,11 @@ class GameView: UIView {
         colorsAnimator?.startAnimation()
     }
     
-    //MARK: - TIMER
-    
-    @objc func onTimerFires() {
-        timeLeft -= 1
-        timerLabel.text = "00:\(timeLeft)"
-     
-        if timeLeft <= 0 {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-    
     //MARK: - Speed button
     
     @objc func speedButtonTapped() {
         speed = speed / 2
-        colorsAnimator = UIViewPropertyAnimator(duration: speed, curve: .linear)
-        colorsAnimator?.startAnimation(afterDelay: speed)
+        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: 1/3) //работает после паузы
     }
 }
 
