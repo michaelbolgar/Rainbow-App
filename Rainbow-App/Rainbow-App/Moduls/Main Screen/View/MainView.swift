@@ -2,41 +2,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-private extension UIButton {
-    static func makeCircleButton(imageName: String = "") -> UIButton {
-        let button = UIButton()
-        let imageView = UIImageView()
-//        button.setImage(UIImage(systemName: imageName), for: .normal)
-//        button.snp.makeConstraints { make in
-//            make.width.height.equalTo(50)
-//        }
-        imageView.image = UIImage(systemName: imageName)
-        imageView.contentMode = .scaleAspectFit
-        button.addSubview(imageView)
-        
-        imageView.snp.makeConstraints { make in
-            make.width.height.equalTo(50)
-        }
-        button.snp.makeConstraints { make in
-            make.width.height.equalTo(50)
-        }
-        return button
-    }
-}
 
-private extension UILabel {
-    func configureForRainbow(text: String, color: UIColor, size: CGFloat) {
-        self.text = text
-        self.textColor = .black
-        self.backgroundColor = color
-        self.layer.cornerRadius = size / 2
-        self.textAlignment = .center
-        self.clipsToBounds = true
-        self.snp.makeConstraints { make in
-            make.width.height.equalTo(size)
-        }
-    }
-}
 
 class MainView: UIView {
     
@@ -44,6 +10,8 @@ class MainView: UIView {
     
     private let stackSpacing: CGFloat = 15
     private let characterCircleSize: CGFloat = 40
+    
+    static let shared = MainView()
 
     // MARK: UI Elements
     
@@ -53,34 +21,23 @@ class MainView: UIView {
                                       textColor: .white)
         return label
     }()
-    private lazy var newGameButton: UIButton = {
+    lazy var newGameButton: UIButton = {
         let button = UIButton.makeButton(text: "Новая игра")
-        button.addTarget(self,
-                         action: #selector(didTapNewGame),
-                         for: .touchUpInside)
         return button
     }()
-    private lazy var statisticButton: UIButton = {
+    lazy var statisticButton: UIButton = {
         let button = UIButton.makeButton(text: "Статистика")
-        button.addTarget(self,
-                         action: #selector(didTapStatistics),
-                         for: .touchUpInside)
         return button
     }()
-    private lazy var settingsButton: UIButton = {
+    lazy var settingsButton: UIButton = {
         let button = UIButton.makeCircleButton(imageName: "gearshape.circle")
-        button.addTarget(self,
-                         action: #selector(didTapSettings),
-                         for: .touchUpInside)
         return button
     }()
-    private lazy var helpButton: UIButton = {
+    lazy var helpButton: UIButton = {
         let button = UIButton.makeCircleButton(imageName: "questionmark.circle")
-        button.addTarget(self,
-                         action: #selector(didTapHelp),
-                         for: .touchUpInside)
         return button
     }()
+    @objc func didTapNewGame() {}
     private lazy var horizontalCharacterslStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -135,7 +92,9 @@ class MainView: UIView {
     private func setupRainbow() {
             for (index, color) in colors.enumerated() {
                 let characterCircle = UILabel()
-                characterCircle.configureForRainbow(text: rainbowWord[index], color: color, size: characterCircleSize)
+                characterCircle.configureForRainbow(text: rainbowWord[index], 
+                                                    color: color,
+                                                    size: characterCircleSize)
                 horizontalCharacterslStack.addArrangedSubview(characterCircle)
             }
         }
@@ -168,19 +127,40 @@ class MainView: UIView {
             make.width.height.equalTo(50)
         }
     }
-    
-        // MARK: Router
-    
-    @objc func didTapNewGame() {
-        // Router transition
+}
+
+// MARK: - Private+UIButton+Extensions
+
+private extension UIButton {
+    static func makeCircleButton(imageName: String = "") -> UIButton {
+        let button = UIButton()
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: imageName)
+        imageView.contentMode = .scaleAspectFit
+        button.addSubview(imageView)
+        
+        imageView.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+        }
+        button.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+        }
+        return button
     }
-    @objc func didTapStatistics() {
-        // Router transition
-    }
-    @objc func didTapSettings() {
-        // Router transition
-    }
-    @objc func didTapHelp() {
-        // Router transition
+}
+
+// MARK: - Private+UILabel+Extensions
+
+private extension UILabel {
+    func configureForRainbow(text: String, color: UIColor, size: CGFloat) {
+        self.text = text
+        self.textColor = .black
+        self.backgroundColor = color
+        self.layer.cornerRadius = size / 2
+        self.textAlignment = .center
+        self.clipsToBounds = true
+        self.snp.makeConstraints { make in
+            make.width.height.equalTo(size)
+        }
     }
 }

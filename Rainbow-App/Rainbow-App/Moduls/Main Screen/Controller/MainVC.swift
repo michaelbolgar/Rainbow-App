@@ -1,27 +1,51 @@
 import UIKit
-import SnapKit
 
 class MainVC: UIViewController {
-
-    let mainView = MainView()
-
-    //MARK: Controller's life cycle
+    
+    private let build = MainView.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
         setupView()
+        setupActions()
     }
 
-    // MARK: Methods
-
     private func setupView() {
-
-        view.addSubview(mainView)
-        
-        mainView.snp.makeConstraints { make in
+        view.addSubview(build)
+        build.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func setupActions() {
+        build.newGameButton.addTarget(self,
+                                      action: #selector(didTapNewGame),
+                                      for: .touchUpInside)
+        build.statisticButton.addTarget(self,
+                                        action: #selector(didTapStatistics),
+                                        for: .touchUpInside)
+        build.settingsButton.addTarget(self,
+                                       action: #selector(didTapSettings),
+                                       for: .touchUpInside)
+        build.helpButton.addTarget(self,
+                                   action: #selector(didTapHelp),
+                                   for: .touchUpInside)
+    }
+    
+    @objc func didTapNewGame() {
+        // Handle new game action
+    }
+    
+    @objc func didTapStatistics() {
+        // Handle statistics action
+    }
+    
+    @objc func didTapSettings() {
+        // Handle settings action
+    }
+    
+    @objc func didTapHelp() {
+        // Handle help action
     }
 }
 
