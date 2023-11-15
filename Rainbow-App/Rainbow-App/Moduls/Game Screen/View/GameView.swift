@@ -12,7 +12,7 @@ class GameView: UIView {
     let speedTitle = ["x1", "x2", "x3", "x4", "x5"]
     var countColors = 100.0
     lazy var speed = countColors * 2.5
-    var isBackground: Bool = false
+    var isBackground: Bool = true
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
@@ -70,10 +70,10 @@ class GameView: UIView {
             addSubview(colorView)
             bringSubviewToFront(speedButton)
             colorView.frame = CGRect(
-                x: Double.random(in: isBackground ? 20...280 : 1...250),
+                x: Double.random(in: isBackground ? 20...280 : 10...260),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
-                width: isBackground ? 100 : 200,
-                height: isBackground ? 100 : 200
+                width: 100,
+                height: 100
             )
             
             sizeBetweenColors -= 250
@@ -84,8 +84,8 @@ class GameView: UIView {
                 color.frame = CGRect(
                     x: color.frame.origin.x,
                     y: self.frame.height + sizeBetweenColors,
-                    width: self.isBackground ? 100 : 200,
-                    height: self.isBackground ? 100 : 200
+                    width: 100,
+                    height: 100
                 )
                 color.alpha = 0
             }
@@ -98,7 +98,7 @@ class GameView: UIView {
     
     @objc func speedButtonTapped() {
         colorsAnimator?.pauseAnimation()
-        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: 1/3) //работает после паузы
+        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: 1/2) //работает после паузы
         speedButton.setTitle(speedTitle[1], for: .normal)
         
     }

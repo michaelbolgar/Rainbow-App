@@ -14,14 +14,14 @@ class GameVC: UIViewController {
         }
     
     var timer: Timer?
-    var timeLeft = 10
+    var timeLeft = 75
 
     //MARK: Controller's life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setNavigationBar(title: "00:\(timeLeft)")
+        setNavigationBar(title: formattedTimer())
         
         navigationItem.rightBarButtonItem = addBarButtonItem
     }
@@ -39,9 +39,25 @@ class GameVC: UIViewController {
         }
     }
     
+    private func formattedTimer() -> String {
+        switch timeLeft {
+        case 0...9:
+            return "00:0\(timeLeft)"
+        case 10..<60:
+            return "00:\(timeLeft)"
+        default:
+            let beforeThePoint = timeLeft / 60
+            let afterThePoint = timeLeft % 60
+            if afterThePoint < 10 {
+                return "\(beforeThePoint):0\(afterThePoint)"
+            }
+            return "\(beforeThePoint):\(afterThePoint)"
+        }
+    }
+    
     @objc func onTimerFires() {
         timeLeft -= 1
-        title = "00:\(timeLeft)"
+        title = formattedTimer()
         
         if timeLeft <= 0 {
             timer?.invalidate()
