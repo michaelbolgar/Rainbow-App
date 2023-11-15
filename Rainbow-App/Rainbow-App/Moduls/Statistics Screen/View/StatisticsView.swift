@@ -8,7 +8,24 @@ protocol StatisticsViewDelegate: AnyObject {
 
 class StatisticsView: UIView {
     
+    //MARK: - Constants
+    
+    enum Constants {
+        
+        static let textCleanButton = "Очистить статистику"
+        static let textEmptyStatistics =
+                                            """
+                                            Упсс...
+                                            статистики нет
+                                            Let's play!
+                                            """
+    }
+    
+    //MARK: - Properties
+    
     weak var delegate: StatisticsViewDelegate?
+    
+    //MARK: - UI Components
     
     var resultsTableView: UITableView = {
         let tableView = UITableView()
@@ -20,31 +37,34 @@ class StatisticsView: UIView {
         return tableView
     }()
     
-    private let cleanButton: UIButton = {
+    let emptyStatisticsLabel = UILabel.makeMultiLineLabel(text: Constants.textEmptyStatistics, font: UIFont.alice(size: 26), textColor: .white, numberOfLines: 3)
+    
+    let cleanButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Очистить статистику", for: .normal)
+        button.setTitle(Constants.textCleanButton, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.caveat(size: 20)
+        button.titleLabel?.font = UIFont.alice(size: 20)
         button.backgroundColor = Palette.blue
-        button.layer.shadowColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25).cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 4
-        button.layer.shadowOffset = CGSize(width: 0, height: 4)
         button.layer.cornerRadius = 10
         return button
     }()
     
-    // MARK: Init
+    // MARK: - Init
     
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Palette.backgroundBlue
+        emptyStatisticsLabel.isHidden = true
         
-        [resultsTableView, cleanButton].forEach{self.addSubview($0)}
+        [resultsTableView, emptyStatisticsLabel, cleanButton].forEach{self.addSubview($0)}
         
         resultsTableView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(25)
             $0.verticalEdges.equalToSuperview().inset(121)
+        }
+        
+        emptyStatisticsLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         cleanButton.snp.makeConstraints {
@@ -59,6 +79,8 @@ class StatisticsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Methods
     
     @objc private func didTappedCleanButton() {
         delegate?.cleanButtonTapped()
