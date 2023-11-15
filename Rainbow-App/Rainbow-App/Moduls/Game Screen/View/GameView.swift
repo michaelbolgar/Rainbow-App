@@ -12,6 +12,7 @@ class GameView: UIView {
     let speedTitle = ["x1", "x2", "x3", "x4", "x5"]
     var countColors = 100.0
     lazy var speed = countColors * 2.5
+    var isBackground: Bool = false
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
@@ -58,7 +59,7 @@ class GameView: UIView {
         for _ in 0..<count {
             let randomTitle = randomColor().rawValue
             let randomColor = randomColor().color
-            colorViews.append(ColorsPatternView(title: randomTitle, color: randomColor))
+            colorViews.append(ColorsPatternView(title: randomTitle, color: randomColor, background: isBackground))
         }
     }
     
@@ -69,10 +70,10 @@ class GameView: UIView {
             addSubview(colorView)
             bringSubviewToFront(speedButton)
             colorView.frame = CGRect(
-                x: Double.random(in: 20...280),
+                x: Double.random(in: isBackground ? 20...280 : 1...250),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
-                width: 100,
-                height: 100
+                width: isBackground ? 100 : 200,
+                height: isBackground ? 100 : 200
             )
             
             sizeBetweenColors -= 250
@@ -83,8 +84,8 @@ class GameView: UIView {
                 color.frame = CGRect(
                     x: color.frame.origin.x,
                     y: self.frame.height + sizeBetweenColors,
-                    width: 100,
-                    height: 100
+                    width: self.isBackground ? 100 : 200,
+                    height: self.isBackground ? 100 : 200
                 )
                 color.alpha = 0
             }
