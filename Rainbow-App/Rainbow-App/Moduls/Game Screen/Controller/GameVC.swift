@@ -14,7 +14,7 @@ class GameVC: UIViewController {
         }
     
     var timer: Timer?
-    var timeLeft = 59
+    var timeLeft = 10
 
     //MARK: Controller's life cycle
 
@@ -46,6 +46,13 @@ class GameVC: UIViewController {
         if timeLeft <= 0 {
             timer?.invalidate()
             timer = nil
+            
+            gameView.colorsAnimator?.stopAnimation(true)
+            gameView.colorsAnimator?.finishAnimation(at: .end)
+            gameView.colorViews.forEach { $0.removeFromSuperview() }
+            gameView.colorViews.removeAll()
+            
+            navigationItem.rightBarButtonItem = nil //? надо ли
         }
     }
     

@@ -6,15 +6,21 @@ class GameView: UIView {
     // MARK: Properties
     
     var colorViews = [ColorsPatternView]()
-    
+
     var colorsAnimator: UIViewPropertyAnimator?
     
-    let countColors = 100.0
+    let speedTitle = ["x1", "x2", "x3", "x4", "x5"]
+    var countColors = 100.0
     lazy var speed = countColors * 2.5
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("X2", for: .normal)
+        button.setTitle(speedTitle.first, for: .normal)
+        button.tintColor = .white
+        button.layer.backgroundColor = UIColor.red.cgColor
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = false
+        
         button.addTarget(self, action: #selector(speedButtonTapped), for: .touchUpInside)
         
         return button
@@ -38,6 +44,7 @@ class GameView: UIView {
         addSubview(speedButton)
         speedButton.snp.makeConstraints { make in
             make.bottomMargin.trailingMargin.equalToSuperview().offset(-20)
+            make.width.height.equalTo(40)
         }
     }
     
@@ -60,6 +67,7 @@ class GameView: UIView {
         
         for colorView in colorViews {
             addSubview(colorView)
+            bringSubviewToFront(speedButton)
             colorView.frame = CGRect(
                 x: Double.random(in: 20...280),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
@@ -81,14 +89,17 @@ class GameView: UIView {
                 color.alpha = 0
             }
         }
+        
         colorsAnimator?.startAnimation()
     }
     
     //MARK: - Speed button
     
     @objc func speedButtonTapped() {
-        speed = speed / 2
+        colorsAnimator?.pauseAnimation()
         colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: 1/3) //работает после паузы
+        speedButton.setTitle(speedTitle[1], for: .normal)
+        
     }
 }
 
