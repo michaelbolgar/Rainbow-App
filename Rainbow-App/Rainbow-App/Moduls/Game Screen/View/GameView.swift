@@ -2,21 +2,29 @@ import Foundation
 import UIKit
 import SnapKit
 
+enum Speed: String {
+    case x1 = "x1"
+    case x2 = "x2"
+    case x3 = "x3"
+    case x4 = "x4"
+    case x5 = "x5"
+}
+
 class GameView: UIView {
     // MARK: Properties
     
     var colorViews = [ColorsPatternView]()
 
     var colorsAnimator: UIViewPropertyAnimator?
-    
-    let speedTitle = ["x1", "x2", "x3", "x4", "x5"]
+
     var countColors = 100.0
-    lazy var speed = countColors * 2.5
+    lazy var speed = countColors * 4
+    var defaultSpeed = Speed.x1.rawValue
     var isBackground: Bool = true
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(speedTitle.first, for: .normal)
+        button.setTitle(defaultSpeed, for: .normal)
         button.tintColor = .white
         button.layer.backgroundColor = UIColor.red.cgColor
         button.layer.cornerRadius = 20
@@ -97,10 +105,25 @@ class GameView: UIView {
     //MARK: - Speed button
     
     @objc func speedButtonTapped() {
+        switch defaultSpeed {
+        case Speed.x1.rawValue:
+            settingSpeed(Speed.x2, 1/2)
+        case Speed.x2.rawValue:
+            settingSpeed(Speed.x3, 1/3)
+        case Speed.x3.rawValue:
+            settingSpeed(Speed.x4, 1/4)
+        case Speed.x4.rawValue:
+            settingSpeed(Speed.x5, 1/5)
+        default:
+            settingSpeed(Speed.x1, 1/1)
+        }
+    }
+    
+    func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat) {
+        defaultSpeed = xSpeed.rawValue
+        speedButton.setTitle(xSpeed.rawValue, for: .normal)
         colorsAnimator?.pauseAnimation()
-        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: 1/2) //работает после паузы
-        speedButton.setTitle(speedTitle[1], for: .normal)
-        
+        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: duration)
     }
 }
 
