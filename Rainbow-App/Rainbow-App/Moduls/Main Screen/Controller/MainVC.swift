@@ -7,7 +7,7 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupActions()
+        build.delegate = self
     }
 
     private func setupView() {
@@ -17,34 +17,23 @@ class MainVC: UIViewController {
         }
     }
     
-    private func setupActions() {
-        build.newGameButton.addTarget(self,
-                                      action: #selector(didTapNewGame),
-                                      for: .touchUpInside)
-        build.statisticButton.addTarget(self,
-                                        action: #selector(didTapStatistics),
-                                        for: .touchUpInside)
-        build.settingsButton.addTarget(self,
-                                       action: #selector(didTapSettings),
-                                       for: .touchUpInside)
-        build.helpButton.addTarget(self,
-                                   action: #selector(didTapHelp),
-                                   for: .touchUpInside)
-    }
-    
-    @objc func didTapNewGame() {
+    // MARK: - MainVC+Extension+Delegate
+}
+
+extension MainVC: MainViewDelegate {
+    func didTapNewGame() {
         // Handle new game action
     }
     
-    @objc func didTapStatistics() {
+    func didTapStatistics() {
         // Handle statistics action
     }
     
-    @objc func didTapSettings() {
+    func didTapSettings() {
         // Handle settings action
     }
     
-    @objc func didTapHelp() {
+    func didTapHelp() {
         // Handle help action
     }
 }
