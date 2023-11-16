@@ -13,6 +13,7 @@
 		755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825102B0215EA000193EA /* ColorsPatternView.swift */; };
 		755825132B035B61000193EA /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825122B035B61000193EA /* UIViewController Extension.swift */; };
 		755825152B03DCE9000193EA /* RainbowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825142B03DCE9000193EA /* RainbowColors.swift */; };
+		E08945DD2B0570B0008FD586 /* UIButton Extencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */; };
 		E543C3922B049C1C003C599E /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3912B049C1C003C599E /* GameResult.swift */; };
 		E543C3942B049D88003C599E /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3932B049D88003C599E /* Results.swift */; };
 		E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */; };
@@ -44,6 +45,7 @@
 		755825102B0215EA000193EA /* ColorsPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsPatternView.swift; sourceTree = "<group>"; };
 		755825122B035B61000193EA /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
 		755825142B03DCE9000193EA /* RainbowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RainbowColors.swift; path = "Rainbow-App/Extensions/RainbowColors.swift"; sourceTree = SOURCE_ROOT; };
+		E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton Extencion.swift"; sourceTree = "<group>"; };
 		E543C3912B049C1C003C599E /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameResult.swift; path = "Rainbow-App/GameResult.swift"; sourceTree = SOURCE_ROOT; };
 		E543C3932B049D88003C599E /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Results.swift; path = "Rainbow-App/Results.swift"; sourceTree = SOURCE_ROOT; };
 		E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				F45055A62B016C4A00351031 /* UIColor Extension.swift */,
+				E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */,
 				F45055AC2B01723600351031 /* Font Extension.swift */,
 				F45055AE2B01732300351031 /* UILabel Extension.swift */,
 				755825122B035B61000193EA /* UIViewController Extension.swift */,
@@ -425,6 +428,7 @@
 				E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */,
 				F49E7CE62B0161EE00817069 /* StatisticsView.swift in Sources */,
 				F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */,
+				E08945DD2B0570B0008FD586 /* UIButton Extencion.swift in Sources */,
 				3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
 				E543C3942B049D88003C599E /* Results.swift in Sources */,
