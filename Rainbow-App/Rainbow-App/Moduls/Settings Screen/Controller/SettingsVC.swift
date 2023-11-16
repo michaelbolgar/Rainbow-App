@@ -52,20 +52,25 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         cell.slider.addTarget(self, action: #selector(durationSliderChanged), for: .valueChanged)
         cell.configure(with: setting.title, type: setting.type)
         cell.countLabel.text = "\(setting.value)" // Устанавливаем текущее значение слайдера
+
+        print("Cell created at index: \(indexPath.row)")
+
         return cell
     }
     
 
     @objc func durationSliderChanged(_ sender: UISlider) {
         let index = sender.tag
-          let newValue = Int(sender.value)
+        let newValue = Int(sender.value)
+
+        print("Slider changed at index: \(index), new value: \(newValue)")
           
-          // Обновляем данные в массиве settings
-          settings[index].value = newValue
+        // Обновляем данные в массиве settings
+        settings[index].value = newValue
           
-          // Обновляем ячейку
-          if let cell = settingsView.settingsTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SettingsViewCell {
+        // Обновляем ячейку
+        if let cell = settingsView.settingsTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SettingsViewCell {
               cell.countLabel.text = "\(newValue)"
-          }
+        }
     }
 }

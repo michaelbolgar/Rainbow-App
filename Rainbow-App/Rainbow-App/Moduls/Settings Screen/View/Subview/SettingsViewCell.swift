@@ -41,6 +41,7 @@ class SettingsViewCell: UITableViewCell {
         slider.maximumValue = 100
         slider.value = 2
         slider.isUserInteractionEnabled = true
+        slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
     
@@ -72,6 +73,7 @@ class SettingsViewCell: UITableViewCell {
     private lazy var hStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
+//        stack.backgroundColor = .systemRed
         stack.distribution = .equalSpacing
         stack.alignment = .center
         return stack
@@ -81,6 +83,7 @@ class SettingsViewCell: UITableViewCell {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
+        stack.backgroundColor = .systemYellow
         stack.distribution = .equalSpacing
         return stack
     }()
@@ -104,8 +107,10 @@ class SettingsViewCell: UITableViewCell {
         cellBackground.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(8)
         }
-        cellBackground.addSubview(hStack)
-        cellBackground.addSubview(vStack)
+        contentView.addSubview(hStack)
+
+        //у этого стека неправильно задан лейаут ниже, поэтому он каким-то образом перекрывает всю вью. можешь раскоментить у видеть, что всё жёлтое. Нужно найти причину, почему этот стек лезет на другие ячейки, или убрать его вообще
+//        contentView.addSubview(vStack)
     }
         
     func configure(with title: String, type: SettingsCellType) {
@@ -170,9 +175,9 @@ class SettingsViewCell: UITableViewCell {
             make.top.bottom.equalTo(cellBackground)
             make.leading.trailing.equalTo(cellBackground).inset(10)
         }
-        vStack.snp.makeConstraints { make in
-            make.top.bottom.equalTo(cellBackground)
-            make.leading.trailing.equalTo(cellBackground).inset(10)
-        }
+//        vStack.snp.makeConstraints { make in
+//            make.top.bottom.equalTo(cellBackground)
+//            make.leading.trailing.equalTo(cellBackground).inset(10)
+//        }
     }
 }

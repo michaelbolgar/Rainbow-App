@@ -17,7 +17,7 @@ class SettingsView: UIView {
     // MARK: Init
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Palette.purple
+        self.backgroundColor = Palette.backgroundBlue
         
         self.addSubview(settingsTableView)
         settingsTableView.snp.makeConstraints { make in
