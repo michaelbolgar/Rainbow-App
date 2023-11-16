@@ -2,9 +2,18 @@ import Foundation
 import UIKit
 import SnapKit
 
-
+protocol MainViewDelegate: AnyObject {
+    func didTapNewGame()
+    func didTapStatistics()
+    func didTapSettings()
+    func didTapHelp()
+}
 
 class MainView: UIView {
+    
+    // MARK: Delegate
+    
+    weak var delegate: MainViewDelegate?
     
     // MARK: Constants
     
@@ -23,46 +32,52 @@ class MainView: UIView {
     }()
     lazy var newGameButton: UIButton = {
         let button = UIButton.makeButton(text: "Новая игра")
+        button.addTarget(self,
+                         action: #selector(didTappedNewGame),
+                         for: .touchUpInside)
         return button
     }()
     lazy var statisticButton: UIButton = {
         let button = UIButton.makeButton(text: "Статистика")
+        button.addTarget(self,
+                         action: #selector(didTapStatistics),
+                         for: .touchUpInside)
         return button
     }()
     lazy var settingsButton: UIButton = {
         let button = UIButton.makeCircleButton(imageName: "gearshape.circle")
+        button.addTarget(self,
+                         action: #selector(didTapSettings),
+                         for: .touchUpInside)
         return button
     }()
     lazy var helpButton: UIButton = {
         let button = UIButton.makeCircleButton(imageName: "questionmark.circle")
+        button.addTarget(self,
+                         action: #selector(didTapHelp),
+                         for: .touchUpInside)
         return button
     }()
-    @objc func didTapNewGame() {}
     private lazy var horizontalCharacterslStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = stackSpacing
         return stack
     }()
-    
     private lazy var horizontalButtonStack = makeStackView(axis: .horizontal,
                                                                spacing: 250,
                                                                views: [settingsButton,
                                                                        helpButton])
-    
     private lazy var verticalalStack = makeStackView(axis: .vertical,
                                                                spacing: stackSpacing,
                                                                views: [newGameButton,
                                                                        statisticButton])
-
-    
     private let colors = [Palette.red, 
                           Palette.orange,
                           Palette.yellow,
                           Palette.green,
                           Palette.blue,
-                          Palette.purple
-    ]
+                          Palette.purple]
     private let rainbowWord = ["р", "а", "д", "у", "г", "а"]
 
     // MARK: Init
@@ -73,7 +88,6 @@ class MainView: UIView {
         setupRainbow()
         setupLayout()
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -98,6 +112,21 @@ class MainView: UIView {
                 horizontalCharacterslStack.addArrangedSubview(characterCircle)
             }
         }
+    
+    // MARK: - ObjcDelegate
+    
+    @objc private func didTappedNewGame() {
+        delegate?.didTapNewGame()
+    }
+    @objc private func didTapStatistics() {
+        delegate?.didTapStatistics()
+    }
+    @objc private func didTapSettings() {
+        delegate?.didTapSettings()
+    }
+    @objc private func didTapHelp() {
+        delegate?.didTapHelp()
+    }
     
     // MARK: Layout
 
