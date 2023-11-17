@@ -11,6 +11,8 @@ enum Speed: String {
     case x5 = "x5"
 }
 
+// ! НЕ ЗАБЫТЬ ПРИ ВЫХОДЕ С ЭКРАНА ВЫЗВАТЬ stop(), для завершения записи
+
 class GameView: UIView {
     
     // MARK: Extension Properties
@@ -169,17 +171,13 @@ class GameView: UIView {
             if colorViewY - lineAnswerY < .zero
                 && colorViewY  - lineAnswerY > -colorViewPresentationFrame.height {
                 print(simpleColor(colorView.color.accessibilityName) , "-", recognizedText)
-//                checkVoice(recognizedText)
                 if simpleColor(colorView.color.accessibilityName) == recognizedText {
                     colorView.labelView.text = "✅"
+                    // + в статистику
+                } else {
+                    colorView.labelView.text = "❌"
                 }
             }
-        }
-    }
-    
-    func checkVoice(_ answer: String) {
-        if answer.split(separator: " ").count > 1 {
-            print(answer.split(separator: " ").last ?? "q")
         }
     }
 }
@@ -232,7 +230,11 @@ extension GameView {
                 var isFinal = false
                 
                 if let result = result {
-                    self.recognizedText = result.bestTranscription.formattedString.lowercased()
+                    let bestTranscription = result.bestTranscription
+                    
+                    let transcriptions = bestTranscription.segments.map{$0.substring}
+                    
+                    self.recognizedText = transcriptions.last?.lowercased() ?? ""
                     isFinal = result.isFinal
                 }
                 
@@ -247,10 +249,9 @@ extension GameView {
             }
         }
         catch {
-            print("HEEEEEEEEELP")
+            print("Error")
         }
-        
-        print(recognizedText)
+//        print(recognizedText)
     }
     
     func stop() {
@@ -259,6 +260,7 @@ extension GameView {
         recognitionRequest?.endAudio()
     }
     
+    // - этот метод возможно на разных устройствах может отрабатывать по-разному( надо тестить...
     func simpleColor(_ color: String) -> String {
         switch color {
         case "тёмно-сине-голубой":
@@ -274,7 +276,7 @@ extension GameView {
         case "желтый":
             return "жёлтый"
         case "зеленый":
-            return "зеленый"
+            return "зелёный"
         case "белый":
             return "белый"
         default:
