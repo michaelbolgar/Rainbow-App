@@ -27,9 +27,9 @@ class ColorGridView: UIView {
             make.width.equalTo(150)
         }
 
-        let colorSquareSize: CGFloat = 20
+        let colorSquareSize: CGFloat = 18
         for row in 0..<2 {
-            for col in 0..<5 {
+            for col in 0..<6 {
                 let square = UIView()
                 square.layer.borderWidth = 1
                 square.layer.borderColor = UIColor.black.cgColor

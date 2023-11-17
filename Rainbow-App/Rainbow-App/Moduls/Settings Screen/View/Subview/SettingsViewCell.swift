@@ -87,14 +87,14 @@ class SettingsViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.isUserInteractionEnabled = true
         self.backgroundColor = .clear
-        setupUI()
+        setupCell()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupUI() {
+    private func setupCell() {
 
         contentView.addSubview(hStack)
         contentView.layer.cornerRadius = 10
@@ -103,26 +103,21 @@ class SettingsViewCell: UITableViewCell {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(8)
         }
-
     }
         
     func configure(with title: String, type: SettingsCellType) {
         switch type {
         case .gameTime:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(countLabel)
             hStack.addArrangedSubview(slider)
+            hStack.addArrangedSubview(countLabel)
+
+            titleLabel.numberOfLines = 0
             titleLabel.text = title
 
-            titleLabel.snp.makeConstraints { make in
-                make.width.equalTo(130)
-            }
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
-            }
-            slider.snp.makeConstraints { make in
-                make.width.equalTo(100)
-                make.trailing.equalTo(self).inset(25)
+                make.trailing.equalTo(countLabel).inset(40)
             }
 
         case .gameSpeed:
@@ -132,10 +127,6 @@ class SettingsViewCell: UITableViewCell {
 
             titleLabel.numberOfLines = 0
             titleLabel.text = title
-
-            countLabel.snp.makeConstraints { make in
-                make.trailing.equalTo(self).inset(25)
-            }
 
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
@@ -150,7 +141,7 @@ class SettingsViewCell: UITableViewCell {
 
             colorGridView.snp.makeConstraints { make in
                 make.top.equalTo(self).inset(20)
-                make.trailing.equalTo(self).inset(10)
+                make.trailing.equalTo(self).inset(8)
             }
 
         case .fontSize:
@@ -161,9 +152,6 @@ class SettingsViewCell: UITableViewCell {
             titleLabel.text = title
             fontSizeLabel.text = "Aa"
 
-            fontSizeLabel.snp.makeConstraints { make in
-                make.trailing.equalTo(self).inset(25)
-            }
             stepper.snp.makeConstraints { make in
                 make.trailing.equalTo(fontSizeLabel).inset(40)
             }
@@ -173,18 +161,10 @@ class SettingsViewCell: UITableViewCell {
             hStack.addArrangedSubview(toggler)
             titleLabel.text = title
 
-            toggler.snp.makeConstraints { make in
-                make.trailing.equalTo(self).inset(25)
-            }
-
         case .checkGame:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(toggler)
             titleLabel.text = title
-
-            toggler.snp.makeConstraints { make in
-                make.trailing.equalTo(self).inset(25)
-            }
 
         case .backgroundGameColor:
             contentView.addSubview(vStack)
@@ -206,7 +186,7 @@ class SettingsViewCell: UITableViewCell {
         
         hStack.snp.makeConstraints { make in
             make.top.bottom.equalTo(self)
-            make.leading.trailing.equalTo(self).inset(10)
+            make.leading.trailing.equalTo(self).inset(25)
         }
     }
 }
