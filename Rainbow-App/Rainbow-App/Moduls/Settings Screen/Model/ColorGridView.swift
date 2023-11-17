@@ -4,6 +4,7 @@ import SnapKit
 class ColorGridView: UIView {
 
     private var colorSquares: [UIView] = []
+    private var colors: [UIColor] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
