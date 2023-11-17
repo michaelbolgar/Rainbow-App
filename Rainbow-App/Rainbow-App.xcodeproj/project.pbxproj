@@ -319,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				F49E7CE92B0162B800817069 /* SettingsView.swift */,
+				F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -341,7 +342,6 @@
 		F4D83FD92B07E0640039534B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */,
 				F4D83FDC2B07E0990039534B /* ColorGridView.swift */,
 			);
 			path = Model;
