@@ -53,15 +53,10 @@ class StatisticsViewCell: UITableViewCell {
         scopeLabel.snp.makeConstraints { $0.bottom.right.greaterThanOrEqualTo(cellBackView).inset(10) }
     }
     
-    func configure(game: String, gameTime: Float, speed: Float, scope: Int, amount: Int) {
-        numberOfGameLabel.text = "игра № \(game)"
-        timeOfGameLabel.text = "время \(String(gameTime))"
-        speedOfGameLabel.text = "скорость х\(String(speed))"
-        scopeLabel.text = "угадано \(String(scope))/\(String(amount))"
-        layer.shadowColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25).cgColor
-        layer.shadowOpacity = 1
-        layer.shadowRadius = 4
-        layer.shadowOffset = CGSize(width: 0, height: 4)
-        
+    func configure(with result: GameResult) {
+        numberOfGameLabel.text = "игра № \(result.orderNumber)"
+        timeOfGameLabel.text = "время \(result.time)"
+        speedOfGameLabel.text = "скорость х\(result.speed)"
+        scopeLabel.text = "угадано \(result.score)/\(result.totalWords)"
     }
 }
