@@ -216,10 +216,8 @@ extension GameView {
                 self.recognitionRequest?.append(buffer)
             }
             
-            
             audioEngine.prepare()
             try audioEngine.start()
-            
             
             recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
             guard let recognitionRequest = recognitionRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
@@ -251,7 +249,6 @@ extension GameView {
         catch {
             print("Error")
         }
-//        print(recognizedText)
     }
     
     func stop() {

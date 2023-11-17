@@ -89,9 +89,13 @@ class GameVC: UIViewController {
         if isPaused {
             self.gameView.colorsAnimator?.pauseAnimation()
             self.timer?.invalidate()
+            gameView.stop()
+            gameView.speedButton.isHidden = true
         } else {
             gameView.colorsAnimator?.startAnimation()
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+            gameView.start()
+            gameView.speedButton.isHidden = false
         }
     }
 }
