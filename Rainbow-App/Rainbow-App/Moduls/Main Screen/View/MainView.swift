@@ -39,9 +39,7 @@ class MainView: UIView {
     }()
     lazy var statisticButton: UIButton = {
         let button = UIButton.makeButton(text: "Статистика")
-        button.addTarget(self,
-                         action: #selector(didTapStatistics),
-                         for: .touchUpInside)
+        
         return button
     }()
     lazy var settingsButton: UIButton = {
@@ -87,6 +85,10 @@ class MainView: UIView {
         self.backgroundColor = Palette.backgroundBlue
         setupRainbow()
         setupLayout()
+        
+        statisticButton.addTarget(self,
+                         action: #selector(didTapStatistics),
+                         for: .touchUpInside)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

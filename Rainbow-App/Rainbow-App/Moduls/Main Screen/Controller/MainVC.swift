@@ -2,7 +2,7 @@ import UIKit
 
 class MainVC: UIViewController {
     
-    private let build = MainView.shared
+    private let build = MainView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +22,23 @@ class MainVC: UIViewController {
 
 extension MainVC: MainViewDelegate {
     func didTapNewGame() {
-        // Handle new game action
+        let vc = GameVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didTapStatistics() {
-        // Handle statistics action
+        let vc = StatisticsVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didTapSettings() {
-        // Handle settings action
+        let vc = SettingsVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didTapHelp() {
-        // Handle help action
+        let vc = HelpVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
