@@ -37,6 +37,8 @@
 		F49E7CE62B0161EE00817069 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE52B0161EE00817069 /* StatisticsView.swift */; };
 		F49E7CE82B01624F00817069 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE72B01624F00817069 /* HelpView.swift */; };
 		F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE92B0162B800817069 /* SettingsView.swift */; };
+		F4D83FDB2B07E0740039534B /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */; };
+		F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDC2B07E0990039534B /* ColorGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		F49E7CE52B0161EE00817069 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		F49E7CE72B01624F00817069 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		F49E7CE92B0162B800817069 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
+		F4D83FDC2B07E0990039534B /* ColorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,9 +186,9 @@
 		F49E7CC12B015BAE00817069 /* Settings Screen */ = {
 			isa = PBXGroup;
 			children = (
+				F4D83FD92B07E0640039534B /* Model */,
 				F49E7CD32B015C4200817069 /* Controller */,
 				F49E7CD22B015C3E00817069 /* View */,
-				F49E7CD12B015C3A00817069 /* Model */,
 			);
 			path = "Settings Screen";
 			sourceTree = "<group>";
@@ -308,13 +312,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F49E7CD12B015C3A00817069 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		F49E7CD22B015C3E00817069 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +333,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4D83FD92B07E0640039534B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */,
+				F4D83FDC2B07E0990039534B /* ColorGridView.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,11 +435,13 @@
 				755825132B035B61000193EA /* UIViewController Extension.swift in Sources */,
 				E543C3962B0766AE003C599E /* CustomNavigationController.swift in Sources */,
 				F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */,
+				F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */,
 				E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */,
 				F49E7CE62B0161EE00817069 /* StatisticsView.swift in Sources */,
 				F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */,
 				E08945DD2B0570B0008FD586 /* UIButton Extencion.swift in Sources */,
 				3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */,
+				F4D83FDB2B07E0740039534B /* SettingsViewCell.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
 				E543C3942B049D88003C599E /* Results.swift in Sources */,
 				F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */,
