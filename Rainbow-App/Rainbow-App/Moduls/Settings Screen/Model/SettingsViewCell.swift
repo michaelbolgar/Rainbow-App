@@ -99,6 +99,13 @@ class SettingsViewCell: UITableViewCell {
     }
 
     func configure(with title: String, type: SettingsCellType) {
+
+        hStack.snp.makeConstraints { make in
+            make.top.bottom.equalTo(self)
+            make.leading.equalTo(self).inset(20)
+            make.trailing.trailing.equalTo(self).inset(25)
+        }
+
         switch type {
         case .gameTime:
             hStack.addArrangedSubview(titleLabel)
@@ -107,6 +114,10 @@ class SettingsViewCell: UITableViewCell {
 
             titleLabel.numberOfLines = 0
             titleLabel.text = title
+
+            countLabel.snp.makeConstraints { make in
+                make.trailing.equalTo(self).inset(25)
+            }
 
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
@@ -149,6 +160,10 @@ class SettingsViewCell: UITableViewCell {
                 make.trailing.equalTo(fontSizeLabel).inset(40)
             }
 
+//            titleLabel.snp.makeConstraints { make in
+//                make.leading.equalToSuperview()
+//            }
+
         case .letterBackground:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(toggler)
@@ -175,11 +190,6 @@ class SettingsViewCell: UITableViewCell {
             segmentedControl.snp.makeConstraints { make in
                 make.leading.trailing.equalTo(vStack)
             }
-        }
-
-        hStack.snp.makeConstraints { make in
-            make.top.bottom.equalTo(self)
-            make.leading.trailing.equalTo(self).inset(25)
         }
     }
 }
