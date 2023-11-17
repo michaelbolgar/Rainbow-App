@@ -39,6 +39,7 @@
 		F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49E7CE92B0162B800817069 /* SettingsView.swift */; };
 		F4D83FDB2B07E0740039534B /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */; };
 		F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDC2B07E0990039534B /* ColorGridView.swift */; };
+		F4D83FE02B07F4B70039534B /* SegmentedControl Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		F49E7CE92B0162B800817069 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		F4D83FDC2B07E0990039534B /* ColorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGridView.swift; sourceTree = "<group>"; };
+		F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentedControl Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				3526F85E2B01868A00CA2D4F /* UIView +ext.swift */,
 				3526F8602B01869900CA2D4F /* UIStackView +ext.swift */,
 				E543C3952B0766AE003C599E /* CustomNavigationController.swift */,
+				F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */,
 				F49E7CAD2B0159DF00817069 /* SceneDelegate.swift in Sources */,
 				755825152B03DCE9000193EA /* RainbowColors.swift in Sources */,
+				F4D83FE02B07F4B70039534B /* SegmentedControl Extension.swift in Sources */,
 				F49E7CDA2B015CDF00817069 /* StatisticsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
