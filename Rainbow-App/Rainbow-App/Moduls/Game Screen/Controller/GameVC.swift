@@ -24,6 +24,7 @@ class GameVC: UIViewController {
         setNavigationBar(title: formattedTimer())
         
         navigationItem.rightBarButtonItem = addBarButtonItem
+        gameView.start()
     }
 
     // MARK: Methods
