@@ -118,17 +118,9 @@ class GameView: UIView {
                     height: 100
                 )
                 color.alpha = 0
-                
-//                print(color.title, color.frame)
             }
-            
         }
-        
         colorsAnimator?.startAnimation()
-//        for colorView in colorViews {
-//            print(colorView.title, colorView.layer.presentation()?.frame ?? "хз")
-//        }
-//        checkСontactWithAnswerLine()
     }
     
     //MARK: - Speed button
@@ -158,11 +150,11 @@ class GameView: UIView {
     //MARK: - Check Answer
     
     private func createDisplayLink() {
-        let displayLink = CADisplayLink(target: self, selector: #selector(firstCheck))
+        let displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: .default)
     }
     
-    @objc func firstCheck(displayLink: CADisplayLink) {
+    @objc func step() {
         colorViews.forEach { colorView in
             checkСontactWithAnswerLine(colorView)
         }
@@ -174,26 +166,25 @@ class GameView: UIView {
             let colorViewY = colorViewPresentationFrame.origin.y
             let lineAnswerY = answerLinePresentationFrame.origin.y
             
-//            let colorViewX = colorViewPresentationFrame.origin.x
-            
-//            let colorViewYBottom = colorViewPresentationFrame.origin.y + colorViewPresentationFrame.height //colorViewY + colorViewPresentationFrame.height ???
-            
             if colorViewY - lineAnswerY < .zero
                 && colorViewY  - lineAnswerY > -colorViewPresentationFrame.height {
-                print(colorView.color.accessibilityName, "-", recognizedText)
-                if recognizedText == colorView.color.accessibilityName {
-                    print("HALLILUYA")
+                print(simpleColor(colorView.color.accessibilityName) , "-", recognizedText)
+//                checkVoice(recognizedText)
+                if simpleColor(colorView.color.accessibilityName) == recognizedText {
+                    colorView.labelView.text = "✅"
                 }
-//                print(colorView.title)
             }
         }
     }
     
-    func checkVoice() {
-//        VoiceChecker.shared.startRecognition()
-//        if VoiceChecker.shared.recognizedText ==
+    func checkVoice(_ answer: String) {
+        if answer.split(separator: " ").count > 1 {
+            print(answer.split(separator: " ").last ?? "q")
+        }
     }
 }
+
+//MARK: - SPEECH
 
 extension GameView {
     func start() {
@@ -241,7 +232,7 @@ extension GameView {
                 var isFinal = false
                 
                 if let result = result {
-                    self.recognizedText = result.bestTranscription.formattedString
+                    self.recognizedText = result.bestTranscription.formattedString.lowercased()
                     isFinal = result.isFinal
                 }
                 
@@ -252,14 +243,14 @@ extension GameView {
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
                 }
+                print(self.recognizedText)
             }
-            self.recognizedText = "Слушаю..."
-            
-//            print(recognizedText)
         }
         catch {
             print("HEEEEEEEEELP")
         }
+        
+        print(recognizedText)
     }
     
     func stop() {
@@ -267,5 +258,29 @@ extension GameView {
         audioEngine.stop()
         recognitionRequest?.endAudio()
     }
+    
+    func simpleColor(_ color: String) -> String {
+        switch color {
+        case "тёмно-сине-голубой":
+            return "синий"
+        case "тёмно-пурпурно-розовый":
+            return "розовый"
+        case "тёмно-лиловый":
+            return "фиолетовый"
+        case "тёмно-красный":
+            return "красный"
+        case "оранжевый":
+            return "оранжевый"
+        case "желтый":
+            return "жёлтый"
+        case "зеленый":
+            return "зеленый"
+        case "белый":
+            return "белый"
+        default:
+            return "голубой"
+        }
+    }
+    
 }
 
