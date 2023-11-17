@@ -10,6 +10,8 @@
 		3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F85E2B01868A00CA2D4F /* UIView +ext.swift */; };
 		3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8602B01869900CA2D4F /* UIStackView +ext.swift */; };
 		3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */; };
+		3C1ACCB42B04FA3C006DBD9B /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1ACCB32B04FA3C006DBD9B /* SettingsViewCell.swift */; };
+		3C1ACCB62B04FE2A006DBD9B /* ColorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1ACCB52B04FE2A006DBD9B /* ColorGridView.swift */; };
 		755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825102B0215EA000193EA /* ColorsPatternView.swift */; };
 		755825132B035B61000193EA /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825122B035B61000193EA /* UIViewController Extension.swift */; };
 		755825152B03DCE9000193EA /* RainbowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825142B03DCE9000193EA /* RainbowColors.swift */; };
@@ -43,6 +45,8 @@
 		3526F85E2B01868A00CA2D4F /* UIView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +ext.swift"; sourceTree = "<group>"; };
 		3526F8602B01869900CA2D4F /* UIStackView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView +ext.swift"; sourceTree = "<group>"; };
 		3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateDesignationStackView.swift; sourceTree = "<group>"; };
+		3C1ACCB32B04FA3C006DBD9B /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
+		3C1ACCB52B04FE2A006DBD9B /* ColorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGridView.swift; sourceTree = "<group>"; };
 		755825102B0215EA000193EA /* ColorsPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsPatternView.swift; sourceTree = "<group>"; };
 		755825122B035B61000193EA /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
 		755825142B03DCE9000193EA /* RainbowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RainbowColors.swift; path = "Rainbow-App/Extensions/RainbowColors.swift"; sourceTree = SOURCE_ROOT; };
@@ -92,6 +96,13 @@
 				E543C3932B049D88003C599E /* Results.swift */,
 			);
 			path = Model;
+		3C1ACCB72B04FE40006DBD9B /* Subview */ = {
+			isa = PBXGroup;
+			children = (
+				3C1ACCB32B04FA3C006DBD9B /* SettingsViewCell.swift */,
+				3C1ACCB52B04FE2A006DBD9B /* ColorGridView.swift */,
+			);
+			path = Subview;
 			sourceTree = "<group>";
 		};
 		F45055A82B01715200351031 /* Fonts */ = {
@@ -319,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				F49E7CE92B0162B800817069 /* SettingsView.swift */,
+				3C1ACCB72B04FE40006DBD9B /* Subview */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -436,10 +448,12 @@
 				3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
 				E543C3942B049D88003C599E /* Results.swift in Sources */,
+				3C1ACCB42B04FA3C006DBD9B /* SettingsViewCell.swift in Sources */,
 				F49E7CEA2B0162B800817069 /* SettingsView.swift in Sources */,
 				755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */,
 				F49E7CAD2B0159DF00817069 /* SceneDelegate.swift in Sources */,
 				755825152B03DCE9000193EA /* RainbowColors.swift in Sources */,
+				3C1ACCB62B04FE2A006DBD9B /* ColorGridView.swift in Sources */,
 				F49E7CDA2B015CDF00817069 /* StatisticsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
