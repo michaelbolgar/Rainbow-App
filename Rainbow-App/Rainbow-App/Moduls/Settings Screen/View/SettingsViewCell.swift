@@ -40,10 +40,14 @@ class SettingsViewCell: UITableViewCell {
     private lazy var stepper: UIStepper = {
         let stepper = UIStepper()
         stepper.isUserInteractionEnabled = true
+        stepper.minimumValue = 16
+        stepper.maximumValue = 20
+        stepper.value = 16
+        stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
 
-    private lazy var fontSizeLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
+    private lazy var fontSizeLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 16), textColor: .black)
 
     private lazy var toggler: UISwitch = {
         let toggler = UISwitch()
@@ -73,6 +77,7 @@ class SettingsViewCell: UITableViewCell {
 
 
     // MARK: -- Init()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -84,6 +89,8 @@ class SettingsViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: Private Methods
 
     private func setupCell() {
 
@@ -206,5 +213,14 @@ class SettingsViewCell: UITableViewCell {
             }
         }
     }
+
+    //MARK: objc-Methods
+
+    @objc
+    private func stepperValueChanged(_ sender: UIStepper) {
+        let fontSize = CGFloat(sender.value)
+        fontSizeLabel.font = UIFont.systemFont(ofSize: fontSize)
+    }
+
 }
 
