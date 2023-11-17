@@ -152,7 +152,7 @@ class SettingsViewCell: UITableViewCell {
 
             colorGridView.snp.makeConstraints { make in
                 make.top.equalTo(self).inset(20)
-                make.trailing.equalTo(self).inset(8)
+                make.trailing.equalTo(self).offset(5)
             }
 
         case .fontSize:
