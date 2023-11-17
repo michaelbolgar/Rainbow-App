@@ -4,7 +4,7 @@ import SnapKit
 class ColorGridView: UIView {
 
     private var colorSquares: [UIView] = []
-    private var colors: [UIColor] = []
+    private var colors: [UIColor] = [Palette.orange, Palette.yellow, Palette.green, Palette.purple, Palette.pink, Palette.lightBlue, UIColor.red, UIColor.white, Palette.blue2, UIColor.systemCyan, UIColor.systemBrown, UIColor.systemGray]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +36,10 @@ class ColorGridView: UIView {
                 }
                 colorSquares.append(square)
             }
+        }
+
+        for (i, square) in colorSquares.enumerated() {
+            square.backgroundColor = colors[i]
         }
     }
 
