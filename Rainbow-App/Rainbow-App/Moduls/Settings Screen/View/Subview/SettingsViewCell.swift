@@ -10,7 +10,7 @@ import SnapKit
 
 class SettingsViewCell: UITableViewCell {
     
-    // MARK: - Cell type
+    // MARK: - Cell types
     enum SettingsCellType {
         case gameTime
         case gameSpeed
@@ -24,12 +24,6 @@ class SettingsViewCell: UITableViewCell {
     static let identifier = SettingsViewCell.description()
     
     // MARK: - Private properties
-    private lazy var cellBackground: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 10
-        return view
-    }()
     
     private lazy var titleLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
     
@@ -47,7 +41,6 @@ class SettingsViewCell: UITableViewCell {
     
     private lazy var colorGridView: ColorGridView = {
         let colorGridView = ColorGridView()
-//        colorGridView.backgroundColor = .systemRed
         return colorGridView
     }()
     
@@ -74,7 +67,6 @@ class SettingsViewCell: UITableViewCell {
     private lazy var hStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-//        stack.backgroundColor = .systemRed
         stack.distribution = .equalSpacing
         stack.alignment = .center
         return stack
@@ -84,7 +76,6 @@ class SettingsViewCell: UITableViewCell {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
-//        stack.backgroundColor = .systemYellow
         stack.distribution = .equalSpacing
         return stack
     }()
@@ -104,14 +95,15 @@ class SettingsViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        addSubview(cellBackground)
-        cellBackground.snp.makeConstraints { make in
+
+        contentView.addSubview(hStack)
+        contentView.layer.cornerRadius = 10
+        contentView.backgroundColor = .white
+
+        contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(8)
         }
-        contentView.addSubview(hStack)
 
-
-        //у этого стека неправильно задан лейаут ниже, поэтому он каким-то образом перекрывает всю вью. можешь раскоментить у видеть, что всё жёлтое. Нужно найти причину, почему этот стек лезет на другие ячейки, или убрать его вообще
     }
         
     func configure(with title: String, type: SettingsCellType) {
@@ -125,9 +117,6 @@ class SettingsViewCell: UITableViewCell {
             titleLabel.snp.makeConstraints { make in
                 make.width.equalTo(130)
             }
-//            countLabel.snp.makeConstraints { make in
-//                make.trailing.equalTo(self).inset(20)
-//            }
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
             }
@@ -206,8 +195,8 @@ class SettingsViewCell: UITableViewCell {
             segmentedControl.selectedSegmentIndex = 0
 
             vStack.snp.makeConstraints { make in
-                make.top.bottom.equalTo(cellBackground).inset(5)
-                make.leading.trailing.equalTo(cellBackground).inset(10)
+                make.top.bottom.equalTo(self).inset(12)
+                make.leading.trailing.equalTo(self).inset(15)
             }
 
             segmentedControl.snp.makeConstraints { make in
@@ -216,8 +205,8 @@ class SettingsViewCell: UITableViewCell {
         }
         
         hStack.snp.makeConstraints { make in
-            make.top.bottom.equalTo(cellBackground)
-            make.leading.trailing.equalTo(cellBackground).inset(10)
+            make.top.bottom.equalTo(self)
+            make.leading.trailing.equalTo(self).inset(10)
         }
     }
 }
