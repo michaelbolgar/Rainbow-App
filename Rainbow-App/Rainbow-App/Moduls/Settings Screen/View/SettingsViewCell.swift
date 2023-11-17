@@ -24,8 +24,8 @@ class SettingsViewCell: UITableViewCell {
 
     lazy var slider: UISlider = {
         let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 100
+        slider.minimumValue = 1
+        slider.maximumValue = 5
         slider.value = 2
         slider.isUserInteractionEnabled = true
         slider.translatesAutoresizingMaskIntoConstraints = false
@@ -40,10 +40,14 @@ class SettingsViewCell: UITableViewCell {
     private lazy var stepper: UIStepper = {
         let stepper = UIStepper()
         stepper.isUserInteractionEnabled = true
+        stepper.minimumValue = 16
+        stepper.maximumValue = 20
+        stepper.value = 16
+        stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
 
-    private lazy var fontSizeLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
+    private lazy var fontSizeLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 16), textColor: .black)
 
     private lazy var toggler: UISwitch = {
         let toggler = UISwitch()
@@ -51,11 +55,9 @@ class SettingsViewCell: UITableViewCell {
         return toggler
     }()
 
-    private lazy var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Синий", "Белый", "Черный"])
-        segmentedControl.isUserInteractionEnabled = true
-        return segmentedControl
-    }()
+    private lazy var backgroundController = UISegmentedControl.makeController(segments: 3, item1: "Cиний", item2: "Белый", item3: "Чёрный", item4: nil)
+
+    private lazy var speedController = UISegmentedControl.makeController(segments: 3, item1: "Медленно", item2: "Средне", item3: "Быстро", item4: nil)
 
     private lazy var hStack: UIStackView = {
         let stack = UIStackView()
@@ -75,6 +77,7 @@ class SettingsViewCell: UITableViewCell {
 
 
     // MARK: -- Init()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -86,6 +89,8 @@ class SettingsViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: Private Methods
 
     private func setupCell() {
 
@@ -99,6 +104,13 @@ class SettingsViewCell: UITableViewCell {
     }
 
     func configure(with title: String, type: SettingsCellType) {
+
+        hStack.snp.makeConstraints { make in
+            make.top.bottom.equalTo(self)
+            make.leading.equalTo(self).inset(20)
+            make.trailing.trailing.equalTo(self).inset(25)
+        }
+
         switch type {
         case .gameTime:
             hStack.addArrangedSubview(titleLabel)
@@ -108,22 +120,35 @@ class SettingsViewCell: UITableViewCell {
             titleLabel.numberOfLines = 0
             titleLabel.text = title
 
+            countLabel.snp.makeConstraints { make in
+                make.trailing.equalTo(self).inset(25)
+            }
+
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
                 make.trailing.equalTo(countLabel).inset(40)
             }
 
+            titleLabel.snp.makeConstraints { make in
+                make.leading.equalToSuperview().inset(-15)
+            }
+
         case .gameSpeed:
-            hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(slider)
-            hStack.addArrangedSubview(countLabel)
 
-            titleLabel.numberOfLines = 0
+            contentView.addSubview(vStack)
+            vStack.addArrangedSubview(titleLabel)
+            vStack.addArrangedSubview(speedController)
+
             titleLabel.text = title
+            speedController.selectedSegmentIndex = 0
 
-            slider.snp.makeConstraints { make in
-                make.width.equalTo(100)
-                make.trailing.equalTo(countLabel).inset(40)
+            vStack.snp.makeConstraints { make in
+                make.top.bottom.equalTo(self).inset(13)
+                make.leading.trailing.equalTo(self).inset(15)
+            }
+
+            speedController.snp.makeConstraints { make in
+                make.leading.trailing.equalTo(vStack)
             }
 
         case .wordsColor:
@@ -134,19 +159,30 @@ class SettingsViewCell: UITableViewCell {
 
             colorGridView.snp.makeConstraints { make in
                 make.top.equalTo(self).inset(20)
-                make.trailing.equalTo(self).inset(8)
+                make.trailing.equalTo(self).offset(5)
             }
 
         case .fontSize:
-            hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(stepper)
-            hStack.addArrangedSubview(fontSizeLabel)
+            contentView.addSubview(titleLabel)
+            contentView.addSubview(stepper)
+            contentView.addSubview(fontSizeLabel)
 
             titleLabel.text = title
             fontSizeLabel.text = "Aa"
 
+            titleLabel.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(10)
+                make.centerY.equalToSuperview()
+            }
+
+            fontSizeLabel.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview().inset(20)
+            }
+
             stepper.snp.makeConstraints { make in
-                make.trailing.equalTo(fontSizeLabel).inset(40)
+                make.centerY.equalToSuperview()
+                make.trailing.equalTo(fontSizeLabel).inset(38)
             }
 
         case .letterBackground:
@@ -162,25 +198,29 @@ class SettingsViewCell: UITableViewCell {
         case .backgroundGameColor:
             contentView.addSubview(vStack)
             vStack.addArrangedSubview(titleLabel)
-            vStack.addArrangedSubview(segmentedControl)
+            vStack.addArrangedSubview(backgroundController)
 
             titleLabel.text = title
-            segmentedControl.selectedSegmentIndex = 0
+            backgroundController.selectedSegmentIndex = 0
 
             vStack.snp.makeConstraints { make in
-                make.top.bottom.equalTo(self).inset(12)
+                make.top.bottom.equalTo(self).inset(13)
                 make.leading.trailing.equalTo(self).inset(15)
             }
 
-            segmentedControl.snp.makeConstraints { make in
+            backgroundController.snp.makeConstraints { make in
                 make.leading.trailing.equalTo(vStack)
             }
         }
-
-        hStack.snp.makeConstraints { make in
-            make.top.bottom.equalTo(self)
-            make.leading.trailing.equalTo(self).inset(25)
-        }
     }
+
+    //MARK: objc-Methods
+
+    @objc
+    private func stepperValueChanged(_ sender: UIStepper) {
+        let fontSize = CGFloat(sender.value)
+        fontSizeLabel.font = UIFont.systemFont(ofSize: fontSize)
+    }
+
 }
 
