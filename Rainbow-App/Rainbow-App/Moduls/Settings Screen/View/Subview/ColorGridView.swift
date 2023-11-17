@@ -22,6 +22,11 @@ class ColorGridView: UIView {
     }
     
     private func setupUI() {
+
+        self.snp.makeConstraints { make in
+            make.width.equalTo(150)
+        }
+
         let colorSquareSize: CGFloat = 20
         for row in 0..<2 {
             for col in 0..<5 {

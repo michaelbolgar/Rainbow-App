@@ -47,6 +47,7 @@ class SettingsViewCell: UITableViewCell {
     
     private lazy var colorGridView: ColorGridView = {
         let colorGridView = ColorGridView()
+//        colorGridView.backgroundColor = .systemRed
         return colorGridView
     }()
     
@@ -65,7 +66,7 @@ class SettingsViewCell: UITableViewCell {
     }()
     
     private lazy var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Серый", "Белый", "Черный"])
+        let segmentedControl = UISegmentedControl(items: ["Синий", "Белый", "Черный"])
         segmentedControl.isUserInteractionEnabled = true
         return segmentedControl
     }()
@@ -83,7 +84,7 @@ class SettingsViewCell: UITableViewCell {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
-        stack.backgroundColor = .systemYellow
+//        stack.backgroundColor = .systemYellow
         stack.distribution = .equalSpacing
         return stack
     }()
@@ -109,75 +110,114 @@ class SettingsViewCell: UITableViewCell {
         }
         contentView.addSubview(hStack)
 
+
         //у этого стека неправильно задан лейаут ниже, поэтому он каким-то образом перекрывает всю вью. можешь раскоментить у видеть, что всё жёлтое. Нужно найти причину, почему этот стек лезет на другие ячейки, или убрать его вообще
-//        contentView.addSubview(vStack)
     }
         
     func configure(with title: String, type: SettingsCellType) {
         switch type {
         case .gameTime:
             hStack.addArrangedSubview(titleLabel)
+            hStack.addArrangedSubview(countLabel)
+            hStack.addArrangedSubview(slider)
+            titleLabel.text = title
+
             titleLabel.snp.makeConstraints { make in
                 make.width.equalTo(130)
             }
-            hStack.addArrangedSubview(slider)
+//            countLabel.snp.makeConstraints { make in
+//                make.trailing.equalTo(self).inset(20)
+//            }
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
             }
-            hStack.addArrangedSubview(countLabel)
-            titleLabel.text = title
-            countLabel.text = "21"
+            slider.snp.makeConstraints { make in
+                make.width.equalTo(100)
+                make.trailing.equalTo(self).inset(25)
+            }
+
         case .gameSpeed:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(slider)
+            hStack.addArrangedSubview(countLabel)
+
             titleLabel.numberOfLines = 0
-            titleLabel.snp.makeConstraints { make in
-                make.width.equalTo(130)
+            titleLabel.text = title
+
+            countLabel.snp.makeConstraints { make in
+                make.trailing.equalTo(self).inset(25)
             }
+
             slider.snp.makeConstraints { make in
                 make.width.equalTo(100)
+                make.trailing.equalTo(countLabel).inset(40)
             }
-            hStack.addArrangedSubview(countLabel)
-            titleLabel.text = title
-            countLabel.text = "21"
+
         case .wordsColor:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(colorGridView)
-            colorGridView.snp.makeConstraints { make in
-                make.centerY.equalTo(hStack.snp.centerY)
-            }
+
             titleLabel.text = title
+
+            colorGridView.snp.makeConstraints { make in
+                make.top.equalTo(self).inset(20)
+                make.trailing.equalTo(self).inset(10)
+            }
+
         case .fontSize:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(stepper)
             hStack.addArrangedSubview(fontSizeLabel)
+
             titleLabel.text = title
             fontSizeLabel.text = "Aa"
+
+            fontSizeLabel.snp.makeConstraints { make in
+                make.trailing.equalTo(self).inset(25)
+            }
+            stepper.snp.makeConstraints { make in
+                make.trailing.equalTo(fontSizeLabel).inset(40)
+            }
+
         case .letterBackground:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(toggler)
             titleLabel.text = title
+
+            toggler.snp.makeConstraints { make in
+                make.trailing.equalTo(self).inset(25)
+            }
+
         case .checkGame:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(toggler)
             titleLabel.text = title
+
+            toggler.snp.makeConstraints { make in
+                make.trailing.equalTo(self).inset(25)
+            }
+
         case .backgroundGameColor:
+            contentView.addSubview(vStack)
             vStack.addArrangedSubview(titleLabel)
             vStack.addArrangedSubview(segmentedControl)
+
+            titleLabel.text = title
+            segmentedControl.selectedSegmentIndex = 0
+
+            vStack.snp.makeConstraints { make in
+                make.top.bottom.equalTo(cellBackground).inset(5)
+                make.leading.trailing.equalTo(cellBackground).inset(10)
+            }
+
             segmentedControl.snp.makeConstraints { make in
                 make.leading.trailing.equalTo(vStack)
             }
-            titleLabel.text = title
-            segmentedControl.selectedSegmentIndex = 0
         }
         
         hStack.snp.makeConstraints { make in
             make.top.bottom.equalTo(cellBackground)
             make.leading.trailing.equalTo(cellBackground).inset(10)
         }
-//        vStack.snp.makeConstraints { make in
-//            make.top.bottom.equalTo(cellBackground)
-//            make.leading.trailing.equalTo(cellBackground).inset(10)
-//        }
     }
 }
