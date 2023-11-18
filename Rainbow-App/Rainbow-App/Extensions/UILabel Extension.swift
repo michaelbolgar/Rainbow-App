@@ -25,4 +25,16 @@ extension UILabel {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
+
+    static func makeLabelHelpView(text: String = "", font: UIFont?, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = font
+        label.textColor = textColor
+        label.numberOfLines = 0
+        label.textAlignment = .natural
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
 }

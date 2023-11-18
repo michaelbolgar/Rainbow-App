@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class SubstrateDesignationStackView: UIStackView {
     
@@ -9,8 +10,10 @@ final class SubstrateDesignationStackView: UIStackView {
         
         static let spacingForStackView: CGFloat = 15
     }
+
+    private lazy var circleView = ColorsPatternView(title: "белый", color: Palette.blue, background: true)
     
-    private lazy var firstStackView: UIStackView = {
+    private lazy var leftStack: UIStackView = {
         let firstStackView = UIStackView()
         firstStackView.axis = .vertical
         firstStackView.spacing = Constants.spacingForStackView
@@ -18,7 +21,7 @@ final class SubstrateDesignationStackView: UIStackView {
         return firstStackView
     }()
     
-    private lazy var secondStackView: UIStackView = {
+    private lazy var rightStack: UIStackView = {
         let secondStackView = UIStackView()
         secondStackView.axis = .vertical
         secondStackView.distribution = .fillProportionally
@@ -37,8 +40,9 @@ final class SubstrateDesignationStackView: UIStackView {
     
     private lazy var firstSubstrateTypeLabel: UILabel = {
         let firstSubstrateTypeLabel = UILabel()
+        firstSubstrateTypeLabel.textColor = Palette.blue
         firstSubstrateTypeLabel.text = Constants.typeOfSubstrate
-        firstSubstrateTypeLabel.font = .systemFont(ofSize: 20) ?? .systemFont(ofSize: 20)
+        firstSubstrateTypeLabel.font = .systemFont(ofSize: 20)
         return firstSubstrateTypeLabel
     }()
     
@@ -52,8 +56,9 @@ final class SubstrateDesignationStackView: UIStackView {
     
     private lazy var secondSubstrateTypeLabel: UILabel = {
         let secondSubstrateTypeLabel = UILabel()
+        secondSubstrateTypeLabel.textColor = Palette.blue
         secondSubstrateTypeLabel.text = Constants.typeOfSubstrate
-        secondSubstrateTypeLabel.font = .systemFont(ofSize: 20) ?? .systemFont(ofSize: 20)
+        secondSubstrateTypeLabel.font = .systemFont(ofSize: 20)
         return secondSubstrateTypeLabel
     }()
  
@@ -74,11 +79,11 @@ private extension SubstrateDesignationStackView {
         axis = .horizontal
         distribution = .equalSpacing
         spacing = 50
-        addAllArrangedSubviews(firstStackView,
-                               secondStackView)
-        firstStackView.addAllArrangedSubviews(firstTypeLabel,
-                                              firstSubstrateTypeLabel)
-        secondStackView.addAllArrangedSubviews(secondTypeLabel,
-                                               secondSubstrateTypeLabel)
+        addAllArrangedSubviews(leftStack,
+                               rightStack)
+        leftStack.addAllArrangedSubviews(firstTypeLabel,
+                                         firstSubstrateTypeLabel)
+        rightStack.addAllArrangedSubviews(secondTypeLabel,
+                                          secondSubstrateTypeLabel)
     }
 }

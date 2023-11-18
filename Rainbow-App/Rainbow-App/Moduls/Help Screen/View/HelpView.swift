@@ -1,68 +1,32 @@
 import UIKit
 
 final class HelpView: UIView {
-    
-    enum Constants {
-        static let mainRulesLabelText = "ПРАВИЛА ИГРЫ"
-        static let firstRulesLabelText = "На экране в случайном месте появляется слово, обозначающее цвет, например: «‎\(colorText)»"
-        static let secondRulestLabelText = "Нужно произнести вслух цвет, которым написано слово, или цвет подложки: отвечаем синий"
-        static let thirdRulesLabelText = "В игре можно изменять скорость от 1х до 5х, а также длительность игры"
-        static let colorText = "белый"
-        
-        static let mainStackViewLeadingInset: CGFloat = 15
-        static let mainStackViewTrailingInset: CGFloat = -15
-        static let mainStackViewTopInset: CGFloat = 38
-        static let mainStackViewBottomInset: CGFloat = -38
-    }
-    
+
+    //MARK: UI Elements
+
+    private lazy var titleLabel = UILabel.makeLabel(text: "ПРАВИЛА ИГРЫ", font: UIFont.alice(size: 24), textColor: .systemRed)
+
+    private lazy var firstdRulesLabel = UILabel.makeLabelHelpView(text: "На экране в случайном месте появляется слово, обозначающее цвет, например: «‎белый»", font: UIFont.alice(size: 20), textColor: .black)
+
+    private lazy var secondRulesLabel = UILabel.makeLabelHelpView(text: "Нужно произнести вслух цвет, которым написано слово, или цвет подложки: отвечаем «‎синий»", font: UIFont.alice(size: 20), textColor: .black)
+
+    private lazy var thirdRulesLabel = UILabel.makeLabelHelpView(text: "В игре можно изменять скорость от медленной до быстрой, а также длительность игры", font: UIFont.alice(size: 20), textColor: .black)
+
     private lazy var mainStackView: UIStackView = {
         let mainStackView = UIStackView()
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical
-        mainStackView.backgroundColor = .white
         mainStackView.distribution = .equalSpacing
         mainStackView.spacing = 15
         mainStackView.alignment = .center
         return mainStackView
     }()
-    
-    private lazy var mainRulesLabel: UILabel = {
-        let mainRulesLabel = UILabel()
-        mainRulesLabel.text = Constants.mainRulesLabelText
-        mainRulesLabel.textColor = .red
-        mainRulesLabel.font = .alice(size: 24) ?? .systemFont(ofSize: 24)
-        return mainRulesLabel
-    }()
-    
-    private lazy var firstdRulesLabel: UILabel = {
-        let firstRulesLabel = UILabel()
-        firstRulesLabel.text = Constants.firstRulesLabelText
-        firstRulesLabel.numberOfLines = 4
-        firstRulesLabel.font = .alice(size: 20) ?? .systemFont(ofSize: 20)
-        return firstRulesLabel
-    }()
-    
+
     private lazy var substrateDesignationStackView: SubstrateDesignationStackView = {
         let substrateDesignationStackView = SubstrateDesignationStackView()
         return substrateDesignationStackView
     }()
-    
-    private lazy var secondRulesLabel: UILabel = {
-        let secondRulesLabel = UILabel()
-        secondRulesLabel.text = Constants.secondRulestLabelText
-        secondRulesLabel.font = .alice(size: 20) ?? .systemFont(ofSize: 20)
-        secondRulesLabel.numberOfLines = 4
-        return secondRulesLabel
-    }()
-    
-    private lazy var thirdRulesLabel: UILabel = {
-        let thirdRulesLabel = UILabel()
-        thirdRulesLabel.text = Constants.thirdRulesLabelText
-        thirdRulesLabel.font = .alice(size: 20) ?? .systemFont(ofSize: 20)
-        thirdRulesLabel.numberOfLines = 3
-        return thirdRulesLabel
-    }()
-    
+
     // MARK: Init
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -84,7 +48,7 @@ private extension HelpView {
         let mainStackViewConstraints = self.setupMainStackViewConstraints()
         NSLayoutConstraint.activate(mainStackViewConstraints)
         
-        mainStackView.addAllArrangedSubviews(mainRulesLabel,
+        mainStackView.addAllArrangedSubviews(titleLabel,
                                              firstdRulesLabel,
                                              substrateDesignationStackView,
                                              secondRulesLabel,
@@ -92,10 +56,16 @@ private extension HelpView {
     }
     
     func setupMainStackViewConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.mainStackViewTopInset)
-        let leadingAnchor = mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.mainStackViewLeadingInset)
-        let trailingAnchor = mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.mainStackViewTrailingInset)
-        let bottomAnchor = mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.mainStackViewBottomInset)
+
+        let mainStackViewLeadingInset: CGFloat = 12
+        let mainStackViewTrailingInset: CGFloat = -12
+        let mainStackViewTopInset: CGFloat = 38
+        let mainStackViewBottomInset: CGFloat = -38
+
+        let topAnchor = mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: mainStackViewTopInset)
+        let leadingAnchor = mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: mainStackViewLeadingInset)
+        let trailingAnchor = mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: mainStackViewTrailingInset)
+        let bottomAnchor = mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: mainStackViewBottomInset)
         return [topAnchor,
                 leadingAnchor,
                 trailingAnchor,
