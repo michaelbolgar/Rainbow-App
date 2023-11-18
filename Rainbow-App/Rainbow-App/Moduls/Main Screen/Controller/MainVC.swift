@@ -1,27 +1,44 @@
 import UIKit
-import SnapKit
 
 class MainVC: UIViewController {
-
-    let mainView = MainView()
-
-    //MARK: Controller's life cycle
+    
+    private let build = MainView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
         setupView()
+        build.delegate = self
     }
 
-    // MARK: Methods
-
     private func setupView() {
-
-        view.addSubview(mainView)
-        
-        mainView.snp.makeConstraints { make in
+        view.addSubview(build)
+        build.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: - MainVC+Extension+Delegate
+}
+
+extension MainVC: MainViewDelegate {
+    func didTapNewGame() {
+        let vc = GameVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didTapStatistics() {
+        let vc = StatisticsVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didTapSettings() {
+        let vc = SettingsVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didTapHelp() {
+        let vc = HelpVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
