@@ -9,6 +9,15 @@ protocol MainViewDelegate: AnyObject {
     func didTapHelp()
 }
 
+private extension String {
+    static let title = "игра для разминки\nтвоего мозга!"
+    static let newGameButton = "Новая игра"
+    static let statisticButton = "Статистика"
+    static let gearButton = "gearshape.circle"
+    static let questionButton = "questionmark.circle"
+    static let requiredInit = "init(coder:) has not been implemented"
+}
+
 class MainView: UIView {
     
     // MARK: Delegate
@@ -25,32 +34,34 @@ class MainView: UIView {
     // MARK: UI Elements
     
     private lazy var gameLabel: UILabel = {
-        let label = UILabel.makeLabel(text: "игра для разминки\nтвоего мозга!", 
+        let label = UILabel.makeLabel(text: .title,
                                       font: UIFont.caveat(size: 40),
                                       textColor: .white)
         return label
     }()
     lazy var newGameButton: UIButton = {
-        let button = UIButton.makeButton(text: "Новая игра")
+        let button = UIButton.makeButton(text: .newGameButton)
         button.addTarget(self,
                          action: #selector(didTappedNewGame),
                          for: .touchUpInside)
         return button
     }()
     lazy var statisticButton: UIButton = {
-        let button = UIButton.makeButton(text: "Статистика")
-        
+        let button = UIButton.makeButton(text: .statisticButton)
+        button.addTarget(self,
+                         action: #selector(didTapStatistics),
+                         for: .touchUpInside)
         return button
     }()
     lazy var settingsButton: UIButton = {
-        let button = UIButton.makeCircleButton(imageName: "gearshape.circle")
+        let button = UIButton.makeCircleButton(imageName: .gearButton)
         button.addTarget(self,
                          action: #selector(didTapSettings),
                          for: .touchUpInside)
         return button
     }()
     lazy var helpButton: UIButton = {
-        let button = UIButton.makeCircleButton(imageName: "questionmark.circle")
+        let button = UIButton.makeCircleButton(imageName: .questionButton)
         button.addTarget(self,
                          action: #selector(didTapHelp),
                          for: .touchUpInside)
@@ -85,13 +96,9 @@ class MainView: UIView {
         self.backgroundColor = Palette.backgroundBlue
         setupRainbow()
         setupLayout()
-        
-        statisticButton.addTarget(self,
-                         action: #selector(didTapStatistics),
-                         for: .touchUpInside)
     }
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(.requiredInit)
     }
 
     // MARK: Methods
@@ -124,30 +131,14 @@ class MainView: UIView {
         delegate?.didTapStatistics()
     }
     @objc private func didTapSettings(_ button: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            button.alpha = 0.5
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.1, animations: {
-                button.transform = CGAffineTransform.identity
-                button.alpha = 1.0
-            }) { _ in
-                self.delegate?.didTapSettings()
+        button.animateButton { [weak self] in
+                self?.delegate?.didTapSettings()
             }
-        })
     }
     @objc private func didTapHelp(_ button: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            button.alpha = 0.5
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.1, animations: {
-                button.transform = CGAffineTransform.identity
-                button.alpha = 1.0
-            }) { _ in
-                self.delegate?.didTapHelp()
+        button.animateButton { [weak self] in
+                self?.delegate?.didTapHelp()
             }
-        })
     }
     
     // MARK: Layout
@@ -197,6 +188,20 @@ private extension UIButton {
             make.width.height.equalTo(50)
         }
         return button
+    }
+    // Reusable method for button animation
+    func animateButton(completion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            self.alpha = 0.5
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                self.transform = CGAffineTransform.identity
+                self.alpha = 1.0
+            }) { _ in
+                completion()
+            }
+        })
     }
 }
 
