@@ -17,6 +17,7 @@
 		E543C3922B049C1C003C599E /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3912B049C1C003C599E /* GameResult.swift */; };
 		E543C3942B049D88003C599E /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3932B049D88003C599E /* Results.swift */; };
 		E543C3962B0766AE003C599E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3952B0766AE003C599E /* CustomNavigationController.swift */; };
+		755825502B078430000193EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 755825522B078430000193EA /* Localizable.strings */; };
 		E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */; };
 		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
 		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
@@ -53,6 +54,7 @@
 		E543C3912B049C1C003C599E /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameResult.swift; path = "Rainbow-App/GameResult.swift"; sourceTree = SOURCE_ROOT; };
 		E543C3932B049D88003C599E /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Results.swift; path = "Rainbow-App/Results.swift"; sourceTree = SOURCE_ROOT; };
 		E543C3952B0766AE003C599E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		755825512B078430000193EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewCell.swift; sourceTree = "<group>"; };
 		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F45055AC2B01723600351031 /* Font Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font Extension.swift"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		F49E7CBE2B015B7700817069 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				755825522B078430000193EA /* Localizable.strings */,
 				F49E7CAA2B0159DF00817069 /* AppDelegate.swift */,
 				F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */,
 			);
@@ -392,6 +395,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = F49E7C9E2B0159DF00817069;
 			packageReferences = (
@@ -412,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F49E7CB42B0159E300817069 /* Assets.xcassets in Resources */,
+				755825502B078430000193EA /* Localizable.strings in Resources */,
 				F46C1FE92B03E994006E310B /* Caveat.ttf in Resources */,
 				F46C1FED2B03E9D9006E310B /* Alice.ttf in Resources */,
 			);
@@ -457,6 +462,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		755825522B078430000193EA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				755825512B078430000193EA /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F49E7CB92B0159E300817069 /* Debug */ = {
