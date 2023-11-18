@@ -10,6 +10,8 @@ struct Settings {
 class SettingsVC: UIViewController {
 
     let settingsView = SettingsView()
+    
+    var game: Game?
 
     var settings: [Settings] = [
         Settings(title: "Время игры, мин", type: .gameTime, value: 0),
@@ -18,7 +20,8 @@ class SettingsVC: UIViewController {
         Settings(title: "Размер букв", type: .fontSize, value: 0),
         Settings(title: "Подложка для букв", type: .letterBackground, value: 0),
         Settings(title: "Игра с проверкой", type: .checkGame, value: 0),
-        Settings(title: "Цвет фона", type: .backgroundGameColor, value: 0)
+        Settings(title: "Цвет фона", type: .backgroundGameColor, value: 0),
+        Settings(title: "Сохранить", type: .saveGame, value: 0)
     ]
 
     //MARK: Controller's life cycle
@@ -38,6 +41,19 @@ class SettingsVC: UIViewController {
             make.edges.equalToSuperview()
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        guard let game = game else { return }
+//        UserDefaultsManager.instance.saveGame(game: game)
+//        print("saved")
+        if let game = game {
+//            UserDefaultsManager.instance.saveValuesToUserDefaults(game.sliderValue, game.stepperValue, game.togglerValue)
+            UserDefaultsManager.instance.saveGame(game: Game(sliderValue: game.sliderValue, stepperValue: game.stepperValue, togglerValue: game.togglerValue))
+        } else {
+            print("didn't save")
+        }
+    }
 }
 
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
@@ -52,7 +68,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         cell.slider.addTarget(self, action: #selector(durationSliderChanged), for: .valueChanged)
         cell.configure(with: setting.title, type: setting.type)
         cell.countLabel.text = "\(setting.value)" // Устанавливаем текущее значение слайдера
-
+//        UserDefaultsManager.instance.saveGame(game: Game(sliderValue: cell.slider.value, stepperValue: cell.stepper.stepValue, togglerValue: ))
         print("Cell created at index: \(indexPath.row)")
 
         return cell
@@ -70,7 +86,16 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 
         // Обновляем ячейку
         if let cell = settingsView.settingsTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SettingsViewCell {
-              cell.countLabel.text = "\(newValue)"
+          
+            cell.countLabel.text = "\(newValue)"
         }
+    }
+}
+
+extension SettingsVC: SettingsViewCellDelegate {
+    
+    func saveGame(slider: CGFloat, stepper: CGFloat, toggle: Bool) {
+        game = Game(sliderValue: slider, stepperValue: stepper, togglerValue: toggle)
+        print("game")
     }
 }
