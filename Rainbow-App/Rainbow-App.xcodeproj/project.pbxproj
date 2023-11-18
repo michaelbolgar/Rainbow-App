@@ -13,6 +13,7 @@
 		755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825102B0215EA000193EA /* ColorsPatternView.swift */; };
 		755825132B035B61000193EA /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825122B035B61000193EA /* UIViewController Extension.swift */; };
 		755825152B03DCE9000193EA /* RainbowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825142B03DCE9000193EA /* RainbowColors.swift */; };
+		E0478D382B0916F2007A2D48 /* RussoOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0478D372B0916F2007A2D48 /* RussoOne-Regular.ttf */; };
 		E08945DD2B0570B0008FD586 /* UIButton Extencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */; };
 		E543C3922B049C1C003C599E /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3912B049C1C003C599E /* GameResult.swift */; };
 		E543C3942B049D88003C599E /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3932B049D88003C599E /* Results.swift */; };
@@ -48,6 +49,7 @@
 		755825102B0215EA000193EA /* ColorsPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsPatternView.swift; sourceTree = "<group>"; };
 		755825122B035B61000193EA /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
 		755825142B03DCE9000193EA /* RainbowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RainbowColors.swift; path = "Rainbow-App/Extensions/RainbowColors.swift"; sourceTree = SOURCE_ROOT; };
+		E0478D372B0916F2007A2D48 /* RussoOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RussoOne-Regular.ttf"; sourceTree = "<group>"; };
 		E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton Extencion.swift"; sourceTree = "<group>"; };
 		E543C3912B049C1C003C599E /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameResult.swift; path = "Rainbow-App/GameResult.swift"; sourceTree = SOURCE_ROOT; };
 		E543C3932B049D88003C599E /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Results.swift; path = "Rainbow-App/Results.swift"; sourceTree = SOURCE_ROOT; };
@@ -101,6 +103,7 @@
 		F45055A82B01715200351031 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				E0478D372B0916F2007A2D48 /* RussoOne-Regular.ttf */,
 				F46C1FEC2B03E9D9006E310B /* Alice.ttf */,
 				F46C1FE82B03E994006E310B /* Caveat.ttf */,
 			);
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F49E7CB42B0159E300817069 /* Assets.xcassets in Resources */,
+				E0478D382B0916F2007A2D48 /* RussoOne-Regular.ttf in Resources */,
 				F46C1FE92B03E994006E310B /* Caveat.ttf in Resources */,
 				F46C1FED2B03E9D9006E310B /* Alice.ttf in Resources */,
 			);

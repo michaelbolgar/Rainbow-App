@@ -123,18 +123,38 @@ class MainView: UIView {
     @objc private func didTapStatistics() {
         delegate?.didTapStatistics()
     }
-    @objc private func didTapSettings() {
-        delegate?.didTapSettings()
+    @objc private func didTapSettings(_ button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            button.alpha = 0.5
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                button.transform = CGAffineTransform.identity
+                button.alpha = 1.0
+            }) { _ in
+                self.delegate?.didTapSettings()
+            }
+        })
     }
-    @objc private func didTapHelp() {
-        delegate?.didTapHelp()
+    @objc private func didTapHelp(_ button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            button.alpha = 0.5
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                button.transform = CGAffineTransform.identity
+                button.alpha = 1.0
+            }) { _ in
+                self.delegate?.didTapHelp()
+            }
+        })
     }
     
     // MARK: Layout
 
     private func setupLayout() {
-        self.addAllTheSubviews(gameLabel,
-                               horizontalCharacterslStack,
+        self.addAllTheSubviews(horizontalCharacterslStack,
+                               gameLabel,
                                verticalalStack,
                                horizontalButtonStack
         )
@@ -185,13 +205,14 @@ private extension UIButton {
 private extension UILabel {
     func configureForRainbow(text: String, color: UIColor, size: CGFloat) {
         self.text = text
+        self.font = UIFont.russoOne(size: 25)
         self.textColor = .black
         self.backgroundColor = color
         self.layer.cornerRadius = size / 2
         self.textAlignment = .center
         self.clipsToBounds = true
         self.snp.makeConstraints { make in
-            make.width.height.equalTo(size)
-        }
+                    make.width.height.equalTo(size)
+                }
     }
 }

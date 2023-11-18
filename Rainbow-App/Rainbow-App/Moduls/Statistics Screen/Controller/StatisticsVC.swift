@@ -50,7 +50,7 @@ class StatisticsVC: UIViewController {
         
         if gameResults.results.count == 0 {
             statisticsView.resultsTableView.isHidden = true
-            statisticsView.cleanButton.isHidden = true
+            statisticsView.cleanButton.isHidden = false
             statisticsView.emptyStatisticsLabel.isHidden = false
         } else {
             statisticsView.reloadInputViews()
