@@ -20,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //        window.rootViewController = SettingsVC()
         //        window.rootViewController = HelpVC()
 
-        let rootVC = SettingsVC()
-//        let rootVC = MainVC()
+//        let rootVC = SettingsVC()
+        let rootVC = MainVC()
         let navigationVC = CustomNavigationController(rootViewController: rootVC)
         window?.rootViewController = navigationVC
         
