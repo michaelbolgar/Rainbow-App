@@ -37,6 +37,16 @@ class SettingsVC: UIViewController {
         settingsView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        settingsView.backgroundColor = ThemeManager.shared.currentBackground
     }
 }
 

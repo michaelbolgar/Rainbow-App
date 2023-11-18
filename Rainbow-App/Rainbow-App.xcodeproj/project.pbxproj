@@ -41,6 +41,7 @@
 		F4D83FDB2B07E0740039534B /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */; };
 		F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDC2B07E0990039534B /* ColorGridView.swift */; };
 		F4D83FE02B07F4B70039534B /* SegmentedControl Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */; };
+		F4FE26AD2B097BAD00428E9F /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE26AC2B097BAD00428E9F /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		F4D83FDC2B07E0990039534B /* ColorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGridView.swift; sourceTree = "<group>"; };
 		F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentedControl Extension.swift"; sourceTree = "<group>"; };
+		F4FE26AC2B097BAD00428E9F /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				F49E7CAA2B0159DF00817069 /* AppDelegate.swift */,
 				F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */,
 				E543C3952B0766AE003C599E /* CustomNavController.swift */,
+				F4FE26AC2B097BAD00428E9F /* ThemeManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE26AD2B097BAD00428E9F /* ThemeManager.swift in Sources */,
 				F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */,
 				3526F85F2B01868A00CA2D4F /* UIView Extension.swift in Sources */,
 				F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */,

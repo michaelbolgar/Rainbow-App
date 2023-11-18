@@ -12,8 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow (windowScene: windowScene)
 
 //        let rootVC = SettingsVC()
-        let rootVC = HelpVC()
-//        let rootVC = MainVC()
+//        let rootVC = HelpVC()
+        let rootVC = MainVC()
         let navigationVC = CustomNavigationController(rootViewController: rootVC)
         window?.rootViewController = navigationVC
         
