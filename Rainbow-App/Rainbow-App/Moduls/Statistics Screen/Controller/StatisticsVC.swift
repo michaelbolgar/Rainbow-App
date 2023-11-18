@@ -50,7 +50,7 @@ class StatisticsVC: UIViewController {
         
         if gameResults.results.count == 0 {
             statisticsView.resultsTableView.isHidden = true
-            statisticsView.cleanButton.isHidden = false
+            statisticsView.cleanButton.isHidden = true
             statisticsView.emptyStatisticsLabel.isHidden = false
         } else {
             statisticsView.reloadInputViews()
@@ -64,8 +64,11 @@ extension StatisticsVC: UITableViewDelegate, UITableViewDataSource {
         return gameResults.results.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsViewCell.identifier, for: indexPath) as? StatisticsViewCell else {
+    func tableView(_ tableView: UITableView, 
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: StatisticsViewCell.identifier,
+            for: indexPath) as? StatisticsViewCell else {
             fatalError("Error")
         }
         let result = gameResults.getResults()[indexPath.row]

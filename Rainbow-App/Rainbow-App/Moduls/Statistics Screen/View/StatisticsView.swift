@@ -40,12 +40,7 @@ class StatisticsView: UIView {
     let emptyStatisticsLabel = UILabel.makeMultiLineLabel(text: Constants.textEmptyStatistics, font: UIFont.alice(size: 26), textColor: .white, numberOfLines: 3)
     
     let cleanButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(Constants.textCleanButton, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.alice(size: 20)
-        button.backgroundColor = Palette.blue
-        button.layer.cornerRadius = 10
+        let button = UIButton.makeButton(text: Constants.textCleanButton)
         return button
     }()
     
