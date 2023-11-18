@@ -15,10 +15,9 @@ enum Speed: String {
 
 class GameView: UIView {
     
-    // MARK: Extension Properties
+    // MARK: Extension Properties for voice checker
     
     private(set) var recognizedText = ""
-    
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ru-RU"))
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask: SFSpeechRecognitionTask?
@@ -26,16 +25,16 @@ class GameView: UIView {
     
     // MARK: Properties
     var colorViews = [ColorsPatternView]()
-
     var colorsAnimator: UIViewPropertyAnimator?
-
-    var countColors = 100.0
+    var countColors = 100.0 // меняется в зависимости от таймера
     lazy var speed = countColors * 4
     var defaultSpeed = Speed.x1.rawValue
-    var isBackground: Bool = true
+    var isBackground: Bool = true // из UD подложка
     
     let answerLine = UIView()
     let answerLineCoordinate = (xStart: 0, xEnd: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height / 2 - 200)
+    
+    var isCheckedVer: Bool = true // из UD подтянуть
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
@@ -49,16 +48,27 @@ class GameView: UIView {
         
         return button
     }()
+    
+    func startGame() {
+//        setupView()
+        randomColorViews(count: Int(countColors))
+        addPatterns()
+        
+        if isCheckedVer {
+            createDisplayLink()
+        }
+    }
 
     // MARK: Init
 
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Palette.backgroundBlue
+        startGame()
         setupView()
-        randomColorViews(count: Int(countColors))
-        addPatterns()
-        createDisplayLink()
+//        randomColorViews(count: Int(countColors))
+//        addPatterns()
+//        createDisplayLink()
     }
 
     required init?(coder: NSCoder) {
@@ -79,6 +89,9 @@ class GameView: UIView {
             width: answerLineCoordinate.xEnd,
             height: 0)
         answerLine.addDashedBorder()
+        if !isCheckedVer {
+            answerLine.isHidden = true
+        }
     }
     
     //MARK: - CREATE Color Views
@@ -185,25 +198,6 @@ class GameView: UIView {
 //MARK: - SPEECH
 
 extension GameView {
-    func start() {
-        SFSpeechRecognizer.requestAuthorization { status in
-            OperationQueue.main.addOperation {
-                switch status {
-                case .notDetermined:
-                    print("Speech recognition not yet authorized")
-                case .denied:
-                    print("User denied access to speech recognition")
-                case .restricted:
-                    print("Speech recognition restricted on this device")
-                case .authorized:
-                    self.startRecognition()
-                @unknown default:
-                    print("default")
-                }
-            }
-        }
-    }
-    
     func startRecognition() {
         do {
             let audioSession = AVAudioSession.sharedInstance()
