@@ -12,15 +12,12 @@ class ColorsPatternView: UIView {
     
     let title: String
     let color: UIColor
-    var background: Bool = true {
-        didSet {
-            
-        }
-    }
+    var background: Bool
     
-    init(title: String, color: UIColor) {
+    init(title: String, color: UIColor, background: Bool) {
         self.title = title
         self.color = color
+        self.background = background
         super.init(frame: .zero)
         setupLabel()
     }
@@ -35,18 +32,18 @@ class ColorsPatternView: UIView {
         labelView.translatesAutoresizingMaskIntoConstraints = false
         labelView.text = title
         labelView.textAlignment = .center
-        labelView.font = .systemFont(ofSize: 14, weight: .bold)
+        labelView.font = .systemFont(ofSize: background ? 14 : 20, weight: .bold)
         labelView.textColor = background ? .black : color
         labelView.backgroundColor = background ? color : .clear
         labelView.layer.cornerRadius = background ? 50 : 0
-        labelView.layer.borderWidth = 1.5
+        labelView.layer.borderWidth = background ? 1.5 : 0
         labelView.layer.borderColor = UIColor.white.cgColor
         labelView.layer.masksToBounds = true
         
         addSubview(labelView)
         
         labelView.snp.makeConstraints { make in
-            make.width.height.equalTo(100)
+            make.width.height.equalTo(background ? 100 : 200)
             make.center.equalTo(self)
         }
     }

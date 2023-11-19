@@ -92,7 +92,6 @@ class ColorGridView: UIView {
     @objc
     private func handleTap(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: self)
-
         for (index, square) in colorSquares.enumerated() {
             if square.frame.contains(location) {
                 selectColorSquare(at: index)

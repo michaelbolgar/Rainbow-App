@@ -10,18 +10,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow (windowScene: windowScene)
-        
-        //        window.rootViewController = MainVC()
-        //        window.rootViewController = UINavigationController(rootViewController: GameVC())
-        //        window.rootViewController = StatisticsVC()
-        //        window.rootViewController = MainVC()
-        //        window.rootViewController = UINavigationController(rootViewController: GameVC())
-        //         window.rootViewController = StatisticsVC()
-        //        window.rootViewController = SettingsVC()
-        //        window.rootViewController = HelpVC()
 
-        let rootVC = SettingsVC()
-//        let rootVC = MainVC()
+//        let rootVC = SettingsVC()
+//        let rootVC = HelpVC()
+        let rootVC = MainVC()
         let navigationVC = CustomNavigationController(rootViewController: rootVC)
         window?.rootViewController = navigationVC
         
