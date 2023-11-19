@@ -54,7 +54,7 @@ class SettingsViewCell: UITableViewCell {
         return toggler
     }()
     
-    private lazy var checkToggler: UISwitch = {
+    lazy var checkToggler: UISwitch = {
         let toggler = UISwitch()
         toggler.isUserInteractionEnabled = true
         toggler.addTarget(self, action: #selector(toggleCheckerValueChanged(_:)), for: .valueChanged)
@@ -247,7 +247,7 @@ class SettingsViewCell: UITableViewCell {
     }
     
     @objc
-    private func toggleCheckerValueChanged(_ sender: UISwitch) {
+    func toggleCheckerValueChanged(_ sender: UISwitch) {
         let switchStatus = sender.isOn
         UserDefaults.standard.set(switchStatus, forKey: "checkerKey")
     }
