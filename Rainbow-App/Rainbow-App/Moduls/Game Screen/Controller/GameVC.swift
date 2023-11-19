@@ -5,6 +5,8 @@ import SnapKit
 class GameVC: UIViewController {
 
     let gameView = GameView()
+    private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+
     
     var isPaused: Bool = false {
             didSet {
@@ -15,7 +17,7 @@ class GameVC: UIViewController {
         }
     
     var timer: Timer?
-    let userDefaultsTime = UserDefaults.standard.integer(forKey: "forDurationSliderKey") * 60
+    lazy var userDefaultsTime = (udManager.getInt(forKey: .gameDuration) ?? 2) * 60
     lazy var timeLeft = userDefaultsTime
     
     lazy var restartButton: UIButton = {
