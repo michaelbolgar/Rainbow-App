@@ -72,7 +72,7 @@ class SettingsViewCell: UITableViewCell {
         return toggler
     }()
 
-    private lazy var backgroundController = UISegmentedControl.makeController(segments: 3, item1: "Тёмный", item2: "Светлый", item3: "Мятный", item4: nil)
+    private lazy var backgroundController = UISegmentedControl.makeController(segments: 2, item1: "Тёмный", item2: "Светлый", item3: nil, item4: nil)
 
     private lazy var speedController = UISegmentedControl.makeController(segments: 3, item1: "Медленно", item2: "Средне", item3: "Быстро", item4: nil)
     
@@ -112,12 +112,10 @@ class SettingsViewCell: UITableViewCell {
     private func setupSegmentedControllers() {
         backgroundController.selectedSegmentIndex = 0
         backgroundController.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
-
-        speedController.selectedSegmentIndex = 0
+        speedController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
     }
 
     private func setupCell() {
-        
         contentView.addSubview(hStack)
         contentView.layer.cornerRadius = 10
         contentView.backgroundColor = .white
@@ -125,14 +123,8 @@ class SettingsViewCell: UITableViewCell {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(8)
         }
-        
-        
     }
-    
-    func setupSegmantConroller() {
-        speedController.addTarget(self, action: #selector(speedConrollerChanged(_:)), for: .valueChanged)
-    }
-    
+
     func configure(with title: String, type: SettingsCellType) {
         
         hStack.snp.makeConstraints { make in
@@ -197,7 +189,6 @@ class SettingsViewCell: UITableViewCell {
             contentView.addSubview(fontSizeLabel)
             
             titleLabel.text = title
-//            fontSizeLabel.text = "Aa"
             
             titleLabel.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(10)
@@ -232,6 +223,7 @@ class SettingsViewCell: UITableViewCell {
             vStack.addArrangedSubview(backgroundController)
             
             titleLabel.text = title
+            backgroundController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
 
             vStack.snp.makeConstraints { make in
                 make.top.bottom.equalTo(self).inset(13)
@@ -272,24 +264,16 @@ class SettingsViewCell: UITableViewCell {
         let switchStatus = sender.isOn
         udManager.set(switchStatus, forKey: .isWithCheck)
     }
-    
-    
-    @objc
-    private func speedConrollerChanged(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        let speedStatus = sender.titleForSegment(at: selectedIndex)
-        UserDefaults.standard.set(speedStatus, forKey: "forSpeedKey")
-    }
 
     @objc
     private func segmentedControlValueChanged() {
         switch backgroundController.selectedSegmentIndex {
         case 0:
             ThemeManager.shared.currentBackground = Palette.backgroundBlue
+            udManager.set(backgroundController.selectedSegmentIndex, forKey: .backgroundColor)
         case 1:
-            ThemeManager.shared.currentBackground = .systemBlue
-        case 2:
-            ThemeManager.shared.currentBackground = .systemMint
+            ThemeManager.shared.currentBackground = UIColor.systemGray4
+            udManager.set(backgroundController.selectedSegmentIndex, forKey: .backgroundColor)
         default:
             break
         }
