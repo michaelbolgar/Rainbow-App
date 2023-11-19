@@ -110,9 +110,9 @@ class SettingsViewCell: UITableViewCell {
     // MARK: Private Methods
 
     private func setupSegmentedControllers() {
-        backgroundController.selectedSegmentIndex = 0
+        speedController.selectedSegmentIndex = 0
         backgroundController.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
-        speedController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
+        backgroundController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
     }
 
     private func setupCell() {

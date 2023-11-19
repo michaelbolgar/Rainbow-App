@@ -6,7 +6,7 @@ protocol UserDefaultsManagerProtocol {
 
     //methods for setting new data
     func set(_ object: Any?, forKey key: UserDefaultsManager.Keys)
-    func setAny<T: Encodable>(object: T?, forKey key: UserDefaultsManager.Keys)
+    func setCustomType<T: Encodable>(object: T?, forKey key: UserDefaultsManager.Keys)
 
     //methods for getting saved data
     func getInt(forKey key: UserDefaultsManager.Keys) -> Int?
@@ -51,7 +51,7 @@ extension UserDefaultsManager: UserDefaultsManagerProtocol {
         storeData(object, key: key.rawValue)
     }
 
-    func setAny<T: Encodable>(object: T?, forKey key: Keys) {
+    func setCustomType<T: Encodable>(object: T?, forKey key: Keys) {
         let jsonData = try? JSONEncoder().encode(object)
         storeData(object, key: key.rawValue)
     }
