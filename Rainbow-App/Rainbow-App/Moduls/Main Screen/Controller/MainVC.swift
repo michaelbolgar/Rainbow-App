@@ -16,16 +16,16 @@ class MainVC: UIViewController {
             make.edges.equalToSuperview()
         }
 
-//        updateBackgroundColor()
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
     }
 
-//    //MARK: Selector Metods
-//
-//    @objc
-//    private func updateBackgroundColor() {
-//        mainView.backgroundColor = ThemeManager.shared.currentBackground
-//    }
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        mainView.backgroundColor = ThemeManager.shared.currentBackground
+    }
     
     // MARK: - MainVC+Extension+Delegate
 }

@@ -44,6 +44,9 @@ class StatisticsVC: UIViewController {
         statisticsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
     }
     
     private func updateUI() {
@@ -55,6 +58,13 @@ class StatisticsVC: UIViewController {
         } else {
             statisticsView.reloadInputViews()
         }
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        statisticsView.backgroundColor = ThemeManager.shared.currentBackground
     }
 }
 

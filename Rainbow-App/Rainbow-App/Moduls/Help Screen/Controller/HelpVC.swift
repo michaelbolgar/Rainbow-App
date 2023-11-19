@@ -28,6 +28,16 @@ final class HelpVC: UIViewController {
             make.edges.equalToSuperview()
         }
 
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
+
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        helpView.backgroundColor = ThemeManager.shared.currentBackground
     }
 }
 
