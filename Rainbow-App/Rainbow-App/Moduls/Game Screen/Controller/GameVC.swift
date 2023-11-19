@@ -15,7 +15,7 @@ class GameVC: UIViewController {
         }
     
     var timer: Timer?
-    var timeLeft = 10
+    var timeLeft = 40
     
     lazy var restartButton: UIButton = {
         let button = UIButton(type: .system)
