@@ -15,7 +15,8 @@ class GameVC: UIViewController {
         }
     
     var timer: Timer?
-    var timeLeft = 10
+    let userDefaultsTime = UserDefaults.standard.integer(forKey: "forDurationSliderKey") * 60
+    lazy var timeLeft = userDefaultsTime
     
     lazy var restartButton: UIButton = {
         let button = UIButton(type: .system)
@@ -29,7 +30,7 @@ class GameVC: UIViewController {
     }()
     
     @objc func restartGame() { //упростить - много повторяющегося кода
-        timeLeft = 10
+        timeLeft = userDefaultsTime
         setupView()
         timerStart()
         restartButton.isHidden = true
@@ -73,6 +74,9 @@ class GameVC: UIViewController {
             make.height.equalTo(60)
         }
         restartButton.isHidden = true
+
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
     }
     
     private func timerStart() {
@@ -112,6 +116,7 @@ class GameVC: UIViewController {
             if gameView.isCheckedVer {
                 gameView.stop()
             }
+            Results.addResult(time: String(describing: userDefaultsTime), speed: 1, score: gameView.score, totalWords: Int(gameView.countColors))
             navigationItem.rightBarButtonItem?.isEnabled = true //? надо ли
             restartButton.isHidden = false
             let statisticVC = StatisticsVC()
@@ -128,27 +133,6 @@ class GameVC: UIViewController {
         button.tintColor = .white
         return button
     }()
-    
-    @objc func didTapPause() {
-        isPaused.toggle()
-        
-        if isPaused {
-            self.gameView.colorsAnimator?.pauseAnimation()
-            self.timer?.invalidate()
-            gameView.speedButton.isHidden = true
-            if gameView.isCheckedVer {
-                gameView.stop()
-            }
-        } else {
-            gameView.colorsAnimator?.startAnimation()
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
-            
-            gameView.speedButton.isHidden = false
-            if gameView.isCheckedVer {
-                gameView.startRecognition()
-            }
-        }
-    }
     
     func start() {
         SFSpeechRecognizer.requestAuthorization { status in
@@ -168,6 +152,34 @@ class GameVC: UIViewController {
                 @unknown default:
                     print("default")
                 }
+            }
+        }
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        gameView.backgroundColor = ThemeManager.shared.currentBackground
+    }
+
+    @objc func didTapPause() {
+        isPaused.toggle()
+
+        if isPaused {
+            self.gameView.colorsAnimator?.pauseAnimation()
+            self.timer?.invalidate()
+            gameView.speedButton.isHidden = true
+            if gameView.isCheckedVer {
+                gameView.stop()
+            }
+        } else {
+            gameView.colorsAnimator?.startAnimation()
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+
+            gameView.speedButton.isHidden = false
+            if gameView.isCheckedVer {
+                gameView.startRecognition()
             }
         }
     }

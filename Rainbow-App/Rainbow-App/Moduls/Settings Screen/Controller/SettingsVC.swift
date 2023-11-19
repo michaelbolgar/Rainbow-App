@@ -39,19 +39,29 @@ class SettingsVC: UIViewController {
         settingsView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        settingsView.backgroundColor = ThemeManager.shared.currentBackground
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 //        let int = UserDefaultsManager.instance.fetchSlider()
         let int = UserDefaults.standard.integer(forKey: "forDurationSliderKey")
-        let double = UserDefaults.standard.double(forKey: "forStepperKey")
+        let double = UserDefaults.standard.double(forKey: "forStepperKey") //ОКАЗЫВАЕТСЯ, это шрифт
         let bool = UserDefaults.standard.bool(forKey: "forToggleKey")
         let speed = UserDefaults.standard.string(forKey: "forSpeedKey")
-        print(int)
-        print(double)
-        print(bool)
-        print(speed)
+        print("forDurationSliderKey", int)
+        print("forStepperKey", double)
+        print("forToggleKey", bool)
+        print("forSpeedKey", speed)
       /* Сохранение настроек, таких как: скорость смены заданий, подложка, размер букв и время игры работает.
          Принты выше ни на что не влияют и созданы только для проверки работы сохраения в UserDefaults.
          Сам файл с UserDefaultsManager, по сути, и не нужен. Есть идея, как зарефакторить, но уже утром (там быстро будет).
@@ -70,10 +80,20 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         let setting = settings[indexPath.row]
         cell.slider.tag = indexPath.row
         cell.slider.addTarget(self, action: #selector(durationSliderChanged), for: .valueChanged)
+        cell.checkToggler.addTarget(self, action: #selector(toggleSwitchChanged), for: .valueChanged)
         cell.configure(with: setting.title, type: setting.type)
         cell.countLabel.text = "\(setting.value)" // Устанавливаем текущее значение слайдера
-        print("Cell created at index: \(indexPath.row)")
 
+        if setting.type == .checkGame {
+                let toggleValue = UserDefaults.standard.bool(forKey: "forToggleKey")
+                cell.checkToggler.isOn = toggleValue
+            } else if setting.type == .gameTime {
+                let savedValue = UserDefaults.standard.integer(forKey: "forDurationSliderKey")
+                cell.countLabel.text = "\(savedValue)"
+                cell.slider.value = Float(savedValue)
+            }
+
+        //print("Cell created at index: \(indexPath.row)")
         return cell
     }
 
@@ -82,15 +102,22 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         let index = sender.tag
         let newValue = Int(sender.value)
 
-        print("Slider changed at index: \(index), new value: \(newValue)")
-
-        // Обновляем данные в массиве settings
         settings[index].value = newValue
-        UserDefaults.standard.set(newValue, forKey: "forDurationSliderKey")
-        // Обновляем ячейку
+        _ = settings[index].type
+           UserDefaults.standard.set(newValue, forKey: "forDurationSliderKey")
+
         if let cell = settingsView.settingsTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SettingsViewCell {
-          
             cell.countLabel.text = "\(newValue)"
         }
+    }
+
+    @objc func toggleSwitchChanged(_ sender: UISwitch) {
+        let index = sender.tag
+        let newValue = sender.isOn
+
+        settings[index].value = newValue ? 1 : 0
+
+        UserDefaults.standard.set(newValue, forKey: "forToggleKey")
+           print("Toggle switch changed: \(newValue)")
     }
 }

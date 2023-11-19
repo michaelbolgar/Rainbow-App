@@ -54,8 +54,15 @@ class SettingsViewCell: UITableViewCell {
         return toggler
     }()
     
-    private lazy var backgroundController = UISegmentedControl.makeController(segments: 3, item1: "Cиний", item2: "Белый", item3: "Чёрный", item4: nil)
-    
+    lazy var checkToggler: UISwitch = {
+        let toggler = UISwitch()
+        toggler.isUserInteractionEnabled = true
+        toggler.addTarget(self, action: #selector(toggleCheckerValueChanged(_:)), for: .valueChanged)
+        return toggler
+    }()
+
+    private lazy var backgroundController = UISegmentedControl.makeController(segments: 3, item1: "Тёмный", item2: "Светлый", item3: "Мятный", item4: nil)
+
     private lazy var speedController = UISegmentedControl.makeController(segments: 3, item1: "Медленно", item2: "Средне", item3: "Быстро", item4: nil)
     
     private lazy var hStack: UIStackView = {
@@ -73,16 +80,16 @@ class SettingsViewCell: UITableViewCell {
         stack.distribution = .equalSpacing
         return stack
     }()
-    
-    // MARK: -- Init()
-    
+
+    // MARK: - Init()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         self.isUserInteractionEnabled = true
         self.backgroundColor = .clear
         setupCell()
-        setupSegmantConroller()
+        setupSegmentedControllers()
     }
     
     required init?(coder: NSCoder) {
@@ -90,7 +97,14 @@ class SettingsViewCell: UITableViewCell {
     }
     
     // MARK: Private Methods
-    
+
+    private func setupSegmentedControllers() {
+        backgroundController.selectedSegmentIndex = 0
+        backgroundController.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+
+        speedController.selectedSegmentIndex = 0
+    }
+
     private func setupCell() {
         
         contentView.addSubview(hStack)
@@ -145,8 +159,7 @@ class SettingsViewCell: UITableViewCell {
             vStack.addArrangedSubview(speedController)
             
             titleLabel.text = title
-            speedController.selectedSegmentIndex = 0
-            
+
             vStack.snp.makeConstraints { make in
                 make.top.bottom.equalTo(self).inset(13)
                 make.leading.trailing.equalTo(self).inset(15)
@@ -197,7 +210,7 @@ class SettingsViewCell: UITableViewCell {
             
         case .checkGame:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(toggler)
+            hStack.addArrangedSubview(checkToggler)
             titleLabel.text = title
             
         case .backgroundGameColor:
@@ -206,8 +219,7 @@ class SettingsViewCell: UITableViewCell {
             vStack.addArrangedSubview(backgroundController)
             
             titleLabel.text = title
-            backgroundController.selectedSegmentIndex = 0
-            
+
             vStack.snp.makeConstraints { make in
                 make.top.bottom.equalTo(self).inset(13)
                 make.leading.trailing.equalTo(self).inset(15)
@@ -218,9 +230,9 @@ class SettingsViewCell: UITableViewCell {
             }
         }
     }
-    
-    //MARK: objc-Methods
-    
+
+    //MARK: Selector Methods
+
     @objc
     private func stepperValueChanged(_ sender: UIStepper) {
         let fontSize = CGFloat(sender.value)
@@ -235,9 +247,32 @@ class SettingsViewCell: UITableViewCell {
     }
     
     @objc
+    func toggleCheckerValueChanged(_ sender: UISwitch) {
+        let switchStatus = sender.isOn
+        UserDefaults.standard.set(switchStatus, forKey: "checkerKey")
+    }
+    
+    
+    @objc
     private func speedConrollerChanged(_ sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
         let speedStatus = sender.titleForSegment(at: selectedIndex)
         UserDefaults.standard.set(speedStatus, forKey: "forSpeedKey")
+    }
+
+    @objc
+    private func segmentedControlValueChanged() {
+        switch backgroundController.selectedSegmentIndex {
+        case 0:
+            ThemeManager.shared.currentBackground = Palette.backgroundBlue
+        case 1:
+            ThemeManager.shared.currentBackground = .systemBlue
+        case 2:
+            ThemeManager.shared.currentBackground = .systemMint
+        default:
+            break
+        }
+
+        NotificationCenter.default.post(name: Notification.Name("ThemeChanged"), object: nil)
     }
 }

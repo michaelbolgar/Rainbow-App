@@ -26,15 +26,17 @@ class GameView: UIView {
     // MARK: Properties
     var colorViews = [ColorsPatternView]()
     var colorsAnimator: UIViewPropertyAnimator?
-    var countColors = 100.0 // меняется в зависимости от таймера
+    var countColors = 150.0 * UserDefaults.standard.double(forKey: "forDurationSliderKey") // меняется в зависимости от таймера
     lazy var speed = countColors * 4
     var defaultSpeed = Speed.x1.rawValue
-    var isBackground: Bool = true // из UD подложка
+    var isBackground: Bool = UserDefaults.standard.bool(forKey: "forToggleKey") // из UD подложка
     
     let answerLine = UIView()
     let answerLineCoordinate = (xStart: 0, xEnd: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height / 2 - 200)
     
-    var isCheckedVer: Bool = true // из UD подтянуть
+    var isCheckedVer: Bool = UserDefaults.standard.bool(forKey: "checkerKey") // из UD подтянуть
+    
+    var score = 0
     
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
@@ -186,6 +188,7 @@ class GameView: UIView {
                 print(simpleColor(colorView.color.accessibilityName) , "-", recognizedText)
                 if simpleColor(colorView.color.accessibilityName) == recognizedText {
                     colorView.labelView.text = "✅"
+                    score += 1
                     // + в статистику
                 } else {
                     colorView.labelView.text = "❌"

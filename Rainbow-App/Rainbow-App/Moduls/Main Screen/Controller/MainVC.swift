@@ -2,19 +2,29 @@ import UIKit
 
 class MainVC: UIViewController {
     
-    private let build = MainView()
+    private let mainView = MainView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        build.delegate = self
+        mainView.delegate = self
     }
 
     private func setupView() {
-        view.addSubview(build)
-        build.snp.makeConstraints { make in
+        view.addSubview(mainView)
+        mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        mainView.backgroundColor = ThemeManager.shared.currentBackground
     }
     
     // MARK: - MainVC+Extension+Delegate

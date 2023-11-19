@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F85E2B01868A00CA2D4F /* UIView +ext.swift */; };
-		3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8602B01869900CA2D4F /* UIStackView +ext.swift */; };
+		3526F85F2B01868A00CA2D4F /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F85E2B01868A00CA2D4F /* UIView Extension.swift */; };
+		3526F8612B01869900CA2D4F /* UIStackView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8602B01869900CA2D4F /* UIStackView Extension.swift */; };
 		3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */; };
 		35F59D282B08C1BF00C7915A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F59D272B08C1BF00C7915A /* UserDefaultsManager.swift */; };
 		35F59D2A2B08E1AD00C7915A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F59D292B08E1AD00C7915A /* Model.swift */; };
 		755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825102B0215EA000193EA /* ColorsPatternView.swift */; };
 		755825132B035B61000193EA /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825122B035B61000193EA /* UIViewController Extension.swift */; };
 		755825152B03DCE9000193EA /* RainbowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825142B03DCE9000193EA /* RainbowColors.swift */; };
+		755825502B078430000193EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 755825522B078430000193EA /* Localizable.strings */; };
 		E0478D382B0916F2007A2D48 /* RussoOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0478D372B0916F2007A2D48 /* RussoOne-Regular.ttf */; };
 		E08945DD2B0570B0008FD586 /* UIButton Extencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */; };
 		E543C3922B049C1C003C599E /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3912B049C1C003C599E /* GameResult.swift */; };
 		E543C3942B049D88003C599E /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3932B049D88003C599E /* Results.swift */; };
-		E543C3962B0766AE003C599E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3952B0766AE003C599E /* CustomNavigationController.swift */; };
-		755825502B078430000193EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 755825522B078430000193EA /* Localizable.strings */; };
+		E543C3962B0766AE003C599E /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3952B0766AE003C599E /* CustomNavController.swift */; };
 		E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */; };
 		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
 		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
@@ -44,23 +44,24 @@
 		F4D83FDB2B07E0740039534B /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */; };
 		F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDC2B07E0990039534B /* ColorGridView.swift */; };
 		F4D83FE02B07F4B70039534B /* SegmentedControl Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */; };
+		F4FE26AD2B097BAD00428E9F /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE26AC2B097BAD00428E9F /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3526F85E2B01868A00CA2D4F /* UIView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +ext.swift"; sourceTree = "<group>"; };
-		3526F8602B01869900CA2D4F /* UIStackView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView +ext.swift"; sourceTree = "<group>"; };
+		3526F85E2B01868A00CA2D4F /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
+		3526F8602B01869900CA2D4F /* UIStackView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView Extension.swift"; sourceTree = "<group>"; };
 		3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateDesignationStackView.swift; sourceTree = "<group>"; };
 		35F59D272B08C1BF00C7915A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		35F59D292B08E1AD00C7915A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		755825102B0215EA000193EA /* ColorsPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsPatternView.swift; sourceTree = "<group>"; };
 		755825122B035B61000193EA /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
 		755825142B03DCE9000193EA /* RainbowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RainbowColors.swift; path = "Rainbow-App/Extensions/RainbowColors.swift"; sourceTree = SOURCE_ROOT; };
+		755825512B078430000193EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E0478D372B0916F2007A2D48 /* RussoOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RussoOne-Regular.ttf"; sourceTree = "<group>"; };
 		E08945DC2B0570B0008FD586 /* UIButton Extencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton Extencion.swift"; sourceTree = "<group>"; };
 		E543C3912B049C1C003C599E /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameResult.swift; path = "Rainbow-App/GameResult.swift"; sourceTree = SOURCE_ROOT; };
 		E543C3932B049D88003C599E /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Results.swift; path = "Rainbow-App/Results.swift"; sourceTree = SOURCE_ROOT; };
-		E543C3952B0766AE003C599E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
-		755825512B078430000193EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E543C3952B0766AE003C599E /* CustomNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewCell.swift; sourceTree = "<group>"; };
 		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F45055AC2B01723600351031 /* Font Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font Extension.swift"; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		F4D83FDA2B07E0740039534B /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		F4D83FDC2B07E0990039534B /* ColorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGridView.swift; sourceTree = "<group>"; };
 		F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentedControl Extension.swift"; sourceTree = "<group>"; };
+		F4FE26AC2B097BAD00428E9F /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,9 +137,8 @@
 				F45055AC2B01723600351031 /* Font Extension.swift */,
 				F45055AE2B01732300351031 /* UILabel Extension.swift */,
 				755825122B035B61000193EA /* UIViewController Extension.swift */,
-				3526F85E2B01868A00CA2D4F /* UIView +ext.swift */,
-				3526F8602B01869900CA2D4F /* UIStackView +ext.swift */,
-				E543C3952B0766AE003C599E /* CustomNavigationController.swift */,
+				3526F85E2B01868A00CA2D4F /* UIView Extension.swift */,
+				3526F8602B01869900CA2D4F /* UIStackView Extension.swift */,
 				F4D83FDF2B07F4B70039534B /* SegmentedControl Extension.swift */,
 			);
 			path = Extensions;
@@ -180,6 +181,8 @@
 				755825522B078430000193EA /* Localizable.strings */,
 				F49E7CAA2B0159DF00817069 /* AppDelegate.swift */,
 				F49E7CAC2B0159DF00817069 /* SceneDelegate.swift */,
+				E543C3952B0766AE003C599E /* CustomNavController.swift */,
+				F4FE26AC2B097BAD00428E9F /* ThemeManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -447,19 +450,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE26AD2B097BAD00428E9F /* ThemeManager.swift in Sources */,
 				F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */,
-				3526F85F2B01868A00CA2D4F /* UIView +ext.swift in Sources */,
+				3526F85F2B01868A00CA2D4F /* UIView Extension.swift in Sources */,
 				F49E7CAF2B0159DF00817069 /* MainVC.swift in Sources */,
 				F49E7CE42B01605300817069 /* GameView.swift in Sources */,
 				E543C3922B049C1C003C599E /* GameResult.swift in Sources */,
 				F45055AD2B01723600351031 /* Font Extension.swift in Sources */,
 				F49E7CE22B015E5500817069 /* MainView.swift in Sources */,
 				F49E7CD72B015CB800817069 /* HelpVC.swift in Sources */,
-				3526F8612B01869900CA2D4F /* UIStackView +ext.swift in Sources */,
+				3526F8612B01869900CA2D4F /* UIStackView Extension.swift in Sources */,
 				F49E7CD52B015C8F00817069 /* SettingsVC.swift in Sources */,
 				F49E7CE82B01624F00817069 /* HelpView.swift in Sources */,
 				755825132B035B61000193EA /* UIViewController Extension.swift in Sources */,
-				E543C3962B0766AE003C599E /* CustomNavigationController.swift in Sources */,
+				E543C3962B0766AE003C599E /* CustomNavController.swift in Sources */,
 				F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */,
 				F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */,
 				E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */,
