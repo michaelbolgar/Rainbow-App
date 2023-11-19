@@ -30,12 +30,12 @@ class GameView: UIView {
     lazy var countColors = 150.0 * Double(udManager.getInt(forKey: .gameDuration) ?? 2) // changing, depends on the game duration
     lazy var speed = countColors * 4
     var defaultSpeed = Speed.x1.rawValue
-    lazy var isBackground: Bool = udManager.getBool(forKey: .isWithBackground) ?? false // из UD подложка
+    lazy var isBackground: Bool = udManager.getBool(forKey: .isWithBackground) ?? false
     
     let answerLine = UIView()
     let answerLineCoordinate = (xStart: 0, xEnd: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height / 2 - 200)
     
-    var isCheckedVer: Bool = UserDefaults.standard.bool(forKey: "checkerKey") // из UD подтянуть
+    lazy var isCheckedVer: Bool = udManager.getBool(forKey: .isWithCheck) ?? false
     
     var score = 0
     

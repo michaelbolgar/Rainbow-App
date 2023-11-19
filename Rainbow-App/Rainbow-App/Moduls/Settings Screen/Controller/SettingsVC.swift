@@ -18,7 +18,7 @@ class SettingsVC: UIViewController {
         Settings(title: "Скорость смены заданий, сек", type: .gameSpeed, value: 0),
         Settings(title: "Цвета слов", type: .wordsColor, value: 0),
         Settings(title: "Размер букв", type: .fontSize, value: 0),
-        Settings(title: "Подложка для букв", type: .letterBackground, value: 0),
+        Settings(title: "Подложка для букв", type: .letterOrBackground, value: 0),
         Settings(title: "Игра с проверкой", type: .checkGame, value: 0),
         Settings(title: "Цвет фона", type: .backgroundGameColor, value: 0)
     ]
@@ -79,30 +79,6 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsViewCell.identifier, for: indexPath) as! SettingsViewCell
         let setting = settings[indexPath.row]
         cell.configure(with: setting.title, type: setting.type)
-
-        // Setting actual slider's value
-        cell.gameDurationSlider.value = Float(udManager.getInt(forKey: .gameDuration) ?? 2)
-        cell.gameDurationLabel.text = "\(udManager.getInt(forKey: .gameDuration) ?? 2)"
-
-//        if setting.type == .checkGame {
-//                let toggleValue = UserDefaults.standard.bool(forKey: "forToggleKey")
-//                cell.isCheckToggler.isOn = toggleValue
-//            } else if setting.type == .gameTime {
-//                let savedValue = UserDefaults.standard.integer(forKey: "forDurationSliderKey")
-//                cell.countLabel.text = "\(savedValue)"
-//                cell.gameDurationSlider.value = Float(savedValue)
-//            }
-
         return cell
     }
-
-//    @objc func toggleSwitchChanged(_ sender: UISwitch) {
-//        let index = sender.tag
-//        let newValue = sender.isOn
-//
-//        settings[index].value = newValue ? 1 : 0
-//
-//        UserDefaults.standard.set(newValue, forKey: "forToggleKey")
-//           print("Toggle switch changed: \(newValue)")
-//    }
 }

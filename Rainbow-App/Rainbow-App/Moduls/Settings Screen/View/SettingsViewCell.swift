@@ -11,7 +11,7 @@ class SettingsViewCell: UITableViewCell {
         case gameSpeed
         case wordsColor
         case fontSize
-        case letterBackground
+        case letterOrBackground
         case checkGame
         case backgroundGameColor
     }
@@ -22,13 +22,21 @@ class SettingsViewCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
 
-    lazy var gameDurationLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 22), textColor: .black)
+    lazy var gameDurationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(udManager.getInt(forKey: .gameDuration) ?? 2)"
+        label.font = UIFont.alice(size: 22)
+        label.textColor = .black
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
     
     lazy var gameDurationSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 5
         slider.isUserInteractionEnabled = true
+        slider.value = Float(udManager.getInt(forKey: .gameDuration) ?? 2)
         slider.addTarget(self, action: #selector(gameDurationAction), for: .valueChanged)
         return slider
     }()
@@ -205,7 +213,7 @@ class SettingsViewCell: UITableViewCell {
                 make.trailing.equalTo(fontSizeLabel).inset(38)
             }
             
-        case .letterBackground:
+        case .letterOrBackground:
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(isWithBackgroundToggler)
             titleLabel.text = title
@@ -215,6 +223,7 @@ class SettingsViewCell: UITableViewCell {
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(isCheckToggler)
             titleLabel.text = title
+            isCheckToggler.isOn = udManager.getBool(forKey: .isWithCheck) ?? false
             
         case .backgroundGameColor:
             contentView.addSubview(vStack)
@@ -260,7 +269,7 @@ class SettingsViewCell: UITableViewCell {
     @objc
     func isWithCheckAction(_ sender: UISwitch) {
         let switchStatus = sender.isOn
-        udManager.set(switchStatus, forKey: .isWithBackground)
+        udManager.set(switchStatus, forKey: .isWithCheck)
     }
     
     
