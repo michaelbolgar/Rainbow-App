@@ -10,6 +10,8 @@ struct Settings {
 class SettingsVC: UIViewController {
 
     let settingsView = SettingsView()
+    
+    var game: Game?
 
     var settings: [Settings] = [
         Settings(title: "Время игры, мин", type: .gameTime, value: 0),
@@ -48,6 +50,24 @@ class SettingsVC: UIViewController {
     private func updateBackgroundColor() {
         settingsView.backgroundColor = ThemeManager.shared.currentBackground
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        let int = UserDefaultsManager.instance.fetchSlider()
+        let int = UserDefaults.standard.integer(forKey: "forDurationSliderKey")
+        let double = UserDefaults.standard.double(forKey: "forStepperKey")
+        let bool = UserDefaults.standard.bool(forKey: "forToggleKey")
+        let speed = UserDefaults.standard.string(forKey: "forSpeedKey")
+        print(int)
+        print(double)
+        print(bool)
+        print(speed)
+      /* Сохранение настроек, таких как: скорость смены заданий, подложка, размер букв и время игры работает.
+         Принты выше ни на что не влияют и созданы только для проверки работы сохраения в UserDefaults.
+         Сам файл с UserDefaultsManager, по сути, и не нужен. Есть идея, как зарефакторить, но уже утром (там быстро будет).
+         Сохранение идёт автоматом в методах @objc SettingsViewCell и в методе этого класса (SettingsVC). 
+         */
+    }
 }
 
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
@@ -62,7 +82,6 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         cell.slider.addTarget(self, action: #selector(durationSliderChanged), for: .valueChanged)
         cell.configure(with: setting.title, type: setting.type)
         cell.countLabel.text = "\(setting.value)" // Устанавливаем текущее значение слайдера
-
         print("Cell created at index: \(indexPath.row)")
 
         return cell
@@ -77,10 +96,11 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 
         // Обновляем данные в массиве settings
         settings[index].value = newValue
-
+        UserDefaults.standard.set(newValue, forKey: "forDurationSliderKey")
         // Обновляем ячейку
         if let cell = settingsView.settingsTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SettingsViewCell {
-              cell.countLabel.text = "\(newValue)"
+          
+            cell.countLabel.text = "\(newValue)"
         }
     }
 }
