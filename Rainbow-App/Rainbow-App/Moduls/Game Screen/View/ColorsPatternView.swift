@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 class ColorsPatternView: UIView {
-    
+
+    private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+
     let title: String
     let color: UIColor
     var background: Bool
@@ -32,7 +34,7 @@ class ColorsPatternView: UIView {
         labelView.translatesAutoresizingMaskIntoConstraints = false
         labelView.text = title
         labelView.textAlignment = .center
-        labelView.font = .systemFont(ofSize: background ? 14 : 20, weight: .bold)
+        labelView.font = .systemFont(ofSize: background ? 14 : CGFloat(udManager.getInt(forKey: .fontSize) ?? 20), weight: .bold)
         labelView.textColor = background ? .black : color
         labelView.backgroundColor = background ? color : .clear
         labelView.layer.cornerRadius = background ? 50 : 0

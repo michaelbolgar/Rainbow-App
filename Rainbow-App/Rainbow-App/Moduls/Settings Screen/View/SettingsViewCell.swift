@@ -22,7 +22,7 @@ class SettingsViewCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
 
-    lazy var gameDurationLabel: UILabel = {
+    private lazy var gameDurationLabel: UILabel = {
         let label = UILabel()
         label.text = "\(udManager.getInt(forKey: .gameDuration) ?? 2)"
         label.font = UIFont.alice(size: 22)
@@ -31,7 +31,7 @@ class SettingsViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var gameDurationSlider: UISlider = {
+    private lazy var gameDurationSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 5
@@ -49,13 +49,14 @@ class SettingsViewCell: UITableViewCell {
     private lazy var fontSizeStepper: UIStepper = {
         let stepper = UIStepper()
         stepper.isUserInteractionEnabled = true
-        stepper.minimumValue = 16
-        stepper.maximumValue = 20
+        stepper.minimumValue = 18
+        stepper.maximumValue = 25
+        stepper.value = Double(udManager.getInt(forKey: .fontSize) ?? 20)
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
-    
-    private lazy var fontSizeLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 16), textColor: .black)
+
+    private lazy var fontSizeLabel = UILabel.makeLabel(text: "Aa", font: UIFont.alice(size: CGFloat ( udManager.getInt(forKey: .fontSize) ?? 20)), textColor: .black)
     
     private lazy var isWithBackgroundToggler: UISwitch = {
         let toggler = UISwitch()
@@ -196,7 +197,7 @@ class SettingsViewCell: UITableViewCell {
             contentView.addSubview(fontSizeLabel)
             
             titleLabel.text = title
-            fontSizeLabel.text = "Aa"
+//            fontSizeLabel.text = "Aa"
             
             titleLabel.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(10)
@@ -257,7 +258,7 @@ class SettingsViewCell: UITableViewCell {
     private func stepperValueChanged(_ sender: UIStepper) {
         let fontSize = CGFloat(sender.value)
         fontSizeLabel.font = UIFont.systemFont(ofSize: fontSize)
-        UserDefaults.standard.set(Double(fontSize), forKey: "forStepperKey")
+        udManager.set(fontSize, forKey: .fontSize)
     }
     
     @objc
