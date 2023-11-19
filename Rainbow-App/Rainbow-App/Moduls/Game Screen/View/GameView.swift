@@ -36,6 +36,8 @@ class GameView: UIView {
     
     var isCheckedVer: Bool = UserDefaults.standard.bool(forKey: "checkerKey") // из UD подтянуть
     
+    var score = 0
+    
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(defaultSpeed, for: .normal)
@@ -186,6 +188,7 @@ class GameView: UIView {
                 print(simpleColor(colorView.color.accessibilityName) , "-", recognizedText)
                 if simpleColor(colorView.color.accessibilityName) == recognizedText {
                     colorView.labelView.text = "✅"
+                    score += 1
                     // + в статистику
                 } else {
                     colorView.labelView.text = "❌"
