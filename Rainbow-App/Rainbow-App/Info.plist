@@ -8,6 +8,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>RussoOne-Regular.ttf</string>
 		<string>Alice.ttf</string>
 		<string>Caveat.ttf</string>
 	</array>
