@@ -21,13 +21,13 @@ class SettingsView: UIView {
 
         self.addSubview(settingsTableView)
         settingsTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(100)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 

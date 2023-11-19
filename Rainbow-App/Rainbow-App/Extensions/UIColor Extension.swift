@@ -38,4 +38,15 @@ struct Palette { // хорошо бы заменить на extension UIColor, �
         return UIColor (red: 190/255, green: 46/255, blue: 106/255, alpha: 1.0)
     }()
 
+    static var pink: UIColor = {
+        return UIColor (red: 99/255, green: 13/255, blue: 64/255, alpha: 1.0)
+    }()
+
+    static var lightBlue: UIColor = {
+        return UIColor (red: 26/255, green: 67/255, blue: 100/255, alpha: 1.0)
+    }()
+
+    static var blue2: UIColor = {
+        return UIColor (red: 0/255, green: 0/255, blue: 81/255, alpha: 1.0)
+    }()
 }
