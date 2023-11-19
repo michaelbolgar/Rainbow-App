@@ -9,4 +9,8 @@ extension UIFont {
     static func caveat(size: CGFloat) -> UIFont? {
         return UIFont(name: "Caveat", size: size)
     }
+    
+    static func russoOne(size: CGFloat) -> UIFont? {
+        return UIFont(name: "RussoOne-Regular", size: size)
+    }
 }
