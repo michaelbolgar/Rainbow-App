@@ -12,20 +12,25 @@ final class UserDefaultsManager {
     private let userDefaults = UserDefaults.standard
     static let instance = UserDefaultsManager()
     
-//    func saveValuesToUserDefaults(_ sliderValue: CGFloat,_ stepperValue: CGFloat,_ toggleValue: Bool) {
-//        // Save the value of the UISlider
-//        UserDefaults.standard.set(sliderValue, forKey: "sliderValue")
-//
-//        // Save the value of the UIStepper
-//        UserDefaults.standard.set(stepperValue, forKey: "stepperValue")
-//
-//        // Save the value of the UISwitch
-//        UserDefaults.standard.set(toggleValue, forKey: "switchValue")
-//
-//        // Synchronize UserDefaults to make sure the values are saved immediately
-//        UserDefaults.standard.synchronize()
-//    }
-//
+    func saveValuesToUserDefaults(_ sliderValue: CGFloat,_ stepperValue: CGFloat,_ toggleValue: Bool) {
+        // Save the value of the UISlider
+        UserDefaults.standard.set(sliderValue, forKey: "sliderValue")
+
+        // Save the value of the UIStepper
+        UserDefaults.standard.set(stepperValue, forKey: "stepperValue")
+
+        // Save the value of the UISwitch
+        UserDefaults.standard.set(toggleValue, forKey: "switchValue")
+
+        // Synchronize UserDefaults to make sure the values are saved immediately
+        UserDefaults.standard.synchronize()
+    }
+    
+    func setValueForSlider(sliderValue: Int) {
+        UserDefaults.standard.set(sliderValue, forKey: "sliderValue")
+        UserDefaults.standard.synchronize()
+    }
+
     private func encode(game: Game, key: String) {
         if let encoderData = try? JSONEncoder().encode(game) {
             return userDefaults.set(encoderData, forKey: key)
@@ -50,5 +55,9 @@ final class UserDefaultsManager {
     func saveGame(game: Game) {
         var game = fetchGame()
         encode(game: game, key: Keys.saveGame)
+    }
+    
+    func fetchSlider() -> Int {
+        return UserDefaults.standard.integer(forKey: "sliderValue")
     }
 }

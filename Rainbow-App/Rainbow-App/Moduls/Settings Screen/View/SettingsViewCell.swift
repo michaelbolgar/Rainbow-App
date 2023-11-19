@@ -1,10 +1,6 @@
 import UIKit
 import SnapKit
 
-protocol SettingsViewCellDelegate: AnyObject {
-    func saveGame(slider: CGFloat, stepper: CGFloat, toggle: Bool)
-}
-
 class SettingsViewCell: UITableViewCell {
     
     // MARK: - Cell types
@@ -16,22 +12,11 @@ class SettingsViewCell: UITableViewCell {
         case letterBackground
         case checkGame
         case backgroundGameColor
-        case saveGame
     }
     
     static let identifier = SettingsViewCell.description()
     
     // MARK: - Private properties
-    
-    weak var delegate: SettingsViewCellDelegate?
-    
-    private lazy var saveButton: UIButton = {
-        let saveButton = UIButton()
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.backgroundColor = .white
-        saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
-        return saveButton
-    }()
     
     private lazy var titleLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
     
@@ -41,7 +26,6 @@ class SettingsViewCell: UITableViewCell {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 5
-        slider.value = 2
         slider.isUserInteractionEnabled = true
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
@@ -57,7 +41,6 @@ class SettingsViewCell: UITableViewCell {
         stepper.isUserInteractionEnabled = true
         stepper.minimumValue = 16
         stepper.maximumValue = 20
-        stepper.value = 16
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
@@ -67,6 +50,7 @@ class SettingsViewCell: UITableViewCell {
     private lazy var toggler: UISwitch = {
         let toggler = UISwitch()
         toggler.isUserInteractionEnabled = true
+        toggler.addTarget(self, action: #selector(toggleValueChanged(_:)), for: .valueChanged)
         return toggler
     }()
     
@@ -98,8 +82,7 @@ class SettingsViewCell: UITableViewCell {
         self.isUserInteractionEnabled = true
         self.backgroundColor = .clear
         setupCell()
-        let game = delegate?.saveGame(slider: CGFloat(slider.value), stepper: stepper.value, toggle: toggler.isOn)
-        print(game)
+        setupSegmantConroller()
     }
     
     required init?(coder: NSCoder) {
@@ -119,6 +102,10 @@ class SettingsViewCell: UITableViewCell {
         }
         
         
+    }
+    
+    func setupSegmantConroller() {
+        speedController.addTarget(self, action: #selector(speedConrollerChanged(_:)), for: .valueChanged)
     }
     
     func configure(with title: String, type: SettingsCellType) {
@@ -229,13 +216,6 @@ class SettingsViewCell: UITableViewCell {
             backgroundController.snp.makeConstraints { make in
                 make.leading.trailing.equalTo(vStack)
             }
-        case .saveGame:
-            contentView.addSubview(saveButton)
-            saveButton.snp.makeConstraints { make in
-                    make.centerX.equalToSuperview()
-                    make.bottom.equalToSuperview().inset(30)
-                    make.width.equalTo(150)
-                }
         }
     }
     
@@ -245,11 +225,19 @@ class SettingsViewCell: UITableViewCell {
     private func stepperValueChanged(_ sender: UIStepper) {
         let fontSize = CGFloat(sender.value)
         fontSizeLabel.font = UIFont.systemFont(ofSize: fontSize)
+        UserDefaults.standard.set(Double(fontSize), forKey: "forStepperKey")
     }
     
     @objc
-    func saveAction() {
-        delegate?.saveGame(slider: CGFloat(slider.value), stepper: stepper.value, toggle: toggler.isOn)
-        print("hello")
+    private func toggleValueChanged(_ sender: UISwitch) {
+        let switchStatus = sender.isOn
+        UserDefaults.standard.set(switchStatus, forKey: "forToggleKey")
+    }
+    
+    @objc
+    private func speedConrollerChanged(_ sender: UISegmentedControl) {
+        let selectedIndex = sender.selectedSegmentIndex
+        let speedStatus = sender.titleForSegment(at: selectedIndex)
+        UserDefaults.standard.set(speedStatus, forKey: "forSpeedKey")
     }
 }
