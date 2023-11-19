@@ -55,13 +55,13 @@ class SettingsVC: UIViewController {
         super.viewDidDisappear(animated)
 //        let int = UserDefaultsManager.instance.fetchSlider()
         let int = UserDefaults.standard.integer(forKey: "forDurationSliderKey")
-        let double = UserDefaults.standard.double(forKey: "forStepperKey")
+        let double = UserDefaults.standard.double(forKey: "forStepperKey") //ОКАЗЫВАЕТСЯ, это шрифт
         let bool = UserDefaults.standard.bool(forKey: "forToggleKey")
         let speed = UserDefaults.standard.string(forKey: "forSpeedKey")
-        print(int)
-        print(double)
-        print(bool)
-        print(speed)
+        print("forDurationSliderKey", int)
+        print("forStepperKey", double)
+        print("forToggleKey", bool)
+        print("forSpeedKey", speed)
       /* Сохранение настроек, таких как: скорость смены заданий, подложка, размер букв и время игры работает.
          Принты выше ни на что не влияют и созданы только для проверки работы сохраения в UserDefaults.
          Сам файл с UserDefaultsManager, по сути, и не нужен. Есть идея, как зарефакторить, но уже утром (там быстро будет).

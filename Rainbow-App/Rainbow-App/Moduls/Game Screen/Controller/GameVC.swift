@@ -15,7 +15,8 @@ class GameVC: UIViewController {
         }
     
     var timer: Timer?
-    var timeLeft = 40
+    let userDefaultsTime = UserDefaults.standard.integer(forKey: "forDurationSliderKey") * 60
+    lazy var timeLeft = userDefaultsTime
     
     lazy var restartButton: UIButton = {
         let button = UIButton(type: .system)
@@ -29,7 +30,7 @@ class GameVC: UIViewController {
     }()
     
     @objc func restartGame() { //упростить - много повторяющегося кода
-        timeLeft = 10
+        timeLeft = userDefaultsTime
         setupView()
         timerStart()
         restartButton.isHidden = true
