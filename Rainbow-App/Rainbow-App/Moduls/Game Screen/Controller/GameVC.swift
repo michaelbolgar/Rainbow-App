@@ -116,6 +116,7 @@ class GameVC: UIViewController {
             if gameView.isCheckedVer {
                 gameView.stop()
             }
+            Results.addResult(time: String(describing: userDefaultsTime), speed: 1, score: gameView.score, totalWords: Int(gameView.countColors))
             navigationItem.rightBarButtonItem?.isEnabled = true //? надо ли
             restartButton.isHidden = false
             let statisticVC = StatisticsVC()

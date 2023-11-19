@@ -27,10 +27,10 @@ class StatisticsVC: UIViewController {
         setNavigationBar(title: Constants.titleText)
         setupView()
         
-        gameResults.addResult(time: "3.43", speed: 1, score: 3, totalWords: 5)
-        gameResults.addResult(time: "7.31", speed: 2, score: 11, totalWords: 12)
-        gameResults.addResult(time: "12.3", speed: 1, score: 7, totalWords: 7)
-        gameResults.addResult(time: "11.4", speed: 3, score: 14, totalWords: 16)
+//        gameResults.addResult(time: "3.43", speed: 1, score: 3, totalWords: 5)
+//        gameResults.addResult(time: "7.31", speed: 2, score: 11, totalWords: 12)
+//        gameResults.addResult(time: "12.3", speed: 1, score: 7, totalWords: 7)
+//        gameResults.addResult(time: "11.4", speed: 3, score: 14, totalWords: 16)
         
         updateUI()
     }
@@ -51,7 +51,7 @@ class StatisticsVC: UIViewController {
     
     private func updateUI() {
         
-        if gameResults.results.count == 0 {
+        if Results.results.count == 0 {
             statisticsView.resultsTableView.isHidden = true
             statisticsView.cleanButton.isHidden = true
             statisticsView.emptyStatisticsLabel.isHidden = false
@@ -71,7 +71,7 @@ class StatisticsVC: UIViewController {
 
 extension StatisticsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameResults.results.count
+        return Results.results.count
     }
     
     func tableView(_ tableView: UITableView, 
