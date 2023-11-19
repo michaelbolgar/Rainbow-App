@@ -22,12 +22,12 @@ class GameView: UIView {
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask: SFSpeechRecognitionTask?
     let audioEngine = AVAudioEngine()
-    
+
     // MARK: Properties
     private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
     var colorViews = [ColorsPatternView]()
     var colorsAnimator: UIViewPropertyAnimator?
-    var countColors = 150.0 * UserDefaults.standard.double(forKey: "forDurationSliderKey") // меняется в зависимости от таймера
+    lazy var countColors = 150.0 * Double(udManager.getInt(forKey: .gameDuration) ?? 2) // changing, depends on the game duration
     lazy var speed = countColors * 4
     var defaultSpeed = Speed.x1.rawValue
     lazy var isBackground: Bool = udManager.getBool(forKey: .isWithBackground) ?? false // из UD подложка

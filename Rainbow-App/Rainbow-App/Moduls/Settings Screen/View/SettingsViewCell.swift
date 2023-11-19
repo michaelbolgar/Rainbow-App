@@ -260,7 +260,7 @@ class SettingsViewCell: UITableViewCell {
     @objc
     func isWithCheckAction(_ sender: UISwitch) {
         let switchStatus = sender.isOn
-        UserDefaults.standard.set(switchStatus, forKey: "checkerKey")
+        udManager.set(switchStatus, forKey: .isWithBackground)
     }
     
     

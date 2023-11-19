@@ -78,8 +78,6 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsViewCell.identifier, for: indexPath) as! SettingsViewCell
         let setting = settings[indexPath.row]
-//        cell.gameDurationSlider.tag = indexPath.row
-//        cell.isCheckToggler.addTarget(self, action: #selector(toggleSwitchChanged), for: .valueChanged)
         cell.configure(with: setting.title, type: setting.type)
 
         // Setting actual slider's value
@@ -95,23 +93,8 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 //                cell.gameDurationSlider.value = Float(savedValue)
 //            }
 
-        //print("Cell created at index: \(indexPath.row)")
         return cell
     }
-
-
-//    @objc func durationSliderChanged(_ sender: UISlider) {
-//        let index = sender.tag
-//        let newValue = Int(sender.value)
-//
-//        settings[index].value = newValue
-//        _ = settings[index].type
-//           UserDefaults.standard.set(newValue, forKey: "forDurationSliderKey")
-//
-//        if let cell = settingsView.settingsTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SettingsViewCell {
-//            cell.countLabel.text = "\(newValue)"
-//        }
-//    }
 
 //    @objc func toggleSwitchChanged(_ sender: UISwitch) {
 //        let index = sender.tag
