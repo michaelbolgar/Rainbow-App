@@ -53,6 +53,13 @@ class SettingsViewCell: UITableViewCell {
         toggler.addTarget(self, action: #selector(toggleValueChanged(_:)), for: .valueChanged)
         return toggler
     }()
+    
+    private lazy var checkToggler: UISwitch = {
+        let toggler = UISwitch()
+        toggler.isUserInteractionEnabled = true
+        toggler.addTarget(self, action: #selector(toggleCheckerValueChanged(_:)), for: .valueChanged)
+        return toggler
+    }()
 
     private lazy var backgroundController = UISegmentedControl.makeController(segments: 3, item1: "Тёмный", item2: "Светлый", item3: "Мятный", item4: nil)
 
@@ -203,7 +210,7 @@ class SettingsViewCell: UITableViewCell {
             
         case .checkGame:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(toggler)
+            hStack.addArrangedSubview(checkToggler)
             titleLabel.text = title
             
         case .backgroundGameColor:
@@ -238,6 +245,13 @@ class SettingsViewCell: UITableViewCell {
         let switchStatus = sender.isOn
         UserDefaults.standard.set(switchStatus, forKey: "forToggleKey")
     }
+    
+    @objc
+    private func toggleCheckerValueChanged(_ sender: UISwitch) {
+        let switchStatus = sender.isOn
+        UserDefaults.standard.set(switchStatus, forKey: "checkerKey")
+    }
+    
     
     @objc
     private func speedConrollerChanged(_ sender: UISegmentedControl) {
