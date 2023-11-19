@@ -73,6 +73,9 @@ class GameVC: UIViewController {
             make.height.equalTo(60)
         }
         restartButton.isHidden = true
+
+        updateBackgroundColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
     }
     
     private func timerStart() {
@@ -129,27 +132,6 @@ class GameVC: UIViewController {
         return button
     }()
     
-    @objc func didTapPause() {
-        isPaused.toggle()
-        
-        if isPaused {
-            self.gameView.colorsAnimator?.pauseAnimation()
-            self.timer?.invalidate()
-            gameView.speedButton.isHidden = true
-            if gameView.isCheckedVer {
-                gameView.stop()
-            }
-        } else {
-            gameView.colorsAnimator?.startAnimation()
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
-            
-            gameView.speedButton.isHidden = false
-            if gameView.isCheckedVer {
-                gameView.startRecognition()
-            }
-        }
-    }
-    
     func start() {
         SFSpeechRecognizer.requestAuthorization { status in
             OperationQueue.main.addOperation {
@@ -168,6 +150,34 @@ class GameVC: UIViewController {
                 @unknown default:
                     print("default")
                 }
+            }
+        }
+    }
+
+    //MARK: Selector Metods
+
+    @objc
+    private func updateBackgroundColor() {
+        gameView.backgroundColor = ThemeManager.shared.currentBackground
+    }
+
+    @objc func didTapPause() {
+        isPaused.toggle()
+
+        if isPaused {
+            self.gameView.colorsAnimator?.pauseAnimation()
+            self.timer?.invalidate()
+            gameView.speedButton.isHidden = true
+            if gameView.isCheckedVer {
+                gameView.stop()
+            }
+        } else {
+            gameView.colorsAnimator?.startAnimation()
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+
+            gameView.speedButton.isHidden = false
+            if gameView.isCheckedVer {
+                gameView.startRecognition()
             }
         }
     }
