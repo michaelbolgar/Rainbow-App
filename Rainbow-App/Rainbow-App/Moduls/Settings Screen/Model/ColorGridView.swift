@@ -5,7 +5,8 @@ class ColorGridView: UIView {
 
     // MARK: Properties
 
-    private var colorSquares: [UIView] = []
+    private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+    var colorSquares: [UIView] = []
     private var colors: [UIColor] = [Palette.orange, Palette.yellow, Palette.green, Palette.purple, Palette.pink, Palette.lightBlue, UIColor.red, UIColor.white, Palette.blue2, UIColor.systemCyan]
     private var selectedSquareIndex: Int? = nil
 
@@ -74,14 +75,42 @@ class ColorGridView: UIView {
 
         selectedSquareIndex = index
 
-        if selectedSquareIndex != nil {
-            let square = colorSquares[index]
-            if let checkMarkLayer = square.subviews.first as? UIImageView {
-                checkMarkLayer.isHidden.toggle()
+        if let selectedSquareIndex = selectedSquareIndex {
+            if selectedSquareIndex == index {
+                let square = colorSquares[index]
+                if let checkMarkLayer = square.subviews.first as? UIImageView {
+                    checkMarkLayer.isHidden.toggle()
+                }
 
+                // Save selected color indices in UserDefaults
+                let selectedIndices = colorSquares
+                    .enumerated()
+                    .filter { $0.element.subviews.first as? UIImageView != nil && !($0.element.subviews.first as! UIImageView).isHidden }
+                    .map { $0.offset }
+
+                udManager.set(selectedIndices, forKey: .selectedColors)
+                print(udManager.getArray(forKey: .selectedColors))
+            } else {
+                // Another color square is selected, update selectedSquareIndex
+                self.selectedSquareIndex = index
             }
-        }
+        } else {
+                // No color square is selected, set selectedSquareIndex and toggle check mark visibility
+                self.selectedSquareIndex = index
+                let square = colorSquares[index]
+                if let checkMarkLayer = square.subviews.first as? UIImageView {
+                    checkMarkLayer.isHidden.toggle()
+                }
 
+                // Save selected color indices in UserDefaults
+                let selectedIndices = colorSquares
+                    .enumerated()
+                    .filter { $0.element.subviews.first as? UIImageView != nil && !($0.element.subviews.first as! UIImageView).isHidden }
+                    .map { $0.offset }
+
+                udManager.set(selectedIndices, forKey: .selectedColors)
+                print(udManager.getArray(forKey: .selectedColors))
+        }
     }
 
     private func setupTapGestureRecognizer() {

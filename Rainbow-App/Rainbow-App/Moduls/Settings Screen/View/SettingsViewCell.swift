@@ -2,14 +2,16 @@ import UIKit
 import SnapKit
 
 class SettingsViewCell: UITableViewCell {
-    
+
+    private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+
     // MARK: - Cell types
     enum SettingsCellType {
         case gameTime
         case gameSpeed
         case wordsColor
         case fontSize
-        case letterBackground
+        case letterOrBackground
         case checkGame
         case backgroundGameColor
     }
@@ -19,49 +21,71 @@ class SettingsViewCell: UITableViewCell {
     // MARK: - Private properties
     
     private lazy var titleLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 15), textColor: .black)
+
+    private lazy var gameDurationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(udManager.getInt(forKey: .gameDuration) ?? 2)"
+        label.font = UIFont.alice(size: 22)
+        label.textColor = .black
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
     
-    lazy var countLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 22), textColor: .black)
-    
-    lazy var slider: UISlider = {
+    private lazy var gameDurationSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 5
         slider.isUserInteractionEnabled = true
-        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.value = Float(udManager.getInt(forKey: .gameDuration) ?? 2)
+        slider.addTarget(self, action: #selector(gameDurationAction), for: .valueChanged)
         return slider
     }()
     
     private lazy var colorGridView: ColorGridView = {
         let colorGridView = ColorGridView()
+        if let selectedIndices = udManager.getArray(forKey: .selectedColors) as? [Int] {
+                    for index in selectedIndices {
+                        if index < colorGridView.colorSquares.count {
+                            let square = colorGridView.colorSquares[index]
+                            if let checkMarkLayer = square.subviews.first as? UIImageView {
+                                checkMarkLayer.isHidden = false
+                            }
+                        }
+                    }
+                }
+
         return colorGridView
     }()
     
-    private lazy var stepper: UIStepper = {
+    private lazy var fontSizeStepper: UIStepper = {
         let stepper = UIStepper()
         stepper.isUserInteractionEnabled = true
-        stepper.minimumValue = 16
-        stepper.maximumValue = 20
+        stepper.minimumValue = 18
+        stepper.maximumValue = 25
+        stepper.value = Double(udManager.getInt(forKey: .fontSize) ?? 20)
         stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         return stepper
     }()
+
+    private lazy var fontSizeLabel = UILabel.makeLabel(text: "Aa", font: UIFont.alice(size: CGFloat ( udManager.getInt(forKey: .fontSize) ?? 20)), textColor: .black)
     
-    private lazy var fontSizeLabel: UILabel = UILabel.makeLabel(font: UIFont.alice(size: 16), textColor: .black)
-    
-    private lazy var toggler: UISwitch = {
+    private lazy var isWithBackgroundToggler: UISwitch = {
         let toggler = UISwitch()
         toggler.isUserInteractionEnabled = true
-        toggler.addTarget(self, action: #selector(toggleValueChanged(_:)), for: .valueChanged)
+        toggler.addTarget(self, action: #selector(isWithBackgroundAction(_:)), for: .valueChanged)
+        toggler.isOn = udManager.getBool(forKey: .isWithBackground) ?? false
         return toggler
     }()
     
-    lazy var checkToggler: UISwitch = {
+    lazy var resultCheckToggler: UISwitch = {
         let toggler = UISwitch()
         toggler.isUserInteractionEnabled = true
-        toggler.addTarget(self, action: #selector(toggleCheckerValueChanged(_:)), for: .valueChanged)
+        toggler.addTarget(self, action: #selector(isWithCheckAction(_:)), for: .valueChanged)
+        toggler.isOn = udManager.getBool(forKey: .isWithCheck) ?? false
         return toggler
     }()
 
-    private lazy var backgroundController = UISegmentedControl.makeController(segments: 3, item1: "Тёмный", item2: "Светлый", item3: "Мятный", item4: nil)
+    private lazy var backgroundController = UISegmentedControl.makeController(segments: 2, item1: "Тёмный", item2: "Светлый", item3: nil, item4: nil)
 
     private lazy var speedController = UISegmentedControl.makeController(segments: 3, item1: "Медленно", item2: "Средне", item3: "Быстро", item4: nil)
     
@@ -99,14 +123,13 @@ class SettingsViewCell: UITableViewCell {
     // MARK: Private Methods
 
     private func setupSegmentedControllers() {
-        backgroundController.selectedSegmentIndex = 0
-        backgroundController.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
-
         speedController.selectedSegmentIndex = 0
+        //need to add a target on the speedController
+        backgroundController.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+        backgroundController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
     }
 
     private func setupCell() {
-        
         contentView.addSubview(hStack)
         contentView.layer.cornerRadius = 10
         contentView.backgroundColor = .white
@@ -114,14 +137,8 @@ class SettingsViewCell: UITableViewCell {
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(8)
         }
-        
-        
     }
-    
-    func setupSegmantConroller() {
-        speedController.addTarget(self, action: #selector(speedConrollerChanged(_:)), for: .valueChanged)
-    }
-    
+
     func configure(with title: String, type: SettingsCellType) {
         
         hStack.snp.makeConstraints { make in
@@ -133,19 +150,19 @@ class SettingsViewCell: UITableViewCell {
         switch type {
         case .gameTime:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(slider)
-            hStack.addArrangedSubview(countLabel)
+            hStack.addArrangedSubview(gameDurationSlider)
+            hStack.addArrangedSubview(gameDurationLabel)
             
             titleLabel.numberOfLines = 0
             titleLabel.text = title
             
-            countLabel.snp.makeConstraints { make in
+            gameDurationLabel.snp.makeConstraints { make in
                 make.trailing.equalTo(self).inset(25)
             }
             
-            slider.snp.makeConstraints { make in
+            gameDurationSlider.snp.makeConstraints { make in
                 make.width.equalTo(100)
-                make.trailing.equalTo(countLabel).inset(40)
+                make.trailing.equalTo(gameDurationLabel).inset(40)
             }
             
             titleLabel.snp.makeConstraints { make in
@@ -182,11 +199,10 @@ class SettingsViewCell: UITableViewCell {
             
         case .fontSize:
             contentView.addSubview(titleLabel)
-            contentView.addSubview(stepper)
+            contentView.addSubview(fontSizeStepper)
             contentView.addSubview(fontSizeLabel)
             
             titleLabel.text = title
-            fontSizeLabel.text = "Aa"
             
             titleLabel.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(10)
@@ -198,19 +214,19 @@ class SettingsViewCell: UITableViewCell {
                 make.trailing.equalToSuperview().inset(20)
             }
             
-            stepper.snp.makeConstraints { make in
+            fontSizeStepper.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.trailing.equalTo(fontSizeLabel).inset(38)
             }
             
-        case .letterBackground:
+        case .letterOrBackground:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(toggler)
+            hStack.addArrangedSubview(isWithBackgroundToggler)
             titleLabel.text = title
             
         case .checkGame:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(checkToggler)
+            hStack.addArrangedSubview(resultCheckToggler)
             titleLabel.text = title
             
         case .backgroundGameColor:
@@ -234,30 +250,30 @@ class SettingsViewCell: UITableViewCell {
     //MARK: Selector Methods
 
     @objc
+    private func gameDurationAction(_ sender: UISlider) {
+        let newValue = Int(sender.value)
+        print (newValue)
+        gameDurationLabel.text = "\(newValue)"
+        udManager.set(newValue, forKey: .gameDuration)
+    }
+
+    @objc
     private func stepperValueChanged(_ sender: UIStepper) {
         let fontSize = CGFloat(sender.value)
         fontSizeLabel.font = UIFont.systemFont(ofSize: fontSize)
-        UserDefaults.standard.set(Double(fontSize), forKey: "forStepperKey")
+        udManager.set(fontSize, forKey: .fontSize)
     }
     
     @objc
-    private func toggleValueChanged(_ sender: UISwitch) {
+    private func isWithBackgroundAction(_ sender: UISwitch) {
         let switchStatus = sender.isOn
-        UserDefaults.standard.set(switchStatus, forKey: "forToggleKey")
+        udManager.set(switchStatus, forKey: .isWithBackground)
     }
     
     @objc
-    func toggleCheckerValueChanged(_ sender: UISwitch) {
+    func isWithCheckAction(_ sender: UISwitch) {
         let switchStatus = sender.isOn
-        UserDefaults.standard.set(switchStatus, forKey: "checkerKey")
-    }
-    
-    
-    @objc
-    private func speedConrollerChanged(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        let speedStatus = sender.titleForSegment(at: selectedIndex)
-        UserDefaults.standard.set(speedStatus, forKey: "forSpeedKey")
+        udManager.set(switchStatus, forKey: .isWithCheck)
     }
 
     @objc
@@ -265,10 +281,10 @@ class SettingsViewCell: UITableViewCell {
         switch backgroundController.selectedSegmentIndex {
         case 0:
             ThemeManager.shared.currentBackground = Palette.backgroundBlue
+            udManager.set(backgroundController.selectedSegmentIndex, forKey: .backgroundColor)
         case 1:
-            ThemeManager.shared.currentBackground = .systemBlue
-        case 2:
-            ThemeManager.shared.currentBackground = .systemMint
+            ThemeManager.shared.currentBackground = UIColor.systemGray4
+            udManager.set(backgroundController.selectedSegmentIndex, forKey: .backgroundColor)
         default:
             break
         }
