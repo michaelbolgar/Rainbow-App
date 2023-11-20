@@ -13,6 +13,7 @@ protocol UserDefaultsManagerProtocol {
     func getDouble(forKey key: UserDefaultsManager.Keys) -> Double?
     func getString(forKey key: UserDefaultsManager.Keys) -> String?
     func getBool(forKey key: UserDefaultsManager.Keys) -> Bool?
+    func getArray(forKey key: UserDefaultsManager.Keys) -> [Int]
     func getCodableData<T: Decodable>(forKey: UserDefaultsManager.Keys) -> T?
 
     //deleting data
@@ -70,6 +71,10 @@ extension UserDefaultsManager: UserDefaultsManagerProtocol {
 
     func getBool(forKey key: Keys) -> Bool? {
         restoreData(forKey: key.rawValue) as? Bool
+    }
+
+    func getArray(forKey key: Keys) -> [Int] {
+        restoreData(forKey: key.rawValue) as? [Int] ?? [0, 1, 2]
     }
 
     func getCodableData<T: Decodable>(forKey key: Keys) -> T? {

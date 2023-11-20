@@ -43,6 +43,17 @@ class SettingsViewCell: UITableViewCell {
     
     private lazy var colorGridView: ColorGridView = {
         let colorGridView = ColorGridView()
+        if let selectedIndices = udManager.getArray(forKey: .selectedColors) as? [Int] {
+                    for index in selectedIndices {
+                        if index < colorGridView.colorSquares.count {
+                            let square = colorGridView.colorSquares[index]
+                            if let checkMarkLayer = square.subviews.first as? UIImageView {
+                                checkMarkLayer.isHidden = false
+                            }
+                        }
+                    }
+                }
+
         return colorGridView
     }()
     
@@ -111,6 +122,7 @@ class SettingsViewCell: UITableViewCell {
 
     private func setupSegmentedControllers() {
         speedController.selectedSegmentIndex = 0
+        //need to add a target on the speedController
         backgroundController.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         backgroundController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
     }
