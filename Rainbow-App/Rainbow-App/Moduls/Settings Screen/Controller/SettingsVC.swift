@@ -9,6 +9,7 @@ struct Settings {
 
 class SettingsVC: UIViewController {
 
+    //MARK: Properties
     let settingsView = SettingsView()
     
     private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
@@ -19,7 +20,7 @@ class SettingsVC: UIViewController {
         Settings(title: "Цвета слов", type: .wordsColor, value: 0),
         Settings(title: "Размер букв", type: .fontSize, value: 0),
         Settings(title: "Подложка для букв", type: .letterOrBackground, value: 0),
-        Settings(title: "Игра с проверкой", type: .checkGame, value: 0),
+        Settings(title: "Проверка голосом", type: .checkGame, value: 0),
         Settings(title: "Цвет фона", type: .backgroundGameColor, value: 0)
     ]
 
@@ -45,28 +46,9 @@ class SettingsVC: UIViewController {
     }
 
     //MARK: Selector Metods
-
     @objc
     private func updateBackgroundColor() {
         settingsView.backgroundColor = ThemeManager.shared.currentBackground
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        let int = UserDefaultsManager.instance.fetchSlider()
-        let int = UserDefaults.standard.integer(forKey: "forDurationSliderKey")
-        let double = UserDefaults.standard.double(forKey: "forStepperKey") //ОКАЗЫВАЕТСЯ, это шрифт
-        let bool = UserDefaults.standard.bool(forKey: "forToggleKey")
-        let speed = UserDefaults.standard.string(forKey: "forSpeedKey")
-        print("forDurationSliderKey", int)
-        print("forStepperKey", double)
-        print("forToggleKey", bool)
-        print("forSpeedKey", speed)
-      /* Сохранение настроек, таких как: скорость смены заданий, подложка, размер букв и время игры работает.
-         Принты выше ни на что не влияют и созданы только для проверки работы сохраения в UserDefaults.
-         Сам файл с UserDefaultsManager, по сути, и не нужен. Есть идея, как зарефакторить, но уже утром (там быстро будет).
-         Сохранение идёт автоматом в методах @objc SettingsViewCell и в методе этого класса (SettingsVC). 
-         */
     }
 }
 

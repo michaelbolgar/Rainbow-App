@@ -73,13 +73,15 @@ class SettingsViewCell: UITableViewCell {
         let toggler = UISwitch()
         toggler.isUserInteractionEnabled = true
         toggler.addTarget(self, action: #selector(isWithBackgroundAction(_:)), for: .valueChanged)
+        toggler.isOn = udManager.getBool(forKey: .isWithBackground) ?? false
         return toggler
     }()
     
-    lazy var isCheckToggler: UISwitch = {
+    lazy var resultCheckToggler: UISwitch = {
         let toggler = UISwitch()
         toggler.isUserInteractionEnabled = true
         toggler.addTarget(self, action: #selector(isWithCheckAction(_:)), for: .valueChanged)
+        toggler.isOn = udManager.getBool(forKey: .isWithCheck) ?? false
         return toggler
     }()
 
@@ -221,13 +223,11 @@ class SettingsViewCell: UITableViewCell {
             hStack.addArrangedSubview(titleLabel)
             hStack.addArrangedSubview(isWithBackgroundToggler)
             titleLabel.text = title
-            isWithBackgroundToggler.isOn = udManager.getBool(forKey: .isWithBackground) ?? false
             
         case .checkGame:
             hStack.addArrangedSubview(titleLabel)
-            hStack.addArrangedSubview(isCheckToggler)
+            hStack.addArrangedSubview(resultCheckToggler)
             titleLabel.text = title
-            isCheckToggler.isOn = udManager.getBool(forKey: .isWithCheck) ?? false
             
         case .backgroundGameColor:
             contentView.addSubview(vStack)
@@ -235,7 +235,6 @@ class SettingsViewCell: UITableViewCell {
             vStack.addArrangedSubview(backgroundController)
             
             titleLabel.text = title
-            backgroundController.selectedSegmentIndex = udManager.getInt(forKey: .backgroundColor) ?? 0
 
             vStack.snp.makeConstraints { make in
                 make.top.bottom.equalTo(self).inset(13)
