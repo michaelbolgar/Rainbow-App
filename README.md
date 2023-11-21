@@ -1,6 +1,6 @@
 # 🌈 Rainbow
 
-## developed for [(Swift Marathon X)](https://t.me/swiftmarathon) <a href="url"><img src="https://github.com/DmitryLorents/Bomba-Challenge1/blob/dmitry/readmeFix/Bomba-Challenge1/SupportingFiles/Assets.xcassets/ReadmeFiles/swiftMarathon.imageset/swift%20Marathon.jpeg" height="auto" width="30" align="center"></a>
+## developed for [(Swift Marathon X)](https://boosty.to/swiftmarathon) <a href="url"><img src="https://github.com/DmitryLorents/Bomba-Challenge1/blob/dmitry/readmeFix/Bomba-Challenge1/SupportingFiles/Assets.xcassets/ReadmeFiles/swiftMarathon.imageset/swift%20Marathon.jpeg" height="auto" width="30" align="center"></a>
 
 ![screenshots](https://github.com/michaelbolgar/Rainbow-App/assets/119865051/7ffd7ec4-457b-4a6b-879e-856186ce15e2)
 
