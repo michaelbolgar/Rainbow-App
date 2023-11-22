@@ -10,7 +10,6 @@ protocol UserDefaultsManagerProtocol {
 
     //methods for getting saved data
     func getInt(forKey key: UserDefaultsManager.Keys) -> Int?
-    func getDouble(forKey key: UserDefaultsManager.Keys) -> Double?
     func getString(forKey key: UserDefaultsManager.Keys) -> String?
     func getBool(forKey key: UserDefaultsManager.Keys) -> Bool?
     func getArray(forKey key: UserDefaultsManager.Keys) -> [Int]
@@ -59,10 +58,6 @@ extension UserDefaultsManager: UserDefaultsManagerProtocol {
 
     func getInt(forKey key: Keys) -> Int? {
         restoreData(forKey: key.rawValue) as? Int
-    }
-
-    func getDouble(forKey key: Keys) -> Double? {
-        restoreData(forKey: key.rawValue) as? Double
     }
 
     func getString(forKey key: Keys) -> String? {
