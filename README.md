@@ -35,4 +35,4 @@ In Rainbow, you can customize the speed and duration of the game, and there are 
 
 The latest feature of Rainbow is an active voice recognizer: speak words out loud, and the application will point out where you made a mistake.
 
-Rainbow is geared towards providing active leisure with brain-boosting benefits. The challenge of associating words with their colors enhances cognitive flexibility and diverse thinking.
+Rainbow is geared towards providing active leisure with brain-boosting benefits. The challenge of associating words with their colors enhances cognitive flexibility and diverse thinking.  
