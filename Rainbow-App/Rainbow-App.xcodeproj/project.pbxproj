@@ -230,7 +230,6 @@
 			children = (
 				F49E7CD02B015C3000817069 /* Controller */,
 				F49E7CCF2B015C2C00817069 /* View */,
-				F49E7CCE2B015C2800817069 /* Model */,
 			);
 			path = "Help Screen";
 			sourceTree = "<group>";
@@ -301,13 +300,6 @@
 				F49E7CD92B015CDF00817069 /* StatisticsVC.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		F49E7CCE2B015C2800817069 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F49E7CCF2B015C2C00817069 /* View */ = {

@@ -1,52 +1,63 @@
 import UIKit
 
-//поправить вёрстку для SE
-
 final class HelpView: UIView {
 
     //MARK: UI Elements
 
-    private lazy var backgroundView: UIView = {
+    private lazy var whiteView: UIView = {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .white
         backgroundView.layer.cornerRadius = 10
         return backgroundView
     }()
 
-    private lazy var titleLabel = UILabel.makeLabel(text: "ПРАВИЛА ИГРЫ", font: UIFont.alice(size: 24), textColor: .systemRed)
+    private lazy var titleLabel = UILabel.makeLabel(text: "ПРАВИЛА ИГРЫ",
+                                                    font: UIFont.alice(size: 24),
+                                                    textColor: .systemRed)
 
-    private lazy var firstdRulesLabel = UILabel.makeLabelHelpView(text: "1. На экране в случайном месте появляется слово, обозначающее цвет, например: «‎белый»", font: UIFont.alice(size: 20), textColor: .black)
+    private lazy var firstdRulesLabel = UILabel.makeLabelHelpView(text: """
+                                                                        1. На экране в случайном месте появляется слово, обозначающее цвет, например: «‎белый»
+                                                                        """,
+                                                                  font: UIFont.alice(size: 20),
+                                                                  textColor: .black)
 
-    private lazy var withoutBackground = UILabel.makeLabel(text: "без подложки", font: UIFont.alice(size: 12), textColor: .black)
+    private lazy var withoutBackground = UILabel.makeLabel(text: "без подложки",
+                                                           font: UIFont.alice(size: 12),
+                                                           textColor: .black)
 
-    private lazy var withBackground = UILabel.makeLabel(text: "с подложкой", font: UIFont.alice(size: 12), textColor: .black)
+    private lazy var withBackground = UILabel.makeLabel(text: "с подложкой",
+                                                        font: UIFont.alice(size: 12),
+                                                        textColor: .black)
 
-    private lazy var whiteWord = UILabel.makeLabel(text: "белый", font: UIFont.alice(size: 20), textColor: UIColor.blue)
+    private lazy var whiteWord = UILabel.makeLabel(text: "белый",
+                                                   font: UIFont.alice(size: 20),
+                                                   textColor: UIColor.blue)
 
-    private lazy var circleView = ColorsPatternView(title: "белый", color: UIColor.blue, background: true)
+    private lazy var circleView = ColorsPatternView(title: "белый",
+                                                    color: UIColor.blue,
+                                                    background: true)
 
-    private lazy var secondRulesLabel = UILabel.makeLabelHelpView(text: "2. Нужно произнести вслух цвет, которым написано слово, или цвет подложки: отвечаем «‎синий»", font: UIFont.alice(size: 20), textColor: .black)
+    private lazy var secondRulesLabel = UILabel.makeLabelHelpView(text: """
+                                                                  2. Нужно произнести вслух цвет, которым написано слово, или цвет подложки: отвечаем «‎синий»
+                                                                  """,
+                                                                  font: UIFont.alice(size: 20),
+                                                                  textColor: .black)
 
-    private lazy var thirdRulesLabel = UILabel.makeLabelHelpView(text: "В игре можно изменять скорость от медленной до быстрой, а также длительность игры", font: UIFont.alice(size: 20), textColor: .black)
+    private lazy var thirdRulesLabel = UILabel.makeLabelHelpView(text: """
+                                                                В игре можно изменять скорость от медленной до быстрой, а также длительность игры
+                                                                """,
+                                                                 font: UIFont.alice(size: 20),
+                                                                 textColor: .black)
 
-    private lazy var fourthRulesLabel = UILabel.makeLabelHelpView(text: "В базовой версии игры нет проверки правильных ответов. Игрок может сам следить за своими ответами или играть с кем-то. Режим 'Проверка голосом' в настройках активирует функцию распознавания голоса: нужно называть цвета вслух до того, как они пересекут пунктирную линию. Для этого нужно разрешить приложению использование микрофона устройства", font: UIFont.alice(size: 20), textColor: .black)
+    private lazy var fourthRulesLabel = UILabel.makeLabelHelpView(text: """
+                                                                  В базовой версии игры нет проверки правильных ответов. Игрок может сам следить за своими ответами или играть с кем-то. Режим 'Проверка голосом' в настройках активирует функцию распознавания голоса: нужно называть цвета вслух до того, как они пересекут пунктирную линию. Для этого нужно разрешить приложению использование микрофона устройства
+                                                                  """,
+                                                                  font: UIFont.alice(size: 20),
+                                                                  textColor: .black)
 
-    private lazy var mainStackView: UIStackView = {
-        let mainStackView = UIStackView()
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.axis = .vertical
-        mainStackView.distribution = .equalSpacing
-        mainStackView.spacing = 15
-        mainStackView.alignment = .center
-        return mainStackView
-    }()
-
-    private lazy var substrateDesignationStackView: SubstrateDesignationStackView = {
-        let substrateDesignationStackView = SubstrateDesignationStackView()
-        return substrateDesignationStackView
-    }()
 
     // MARK: Init
+
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.backgroundBlue
@@ -64,10 +75,10 @@ final class HelpView: UIView {
         let outSideOffset: CGFloat = 34
         let inSideOffset: CGFloat = 20
 
-        self.addSubview(backgroundView)
-        [titleLabel, firstdRulesLabel, secondRulesLabel, thirdRulesLabel, withoutBackground, withBackground, whiteWord, circleView, fourthRulesLabel].forEach { backgroundView.addSubview($0) }
+        self.addSubview(whiteView)
+        [titleLabel, firstdRulesLabel, secondRulesLabel, thirdRulesLabel, withoutBackground, withBackground, whiteWord, circleView, fourthRulesLabel].forEach { whiteView.addSubview($0) }
 
-        backgroundView.snp.makeConstraints { make in
+        whiteView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(50)
             make.bottom.equalToSuperview().inset(120)
             make.leading.trailing.equalToSuperview().inset(outSideOffset)
