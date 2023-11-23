@@ -1,14 +1,29 @@
 import UIKit
 
+    //MARK: MainView Protocol
+
+protocol MainViewDelegate: AnyObject {
+    func didTapNewGame()
+    func didTapStatistics()
+    func didTapSettings()
+    func didTapHelp()
+}
+
 class MainVC: UIViewController {
-    
+
+    // MARK: UI Elements
+
     private let mainView = MainView()
+
+    // MARK: VC Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         mainView.delegate = self
     }
+
+    // MARK: Private Methods
 
     private func setupView() {
         view.addSubview(mainView)
@@ -20,35 +35,35 @@ class MainVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
     }
 
-    //MARK: Selector Metods
+    //MARK: Selector Methods
 
     @objc
     private func updateBackgroundColor() {
         mainView.backgroundColor = ThemeManager.shared.currentBackground
     }
     
-    // MARK: - MainVC+Extension+Delegate
+    // MARK: MainVC Extension
 }
 
 extension MainVC: MainViewDelegate {
     func didTapNewGame() {
-        let vc = GameVC()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let viewController = GameVC()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func didTapStatistics() {
-        let vc = StatisticsVC()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let viewController = StatisticsVC()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func didTapSettings() {
-        let vc = SettingsVC()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let viewController = SettingsVC()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func didTapHelp() {
-        let vc = HelpVC()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let viewController = HelpVC()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
