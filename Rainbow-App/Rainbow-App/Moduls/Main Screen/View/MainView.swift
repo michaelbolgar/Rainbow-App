@@ -73,11 +73,11 @@ class MainView: UIView {
         stack.spacing = stackSpacing
         return stack
     }()
-    private lazy var horizontalButtonStack = makeStackView(axis: .horizontal,
+    private lazy var secondaryButtonsStack = makeStackView(axis: .horizontal,
                                                                spacing: 250,
                                                                views: [settingsButton,
                                                                        helpButton])
-    private lazy var verticalalStack = makeStackView(axis: .vertical,
+    private lazy var mainButtonsStack = makeStackView(axis: .vertical,
                                                                spacing: stackSpacing,
                                                                views: [newGameButton,
                                                                        statisticButton])
@@ -144,25 +144,29 @@ class MainView: UIView {
     // MARK: Layout
 
     private func setupLayout() {
+
+        let screenHeight = UIScreen.main.bounds.height
+        let screenThird = screenHeight / 3
+
         self.addAllTheSubviews(horizontalCharacterslStack,
                                gameLabel,
-                               verticalalStack,
-                               horizontalButtonStack
+                               mainButtonsStack,
+                               secondaryButtonsStack
         )
+        horizontalCharacterslStack.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).offset(screenThird)
+            make.centerX.equalToSuperview()
+        }
         gameLabel.snp.makeConstraints { make in
             make.top.equalTo(horizontalCharacterslStack.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
-        horizontalCharacterslStack.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).offset(292)
+        secondaryButtonsStack.snp.makeConstraints { make in
+            make.bottom.equalTo(self.snp.bottom).inset(50)
             make.centerX.equalToSuperview()
         }
-        verticalalStack.snp.makeConstraints { make in
-            make.top.equalTo(gameLabel.snp.bottomMargin).offset(120)
-            make.centerX.equalToSuperview()
-        }
-        horizontalButtonStack.snp.makeConstraints { make in
-            make.top.equalTo(verticalalStack.snp.bottomMargin).offset(70)
+        mainButtonsStack.snp.makeConstraints { make in
+            make.bottom.equalTo(secondaryButtonsStack.snp.bottom).inset(80)
             make.centerX.equalToSuperview()
         }
         settingsButton.snp.makeConstraints { make in
