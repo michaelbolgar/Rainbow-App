@@ -21,13 +21,13 @@ class StatisticsViewCell: UITableViewCell {
         return view
     }()
     
-    private var numberOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: Palette.raspberry)
+    private var numberOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: UIColor.raspberry)
     
     private var timeOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: .black)
     
     private var speedOfGameLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: .black)
     
-    private var scopeLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: Palette.green)
+    private var scopeLabel = UILabel.makeLabel(font: UIFont.alice(size: 20), textColor: UIColor.green)
     //MARK: - Unit
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

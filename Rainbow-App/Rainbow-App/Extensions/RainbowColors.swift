@@ -26,17 +26,17 @@ enum RainbowColors: String, CaseIterable {
         case .pink:
             return UIColor(red: 0.99, green: 0.13, blue: 0.64, alpha: 1.00)
         case .orange:
-            return Palette.orange
+            return UIColor.orange
         case .yellow:
-            return Palette.yellow
+            return UIColor.yellow
         case .green:
-            return Palette.green
+            return UIColor.green
         case .lightBlue:
             return UIColor(red: 0.26, green: 0.67, blue: 1.00, alpha: 1.00)
         case .blue:
             return UIColor(red: 0.00, green: 0.30, blue: 0.81, alpha: 1.00)
         case .purple:
-            return Palette.purple
+            return UIColor.purple
         case .white:
             return .white
         }

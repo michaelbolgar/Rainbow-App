@@ -20,11 +20,11 @@ final class ThemeManager {
     private func setBackgroundColor(index: Int) -> UIColor {
         switch index {
         case Index.darkTheme.rawValue:
-            return Palette.backgroundBlue
+            return UIColor.backgroundBlue
         case Index.lightTheme.rawValue:
             return UIColor.systemGray4
         default:
-            return Palette.backgroundBlue
+            return UIColor.backgroundBlue
         }
     }
 }

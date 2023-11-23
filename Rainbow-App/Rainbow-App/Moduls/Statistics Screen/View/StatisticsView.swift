@@ -29,7 +29,7 @@ class StatisticsView: UIView {
     
     var resultsTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = Palette.backgroundBlue
+        tableView.backgroundColor = UIColor.backgroundBlue
         tableView.separatorStyle = .none
         tableView.rowHeight = 96
         tableView.isScrollEnabled = true
@@ -48,7 +48,7 @@ class StatisticsView: UIView {
     
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Palette.backgroundBlue
+        self.backgroundColor = UIColor.backgroundBlue
         emptyStatisticsLabel.isHidden = true
         
         [resultsTableView, emptyStatisticsLabel, cleanButton].forEach{self.addSubview($0)}

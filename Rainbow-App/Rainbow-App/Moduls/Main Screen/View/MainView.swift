@@ -13,12 +13,12 @@ class MainView: UIView {
     private let stackSpacing: CGFloat = 15
     private let characterCircleSize: CGFloat = 40
 
-    private let colors = [Palette.red,
-                          Palette.orange,
-                          Palette.yellow,
-                          Palette.green,
-                          Palette.blue,
-                          Palette.purple]
+    private let colors = [UIColor.red,
+                          UIColor.orange,
+                          UIColor.yellow,
+                          UIColor.green,
+                          UIColor.blue,
+                          UIColor.purple]
 
     private let rainbowWord = ["р", "а", "д", "у", "г", "а"]
 
@@ -79,7 +79,7 @@ class MainView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Palette.backgroundBlue
+        self.backgroundColor = UIColor.backgroundBlue
         setupRainbow()
         setupLayout()
     }
