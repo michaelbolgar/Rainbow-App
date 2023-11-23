@@ -2,22 +2,6 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol MainViewDelegate: AnyObject {
-    func didTapNewGame()
-    func didTapStatistics()
-    func didTapSettings()
-    func didTapHelp()
-}
-
-private extension String {
-    static let title = "игра для разминки\nтвоего мозга!"
-    static let newGameButton = "Новая игра"
-    static let statisticButton = "Статистика"
-    static let gearButton = "gearshape.circle"
-    static let questionButton = "questionmark.circle"
-    static let requiredInit = "init(coder:) has not been implemented"
-}
-
 class MainView: UIView {
     
     // MARK: Delegate
@@ -28,66 +12,68 @@ class MainView: UIView {
     
     private let stackSpacing: CGFloat = 15
     private let characterCircleSize: CGFloat = 40
-    
-    static let shared = MainView()
+
+    private let colors = [Palette.red,
+                          Palette.orange,
+                          Palette.yellow,
+                          Palette.green,
+                          Palette.blue,
+                          Palette.purple]
+
+    private let rainbowWord = ["р", "а", "д", "у", "г", "а"]
 
     // MARK: UI Elements
-    
-    private lazy var gameLabel: UILabel = {
-        let label = UILabel.makeLabel(text: .title,
-                                      font: UIFont.caveat(size: 40),
-                                      textColor: .white)
-        return label
-    }()
-    lazy var newGameButton: UIButton = {
-        let button = UIButton.makeButton(text: .newGameButton)
+
+    private lazy var gameLabel = UILabel.makeLabel(text: "игра для разминки\nтвоего мозга!", font: UIFont.caveat(size: 40), textColor: .white)
+
+    private lazy var newGameButton: UIButton = {
+        let button = UIButton.makeButton(text: "Новая игра")
         button.addTarget(self,
                          action: #selector(didTappedNewGame),
                          for: .touchUpInside)
         return button
     }()
-    lazy var statisticButton: UIButton = {
-        let button = UIButton.makeButton(text: .statisticButton)
+
+    private lazy var statisticButton: UIButton = {
+        let button = UIButton.makeButton(text: "Статистика")
         button.addTarget(self,
                          action: #selector(didTapStatistics),
                          for: .touchUpInside)
         return button
     }()
-    lazy var settingsButton: UIButton = {
-        let button = UIButton.makeCircleButton(imageName: .gearButton)
+
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton.makeCircleButton(imageName: "gearshape.circle")
         button.addTarget(self,
                          action: #selector(didTapSettings),
                          for: .touchUpInside)
         return button
     }()
-    lazy var helpButton: UIButton = {
-        let button = UIButton.makeCircleButton(imageName: .questionButton)
+
+    private lazy var helpButton: UIButton = {
+        let button = UIButton.makeCircleButton(imageName: "questionmark.circle")
         button.addTarget(self,
                          action: #selector(didTapHelp),
                          for: .touchUpInside)
         return button
     }()
+
     private lazy var horizontalCharacterslStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = stackSpacing
         return stack
     }()
+
     private lazy var secondaryButtonsStack = makeStackView(axis: .horizontal,
-                                                               spacing: 250,
-                                                               views: [settingsButton,
-                                                                       helpButton])
+                                                           spacing: 250,
+                                                           views: [settingsButton,
+                                                                   helpButton])
+
     private lazy var mainButtonsStack = makeStackView(axis: .vertical,
-                                                               spacing: stackSpacing,
-                                                               views: [newGameButton,
-                                                                       statisticButton])
-    private let colors = [Palette.red, 
-                          Palette.orange,
-                          Palette.yellow,
-                          Palette.green,
-                          Palette.blue,
-                          Palette.purple]
-    private let rainbowWord = ["р", "а", "д", "у", "г", "а"]
+                                                      spacing: stackSpacing,
+                                                      views: [newGameButton,
+                                                              statisticButton])
 
     // MARK: Init
 
@@ -98,50 +84,29 @@ class MainView: UIView {
         setupLayout()
     }
     required init?(coder: NSCoder) {
-        fatalError(.requiredInit)
+        fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Methods
+    // MARK: Private Methods
     
     private func makeStackView(axis: NSLayoutConstraint.Axis, 
                                spacing: CGFloat,
-                               views: [UIView] = []) -> UIStackView{
-            let stack = UIStackView(arrangedSubviews: views)
-            stack.axis = axis
-            stack.spacing = spacing
-            return stack
-        }
+                               views: [UIView] = []) -> UIStackView {
+        let stack = UIStackView(arrangedSubviews: views)
+        stack.axis = axis
+        stack.spacing = spacing
+        return stack
+    }
     
     private func setupRainbow() {
-            for (index, color) in colors.enumerated() {
-                let characterCircle = UILabel()
-                characterCircle.configureForRainbow(text: rainbowWord[index], 
+        for (index, color) in colors.enumerated() {
+        let characterCircle = UILabel()
+        characterCircle.configureForRainbow(text: rainbowWord[index],
                                                     color: color,
                                                     size: characterCircleSize)
-                horizontalCharacterslStack.addArrangedSubview(characterCircle)
-            }
+        horizontalCharacterslStack.addArrangedSubview(characterCircle)
         }
-    
-    // MARK: - ObjcDelegate
-    
-    @objc private func didTappedNewGame() {
-        delegate?.didTapNewGame()
     }
-    @objc private func didTapStatistics() {
-        delegate?.didTapStatistics()
-    }
-    @objc private func didTapSettings(_ button: UIButton) {
-        button.animateButton { [weak self] in
-                self?.delegate?.didTapSettings()
-            }
-    }
-    @objc private func didTapHelp(_ button: UIButton) {
-        button.animateButton { [weak self] in
-                self?.delegate?.didTapHelp()
-            }
-    }
-    
-    // MARK: Layout
 
     private func setupLayout() {
 
@@ -169,15 +134,32 @@ class MainView: UIView {
             make.bottom.equalTo(secondaryButtonsStack.snp.bottom).inset(80)
             make.centerX.equalToSuperview()
         }
-        settingsButton.snp.makeConstraints { make in
-            make.width.height.equalTo(50)
-        }
+    }
+    
+    // MARK: - Selector Methods
+    
+    @objc private func didTappedNewGame() {
+        delegate?.didTapNewGame()
+    }
+    @objc private func didTapStatistics() {
+        delegate?.didTapStatistics()
+    }
+    @objc private func didTapSettings(_ button: UIButton) {
+        button.animateButton { [weak self] in
+                self?.delegate?.didTapSettings()
+            }
+    }
+    @objc private func didTapHelp(_ button: UIButton) {
+        button.animateButton { [weak self] in
+                self?.delegate?.didTapHelp()
+            }
     }
 }
 
-// MARK: - Private+UIButton+Extensions
+    // MARK: - Extensions
 
 private extension UIButton {
+
     static func makeCircleButton(imageName: String = "") -> UIButton {
         let button = UIButton()
         let imageView = UIImageView()
@@ -193,6 +175,7 @@ private extension UIButton {
         }
         return button
     }
+
     // Reusable method for button animation
     func animateButton(completion: @escaping () -> Void) {
         UIView.animate(withDuration: 0.1, animations: {
@@ -208,8 +191,6 @@ private extension UIButton {
         })
     }
 }
-
-// MARK: - Private+UILabel+Extensions
 
 private extension UILabel {
     func configureForRainbow(text: String, color: UIColor, size: CGFloat) {
