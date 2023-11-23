@@ -4,11 +4,9 @@ final class HelpVC: UIViewController {
 
     //MARK: UI Elements
 
-    private lazy var helpView: HelpView = {
-        let helpView = HelpView()
-        helpView.translatesAutoresizingMaskIntoConstraints = false
-        return helpView
-    }()
+    private lazy var scrollView = UIScrollView()
+
+    private lazy var helpView = HelpView()
 
     //MARK: Controller's life cycle
 
@@ -22,10 +20,19 @@ final class HelpVC: UIViewController {
 
     private func setupUI() {
 
-        view.addSubview(helpView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(helpView)
+        scrollView.isScrollEnabled = true
+        scrollView.backgroundColor = Palette.backgroundBlue
+
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         helpView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView.snp.width)
+            make.height.equalTo(1100)
         }
 
         updateBackgroundColor()
