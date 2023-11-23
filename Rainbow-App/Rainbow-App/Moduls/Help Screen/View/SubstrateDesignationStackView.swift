@@ -11,7 +11,7 @@ final class SubstrateDesignationStackView: UIStackView {
         static let spacingForStackView: CGFloat = 15
     }
 
-    private lazy var circleView = ColorsPatternView(title: "белый", color: Palette.blue, background: true)
+    private lazy var circleView = ColorsPatternView(title: "белый", color: UIColor.blue, background: true)
     
     private lazy var leftStack: UIStackView = {
         let firstStackView = UIStackView()
@@ -40,7 +40,7 @@ final class SubstrateDesignationStackView: UIStackView {
     
     private lazy var firstSubstrateTypeLabel: UILabel = {
         let firstSubstrateTypeLabel = UILabel()
-        firstSubstrateTypeLabel.textColor = Palette.blue
+        firstSubstrateTypeLabel.textColor = UIColor.blue
         firstSubstrateTypeLabel.text = Constants.typeOfSubstrate
         firstSubstrateTypeLabel.font = .systemFont(ofSize: 20)
         return firstSubstrateTypeLabel
@@ -56,7 +56,7 @@ final class SubstrateDesignationStackView: UIStackView {
     
     private lazy var secondSubstrateTypeLabel: UILabel = {
         let secondSubstrateTypeLabel = UILabel()
-        secondSubstrateTypeLabel.textColor = Palette.blue
+        secondSubstrateTypeLabel.textColor = UIColor.blue
         secondSubstrateTypeLabel.text = Constants.typeOfSubstrate
         secondSubstrateTypeLabel.font = .systemFont(ofSize: 20)
         return secondSubstrateTypeLabel

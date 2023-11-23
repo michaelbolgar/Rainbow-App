@@ -4,7 +4,7 @@ extension UIButton {
     static func makeButton(text: String = "") -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(text, for: .normal)
-        button.backgroundColor = Palette.blue
+        button.backgroundColor = UIColor.blue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont.alice(size: 20)

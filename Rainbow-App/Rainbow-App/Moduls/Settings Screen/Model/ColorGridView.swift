@@ -6,8 +6,12 @@ class ColorGridView: UIView {
     // MARK: Properties
 
     private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+
     var colorSquares: [UIView] = []
-    private var colors: [UIColor] = [Palette.orange, Palette.yellow, Palette.green, Palette.purple, Palette.pink, Palette.lightBlue, UIColor.red, UIColor.white, Palette.blue2, UIColor.systemCyan]
+
+    //цвета gray нет в палитре игры, добавлен сюда чтобы было чётное количество квадратиков в настройках. Добавить цвет в игровую палитру
+    private var colors: [UIColor] = [UIColor.orange, UIColor.yellow, UIColor.green, UIColor.purple, UIColor.pink, UIColor.blue, UIColor.red, UIColor.white, UIColor.lightBlue, UIColor.gray]
+
     private var selectedSquareIndex: Int? = nil
 
     // MARK: Init

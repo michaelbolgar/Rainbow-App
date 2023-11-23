@@ -280,7 +280,7 @@ class SettingsViewCell: UITableViewCell {
     private func segmentedControlValueChanged() {
         switch backgroundController.selectedSegmentIndex {
         case 0:
-            ThemeManager.shared.currentBackground = Palette.backgroundBlue
+            ThemeManager.shared.currentBackground = UIColor.backgroundBlue
             udManager.set(backgroundController.selectedSegmentIndex, forKey: .backgroundColor)
         case 1:
             ThemeManager.shared.currentBackground = UIColor.systemGray4

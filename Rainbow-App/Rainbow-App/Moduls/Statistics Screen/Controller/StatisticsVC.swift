@@ -20,7 +20,7 @@ class StatisticsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Palette.backgroundBlue
+        view.backgroundColor = UIColor.backgroundBlue
         statisticsView.delegate = self
         statisticsView.resultsTableView.delegate = self
         statisticsView.resultsTableView.dataSource = self

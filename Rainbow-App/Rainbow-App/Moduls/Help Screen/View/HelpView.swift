@@ -21,9 +21,9 @@ final class HelpView: UIView {
 
     private lazy var withBackground = UILabel.makeLabel(text: "с подложкой", font: UIFont.alice(size: 12), textColor: .black)
 
-    private lazy var whiteWord = UILabel.makeLabel(text: "белый", font: UIFont.alice(size: 20), textColor: Palette.blue)
+    private lazy var whiteWord = UILabel.makeLabel(text: "белый", font: UIFont.alice(size: 20), textColor: UIColor.blue)
 
-    private lazy var circleView = ColorsPatternView(title: "белый", color: Palette.blue, background: true)
+    private lazy var circleView = ColorsPatternView(title: "белый", color: UIColor.blue, background: true)
 
     private lazy var secondRulesLabel = UILabel.makeLabelHelpView(text: "2. Нужно произнести вслух цвет, которым написано слово, или цвет подложки: отвечаем «‎синий»", font: UIFont.alice(size: 20), textColor: .black)
 
@@ -49,7 +49,7 @@ final class HelpView: UIView {
     // MARK: Init
     override init (frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Palette.backgroundBlue
+        self.backgroundColor = UIColor.backgroundBlue
         setupUI()
     }
 

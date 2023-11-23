@@ -1,6 +1,6 @@
 import UIKit
 
-struct Palette { // хорошо бы заменить на extension UIColor, чтобы обращатсья к цвету не через структуру
+extension UIColor {
 
     static var backgroundBlue: UIColor = {
         return UIColor (red: 13/255, green: 28/255, blue: 56/255, alpha: 1.0)
@@ -12,6 +12,10 @@ struct Palette { // хорошо бы заменить на extension UIColor, �
 
     static var darkBlue: UIColor = {
         return UIColor (red: 50/255, green: 104/255, blue: 205/255, alpha: 1.0)
+    }()
+
+    static var lightBlue: UIColor = {
+        return UIColor (red: 26/255, green: 67/255, blue: 100/255, alpha: 1.0)
     }()
 
     static var red: UIColor = {
@@ -40,13 +44,5 @@ struct Palette { // хорошо бы заменить на extension UIColor, �
 
     static var pink: UIColor = {
         return UIColor (red: 99/255, green: 13/255, blue: 64/255, alpha: 1.0)
-    }()
-
-    static var lightBlue: UIColor = {
-        return UIColor (red: 26/255, green: 67/255, blue: 100/255, alpha: 1.0)
-    }()
-
-    static var blue2: UIColor = {
-        return UIColor (red: 0/255, green: 0/255, blue: 81/255, alpha: 1.0)
     }()
 }

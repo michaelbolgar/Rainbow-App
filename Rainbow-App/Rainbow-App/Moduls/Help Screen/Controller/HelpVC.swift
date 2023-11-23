@@ -23,7 +23,7 @@ final class HelpVC: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(helpView)
         scrollView.isScrollEnabled = true
-        scrollView.backgroundColor = Palette.backgroundBlue
+        scrollView.backgroundColor = UIColor.backgroundBlue
 
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
