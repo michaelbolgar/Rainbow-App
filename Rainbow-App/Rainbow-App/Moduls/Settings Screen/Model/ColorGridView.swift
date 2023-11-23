@@ -9,7 +9,7 @@ class ColorGridView: UIView {
 
     var colorSquares: [UIView] = []
 
-    //цвета gray нет в палитре игры, добавлен сюда чтобы было чётное количество квадратиков в настройках. Добавить цвет в игровую палитру
+    //цвета UIColor.gray нет в палитре игры, добавлен сюда чтобы было чётное количество квадратиков в настройках. Добавить цвет в игровую палитру
     private var colors: [UIColor] = [UIColor.orange, UIColor.yellow, UIColor.green, UIColor.purple, UIColor.pink, UIColor.blue, UIColor.red, UIColor.white, UIColor.lightBlue, UIColor.gray]
 
     private var selectedSquareIndex: Int? = nil
@@ -121,6 +121,8 @@ class ColorGridView: UIView {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.addGestureRecognizer(tapGestureRecognizer)
     }
+
+    //MARK: Selector Methods
 
     @objc
     private func handleTap(_ sender: UITapGestureRecognizer) {

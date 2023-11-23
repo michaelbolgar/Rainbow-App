@@ -15,19 +15,27 @@ class SettingsView: UIView {
     }()
 
     // MARK: Init
+
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.backgroundBlue
-
-        self.addSubview(settingsTableView)
-        settingsTableView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(100)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
+        setupLayout()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: Private Methods
+
+    private func setupLayout() {
+
+        self.addSubview(settingsTableView)
+
+        settingsTableView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(100)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
     }
 }
 

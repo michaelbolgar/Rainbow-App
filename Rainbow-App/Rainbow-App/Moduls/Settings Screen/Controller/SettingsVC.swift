@@ -1,30 +1,17 @@
 import UIKit
 import SnapKit
 
-struct Settings {
-    var title: String
-    var type: SettingsViewCell.SettingsCellType
-    var value: Int
-}
-
 class SettingsVC: UIViewController {
 
-    //MARK: Properties
-    let settingsView = SettingsView()
-    
-    private let udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+    private var udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+    private var cells = CellModel.makeCells()
 
-    var settings: [Settings] = [
-        Settings(title: "Время игры, мин", type: .gameTime, value: 0),
-        Settings(title: "Скорость смены заданий, сек", type: .gameSpeed, value: 0),
-        Settings(title: "Цвета слов", type: .wordsColor, value: 0),
-        Settings(title: "Размер букв", type: .fontSize, value: 0),
-        Settings(title: "Подложка для букв", type: .letterOrBackground, value: 0),
-        Settings(title: "Проверка голосом", type: .checkGame, value: 0),
-        Settings(title: "Цвет фона", type: .backgroundGameColor, value: 0)
-    ]
+    //MARK: UI Elements
+
+    let settingsView = SettingsView()
 
     //MARK: Controller's life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.yellow
@@ -34,7 +21,8 @@ class SettingsVC: UIViewController {
         settingsView.settingsTableView.dataSource = self
     }
 
-    // MARK: Methods
+    // MARK: Private Methods
+
     private func setupView() {
         view.addSubview(settingsView)
         settingsView.snp.makeConstraints { make in
@@ -45,21 +33,24 @@ class SettingsVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateBackgroundColor), name: Notification.Name("ThemeChanged"), object: nil)
     }
 
-    //MARK: Selector Metods
+    //MARK: Selector Methods
+
     @objc
     private func updateBackgroundColor() {
         settingsView.backgroundColor = ThemeManager.shared.currentBackground
     }
 }
 
+    //MARK: SettingsVC Extension
+
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.count
+        return cells.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsViewCell.identifier, for: indexPath) as! SettingsViewCell
-        let setting = settings[indexPath.row]
+        let setting = cells[indexPath.row]
         cell.configure(with: setting.title, type: setting.type)
         return cell
     }

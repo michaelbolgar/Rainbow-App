@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3526F85F2B01868A00CA2D4F /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F85E2B01868A00CA2D4F /* UIView Extension.swift */; };
 		3526F8612B01869900CA2D4F /* UIStackView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8602B01869900CA2D4F /* UIStackView Extension.swift */; };
-		3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */; };
 		35F59D282B08C1BF00C7915A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F59D272B08C1BF00C7915A /* UserDefaultsManager.swift */; };
 		755825112B0215EA000193EA /* ColorsPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825102B0215EA000193EA /* ColorsPatternView.swift */; };
 		755825132B035B61000193EA /* UIViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755825122B035B61000193EA /* UIViewController Extension.swift */; };
@@ -21,6 +20,7 @@
 		E543C3942B049D88003C599E /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3932B049D88003C599E /* Results.swift */; };
 		E543C3962B0766AE003C599E /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E543C3952B0766AE003C599E /* CustomNavController.swift */; };
 		E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */; };
+		F41240422B0FDAF000AC10E1 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41240412B0FDAF000AC10E1 /* CellModel.swift */; };
 		F45055A72B016C4A00351031 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055A62B016C4A00351031 /* UIColor Extension.swift */; };
 		F45055AD2B01723600351031 /* Font Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AC2B01723600351031 /* Font Extension.swift */; };
 		F45055AF2B01732300351031 /* UILabel Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45055AE2B01732300351031 /* UILabel Extension.swift */; };
@@ -49,7 +49,6 @@
 /* Begin PBXFileReference section */
 		3526F85E2B01868A00CA2D4F /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
 		3526F8602B01869900CA2D4F /* UIStackView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView Extension.swift"; sourceTree = "<group>"; };
-		3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateDesignationStackView.swift; sourceTree = "<group>"; };
 		35F59D272B08C1BF00C7915A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		755825102B0215EA000193EA /* ColorsPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsPatternView.swift; sourceTree = "<group>"; };
 		755825122B035B61000193EA /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		E543C3932B049D88003C599E /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Results.swift; path = "Rainbow-App/Results.swift"; sourceTree = SOURCE_ROOT; };
 		E543C3952B0766AE003C599E /* CustomNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		E5BDB4392B02290A00AB793D /* StatisticsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewCell.swift; sourceTree = "<group>"; };
+		F41240412B0FDAF000AC10E1 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		F45055A62B016C4A00351031 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F45055AC2B01723600351031 /* Font Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font Extension.swift"; sourceTree = "<group>"; };
 		F45055AE2B01732300351031 /* UILabel Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extension.swift"; sourceTree = "<group>"; };
@@ -306,7 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				F49E7CE72B01624F00817069 /* HelpView.swift */,
-				3526F8622B01941500CA2D4F /* SubstrateDesignationStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				F4D83FDC2B07E0990039534B /* ColorGridView.swift */,
+				F41240412B0FDAF000AC10E1 /* CellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,9 +449,9 @@
 				F4D83FDD2B07E0990039534B /* ColorGridView.swift in Sources */,
 				E5BDB43A2B02290A00AB793D /* StatisticsViewCell.swift in Sources */,
 				F49E7CE62B0161EE00817069 /* StatisticsView.swift in Sources */,
+				F41240422B0FDAF000AC10E1 /* CellModel.swift in Sources */,
 				F49E7CAB2B0159DF00817069 /* AppDelegate.swift in Sources */,
 				E08945DD2B0570B0008FD586 /* UIButton Extension.swift in Sources */,
-				3526F8632B01941500CA2D4F /* SubstrateDesignationStackView.swift in Sources */,
 				F4D83FDB2B07E0740039534B /* SettingsViewCell.swift in Sources */,
 				F49E7CDC2B015CFF00817069 /* GameVC.swift in Sources */,
 				E543C3942B049D88003C599E /* Results.swift in Sources */,
